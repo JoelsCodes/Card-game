@@ -1,8 +1,8 @@
 const CACHE_NAME = 'triple-triad-v1';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  './',
+  './index.html',
+  './manifest.json'
 ];
 
 // Install: Cache assets
@@ -50,7 +50,7 @@ self.addEventListener('fetch', (event) => {
         return response;
       }).catch(() => {
         // Offline fallback
-        return caches.match('/index.html');
+        return caches.match('./index.html');
       });
     })
   );

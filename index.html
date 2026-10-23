@@ -170,14 +170,15 @@ button:disabled{opacity:.45;cursor:default}
 #app.gm .bar button{padding:6px 18px}
 @media (min-height:830px){.vb{width:2px!important}}
 </style>
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0f1224">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Triple Triad">
 <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+  navigator.serviceWorker.register('service-worker.js').catch(() => {});
 }
 </script>
 </head>
