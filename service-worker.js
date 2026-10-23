@@ -1,4 +1,4 @@
-const CACHE_NAME = 'triple-triad-v3';
+const CACHE_NAME = 'triple-triad-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -36,23 +36,40 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch: Serve from cache, fallback to network
+// Fetch
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request).then((response) => {
-        // Cache successful responses
-        if (response.ok && event.request.method === 'GET') {
-          const cache = caches.open(CACHE_NAME);
-          cache.then((c) => c.put(event.request, response.clone()));
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  const isPage = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('.html');
+
+  if (isPage) {
+    // Pages: network first so every visit gets the latest game when online,
+    // falling back to the cached copy when offline.
+    event.respondWith(
+      fetch(req).then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((c) => c.put(req, copy));
         }
         return response;
       }).catch(() => {
-        // Offline fallback
-        return caches.match('./index.html');
+        return caches.match(req).then((r) => r || caches.match('./index.html'));
+      })
+    );
+    return;
+  }
+
+  // Other assets (audio, manifest): cache first, fallback to network
+  event.respondWith(
+    caches.match(req).then((response) => {
+      if (response) return response;
+      return fetch(req).then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+        }
+        return response;
       });
     })
   );
