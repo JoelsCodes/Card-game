@@ -1,4 +1,4 @@
-const CACHE_NAME = 'triple-triad-v2';
+const CACHE_NAME = 'triple-triad-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
