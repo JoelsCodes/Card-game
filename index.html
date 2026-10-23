@@ -39,6 +39,8 @@ button:disabled{opacity:.45;cursor:default}
 @keyframes fl{0%{transform:rotateY(90deg)}100%{transform:none}}
 @media (prefers-reduced-motion:reduce){.card.flip{animation:none}}
 .card.off{opacity:.3;filter:grayscale(1)}
+.bw.pl:after{content:"";position:absolute;inset:-5px;border-radius:12px;border:3px solid #7fd6ff;box-shadow:0 0 18px #7fd6ff,inset 0 0 12px #7fd6ff;pointer-events:none;z-index:4;animation:plr .9s ease-out forwards}
+@keyframes plr{from{opacity:1;transform:scale(.92)}to{opacity:0;transform:scale(1.2)}}
 .vet{position:absolute;inset:0;pointer-events:none;border-radius:8px;z-index:2;background-repeat:no-repeat;background-size:100% 100%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 125' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='rgba(15,10,6,.8)' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpath d='M48 30L54 46L47 58L56 72'/%3E%3Cpath d='M54 46L66 50'/%3E%3Cpath d='M47 58L38 66L40 80'/%3E%3C/g%3E%3C/svg%3E")}
 .vet.v2,.vet.v3{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 125' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='rgba(15,10,6,.85)' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpath d='M48 30L54 46L47 58L56 72'/%3E%3Cpath d='M54 46L66 50'/%3E%3Cpath d='M47 58L38 66L40 80'/%3E%3Cpath d='M62 96L58 84L70 76'/%3E%3Cpath d='M30 40L36 52L28 60'/%3E%3Cpath d='M70 30L64 38L72 46'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(ellipse at 50% 50%,transparent 58%,rgba(22,8,0,.6) 100%)}
 .vet.v3{box-shadow:inset 0 0 14px rgba(255,120,40,.5)}
@@ -476,6 +478,8 @@ function clash(b,i,c,w,m,R){const v=EV(c,m),out={d:{},self:0,list:[]};
 NB.forEach(n=>{if(!n[3](i))return;const j=i+n[0],o=b[j];if(!o||!o.c||o.who===w||o.sm)return;const a=v[n[1]],d=EV(o.c,m)[n[2]],dm=Math.abs(a-d);if(!dm)return;let k=Math.sign(a-d);
 if(R.includes('Fallen Ace')&&((a===1&&d===10)||(a===10&&d===1)))k=a===1?1:-1;if(R.includes('Reverse'))k=-k;
 out.list.push({j,k,dm,L:k>0?j:i});if(k>0)out.d[j]=(out.d[j]||0)+dm;else if(k<0)out.self+=dm;if(R.includes('Pierce')&&a+d>=10){const L=k>0?j:i,lw=k>0?o.who:w;NB.forEach(m=>{if(!m[3](L))return;const q=L+m[0],x=b[q];if(!x||!x.c||x.who!==lw||x.sm)return;out.d[q]=(out.d[q]||0)+dm;out.list.push({j:q,k,dm,L:q,src:L,mir:1})})}});return out}
+function chainPulse(G,i,w){const seen=new Set([i]),q=[i],grp=[];while(q.length){const k=q.pop();grp.push(k);nbrs(G,k).forEach(n=>{const e=G.board[n];if(!seen.has(n)&&e&&e.c&&e.who===w){seen.add(n);q.push(n)}})}
+if(grp.length<4)return{group:[],targets:[]};const tg=new Set();grp.forEach(k=>nbrs(G,k).forEach(n=>{const e=G.board[n];if(e&&e.c&&e.who!==w&&e.who!=='n')tg.add(n)}));return{group:grp,targets:[...tg]}}
 const scr=(G,w)=>G.mode==='dom'?G.dom[w]:G.board.reduce((t,x)=>x&&x.who===w?t+10+x.hp:t,0);
 const cnt=(G,w)=>G.board.filter(x=>x&&x.who===w).length;
 function isOver(G){if(G.mode==='dom')return hn(G,'p')+hn(G,'o')===0;return G.board.every(Boolean)||(hn(G,'p')+hn(G,'o')===0)||(G.placed.p>=2&&G.placed.o>=2&&(!cnt(G,'p')||!cnt(G,'o')))}
@@ -483,7 +487,7 @@ function drawC(G,w){if(G.decks[w].length)G.hands[w].push(G.decks[w].shift())}
 function put(i,w,hi){const G=S.G,c0=G.hands[w].splice(hi,1)[0],R=G.rules,ow=w==='p'?'o':'p';let c=c0;G.note='';G.item=null;if(w==='p')G.ilog='';if(G.traps[ow]===i){G.traps[ow]=null;c={...c0,v:c0.v.map(v=>Math.max(1,v-1)),hp:Math.max(1,(c0.hp??hpOf(c0))-1),tv:c0.v};G.ilog=(w==='p'?'You':S.opp.n)+' triggered a Trap! All stats drop by 1.';toast('Trap triggered!')}else if(G.traps[w]===i)G.traps[w]=null;
 if(!G.fp[w]){G.fp[w]=1;if(G.cmd[w]==='choco'){c={...c,hp:(c.hp??hpOf(c))+1};toast((w==='p'?'Your':S.opp.n+'’s')+' Choco: first card +1 HP')}}
 if(c.f&&R.includes('Ascension'))G.mod[c.f]++;if(c.f&&R.includes('Descension'))G.mod[c.f]--;
-const x=clash(G.board,i,c,w,G.mod,R);G.board[i]={c,who:w,orig:w,hp:c.hp??hpOf(c)};G.placed[w]++;
+const x=clash(G.board,i,c,w,G.mod,R);G.board[i]={c,who:w,orig:w,hp:c.hp??hpOf(c)};G.placed[w]++;const cp=chainPulse(G,i,w);cp.targets.forEach(j=>{G.board[j].hp-=2});if(cp.group.length){G.pulse={g:cp.group,t:Date.now()};setTimeout(()=>cp.targets.forEach(j=>impactFx(j,2)),60)}
 const hit=Object.keys(x.d).map(Number);if(x.self)hit.push(i);
 G.flash=[];G.fx=null;G.last=i;G.sel=null;G.fight=null;if(w==='o'){G.mgA=Date.now();G.mgH=hit.length>0}else if(hit.length)G.mgB=Date.now();if(w==='p')G.pgA={k:'throw',t:Date.now(),h:hit.length>0};else if(hit.length)G.pgA={k:'hurt',t:Date.now()};
 const fin=()=>{G.fight=null;G.busy=false;G.board.forEach(e=>{if(e&&e.sm&&e.who!==w)delete e.sm});
@@ -530,7 +534,7 @@ function impactFx(idx,dm){const w=document.querySelector('.bw[data-i="'+idx+'"]'
 const c=w.querySelector('.card');if(c){c.classList.remove('flip','pop');void c.offsetWidth;c.classList.add('shk')}
 const f=document.createElement('div');f.className='dmg';f.textContent='-'+dm;w.appendChild(f);setTimeout(()=>f.remove(),950)}
 function bwrap(G,i,h){const f=G.fight;let a='',st='';if(f&&(i===f.a||i===f.b)){if(f.fast)a+=' fast';const dx=(f.b%G.cols)-(f.a%G.cols),dy=Math.floor(f.b/G.cols)-Math.floor(f.a/G.cols),sg=i===f.a?1:-1;a+=' bt';st=` style="--ux:${dx*sg};--uy:${dy*sg}"`}
-const hf=G.hfx&&G.hfx.i===i&&Date.now()-G.hfx.t<1600?G.hfx:null;const fx=hf?{k:'heal',n:hf.n}:G.fx&&G.fx.i===i&&Date.now()-G.fx.t<1600?G.fx:(G.fxm&&G.fxm.i.includes(i)&&Date.now()-G.fxm.t<1600?{k:'heal',n:1}:null);if(fx&&fx.k==='smoke')a+=' sburst';return `<div class="bw${a}" data-i="${i}"${st}>${h}${G.board[i]&&G.board[i].sv?'<div class="vet v'+Math.min(3,G.board[i].sv)+'"></div>':''}${fx&&fx.k==='heal'?HEALFX(fx.n):''}</div>`}
+const hf=G.hfx&&G.hfx.i===i&&Date.now()-G.hfx.t<1600?G.hfx:null;const fx=hf?{k:'heal',n:hf.n}:G.fx&&G.fx.i===i&&Date.now()-G.fx.t<1600?G.fx:(G.fxm&&G.fxm.i.includes(i)&&Date.now()-G.fxm.t<1600?{k:'heal',n:1}:null);if(fx&&fx.k==='smoke')a+=' sburst';if(G.pulse&&G.pulse.g.includes(i)&&Date.now()-G.pulse.t<1400)a+=' pl';return `<div class="bw${a}" data-i="${i}"${st}>${h}${G.board[i]&&G.board[i].sv?'<div class="vet v'+Math.min(3,G.board[i].sv)+'"></div>':''}${fx&&fx.k==='heal'?HEALFX(fx.n):''}</div>`}
 const HEALFX=n=>'<div class="healfx"><span class="ring"></span><span class="hs h1"></span><span class="hs h2"></span><span class="hs h3"></span><span class="hs h4"></span><span class="hs h5"></span><span class="hs h6"></span><em class="hpl">+'+n+'</em></div>';
 function deathFx(j){const w=document.querySelector('.bw[data-i="'+j+'"]'),card=w&&w.querySelector('.card');if(!card)return;w.classList.add('dying');const N=8;
 for(let k=0;k<N;k++){const s=document.createElement('div');s.className='dsl';const c=card.cloneNode(true);c.className=c.className.replace(/\b(flip|pop|shk|tg|sel)\b/g,'');s.appendChild(c);
