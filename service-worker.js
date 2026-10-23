@@ -1,8 +1,10 @@
-const CACHE_NAME = 'triple-triad-v1';
+const CACHE_NAME = 'triple-triad-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './manifest.json'
+  './manifest.json',
+  './sunday_morning_gambit_2.mp3',
+  './table_geometry.mp3'
 ];
 
 // Install: Cache assets
