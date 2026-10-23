@@ -137,7 +137,7 @@ button:disabled{opacity:.45;cursor:default}
 @media (prefers-reduced-motion:reduce){.odc,.odc .bd,.odc .rays,.odc .sp,.odc .bn{animation:none}.odc{background:rgba(5,5,20,.7)}.odc .bd{opacity:.5}.odc .rays{display:none}}
 
 .duel{position:fixed;inset:0;z-index:26;pointer-events:none;overflow:hidden}
-.ds{position:absolute;left:50%;top:46%;transform:translate(calc(-50% + var(--x,0px)),calc(-50% + var(--y,0px))) scaleX(var(--f,1));will-change:transform}
+.ds{position:absolute;left:50%;top:46%;transform:translate(calc(-50% + var(--x,0px)),calc(-50% + var(--y,0px))) scaleX(var(--f,1)) rotate(var(--r,0deg));will-change:transform}
 .ds.go{transition:transform .38s cubic-bezier(.2,.8,.3,1),opacity .25s}
 .ds.hit{animation:dshk .09s linear infinite}
 @keyframes dshk{0%{margin-top:0}50%{margin-top:-3px}100%{margin-top:2px}}
@@ -687,6 +687,8 @@ if(el.parentNode!==b)b.appendChild(el);if(el.dataset.f!==set+i){el.dataset.f=set
 setInterval(pgTick,90);
 
 const duelOn=()=>!!(S.G&&S.G.dU>Date.now());
+function killsOf(G,x){const d={},k=[];x.list.forEach(f=>{d[f.L]=(d[f.L]||0)+f.dm});Object.keys(d).forEach(L=>{const q=G.board[L];if(q&&q.c&&q.who!=='n'&&q.hp<=d[L])k.push(q.who)});return k}
+function flyOff(el,dir,vw,vh){if(!el)return;el.classList.remove('hit');el.style.transition='transform .5s cubic-bezier(.5,0,.9,.5)';el.style.setProperty('--x',(dir*vw*.8)+'px');el.style.setProperty('--y',(-vh*.2)+'px');el.style.setProperty('--r',(dir*900)+'deg')}
 function duelDom(G,x,fast,w){
 const n=S.opp,OF=({'Wildborn Rog':1,'Tobin Ridgerunner':1})[n.n]?1:-1,BP=BIG['Dummy'],B=BIG[n.n];
 const mk=s=>({S:s.slash,H:s.hurt,I:s.idle,w:Math.round(s.w*1.05),h:Math.round(s.h*1.05)});
@@ -696,7 +698,7 @@ let dn=0,da=0;x.list.forEach(f=>{const q=G.board[f.L];if(!q)return;if(q.who==='n
 const total=Math.max(1800,(fast?300:450)+x.list.length*(fast?485:850)+300),T0=Date.now();G.dU=T0+total;
 const vw=innerWidth,vh=innerHeight,cx=vw/2,cy=vh*.46;
 const rc=(id,d)=>{const el=document.getElementById(id),r=el&&el.getBoundingClientRect();return r&&r.width?[r.left+r.width/2-cx,r.top+r.height/2-cy]:d};
-const sA=rc(w==='p'?'pg':'mg',[-vw*.35,vh*.3]),sD=rc('mg',[vw*.35,-vh*.3]);
+const sA=rc(w==='p'?'pg':'mg',[-vw*.35,vh*.3]),sD=rc('mg',[vw*.35,-vh*.3]);const kd=killsOf(G,x),aDead=kd.includes(w),dDead=kd.some(z=>z!==w);
 const GAP=Math.min(54,vw*.14);
 const e=document.createElement('div');e.className='duel';
 const ae=document.createElement('img');ae.className='ds';ae.alt='';ae.src=AT.I[0];ae.style.cssText='width:'+AT.w+'px;height:'+AT.h+'px;--f:'+AF+';--x:'+sA[0]+'px;--y:'+sA[1]+'px';
@@ -714,9 +716,9 @@ const k=Math.floor((t-CL0)/90);ae.src=AT.S[k%AT.S.length];de.src=DM.S[k%DM.S.len
 if(t-lastSp>230){lastSp=t;sk.classList.remove('on');void sk.offsetWidth;sk.classList.add('on')}return}
 if(t<LV){if(ph<2){ph=2;ae.classList.remove('hit');de.classList.remove('hit');
 if(da>0&&da>=dn){ae.src=AT.H[0];ae.classList.add('red');ae.style.setProperty('--x',(-GAP-22)+'px')}else ae.src=AT.S[AT.S.length-1];
-if(dn>0&&dn>=da){de.src=DM.H[0];de.classList.add('red');de.style.setProperty('--x',(GAP+22)+'px')}else de.src=DM.I[0]}
+if(dn>0&&dn>=da){de.src=DM.H[0];de.classList.add('red');de.style.setProperty('--x',(GAP+22)+'px')}else de.src=DM.I[0];if(aDead)setTimeout(()=>flyOff(ae,-1,vw,vh),220);if(dDead)setTimeout(()=>flyOff(de,1,vw,vh),220)}
 return}
-if(ph<3){ph=3;ae.style.opacity=0;de.style.opacity=0;ae.style.setProperty('--x',sA[0]+'px');ae.style.setProperty('--y',sA[1]+'px');de.style.setProperty('--x',sD[0]+'px');de.style.setProperty('--y',sD[1]+'px')}
+if(ph<3){ph=3;if(!aDead){ae.style.opacity=0;ae.style.setProperty('--x',sA[0]+'px');ae.style.setProperty('--y',sA[1]+'px')}if(!dDead){de.style.opacity=0;de.style.setProperty('--x',sD[0]+'px');de.style.setProperty('--y',sD[1]+'px')}}
 },80)}
 function duelFx(G,x,fast,w){if(G.mode==='dom'){if(x.list.length&&!matchMedia('(prefers-reduced-motion: reduce)').matches)duelDom(G,x,fast,w);return}
 if(matchMedia('(prefers-reduced-motion: reduce)').matches||!x.list.length)return;
@@ -728,7 +730,7 @@ const O=BP?{S:BP.slash,H:BP.hurt,I:BP.idle,w:Math.round(BP.w*1.05),h:Math.round(
 const total=Math.max(1800,(fast?300:450)+x.list.length*(fast?485:850)+300),T0=Date.now();G.dU=T0+total;
 const vw=innerWidth,vh=innerHeight,cx=vw/2,cy=vh*.46;
 const rc=(id,d)=>{const el=document.getElementById(id),r=el&&el.getBoundingClientRect();return r&&r.width?[r.left+r.width/2-cx,r.top+r.height/2-cy]:d};
-const sp=rc('pg',[-vw*.35,vh*.3]),so=rc('mg',[vw*.35,-vh*.3]);
+const sp=rc('pg',[-vw*.35,vh*.3]),so=rc('mg',[vw*.35,-vh*.3]);const kd=killsOf(G,x),pDead=kd.includes('p'),oDead=kd.includes('o');
 const GAP=Math.min(54,vw*.14),dxP=(PL.w/2-PL.ax)*1.05,OF=({'Wildborn Rog':1,'Tobin Ridgerunner':1})[n.n]?1:-1,dxO=BP?-OF*(BP.ax-BP.w/2)*1.05:0;
 const e=document.createElement('div');e.className='duel';
 const pe=document.createElement('img');pe.className='ds';pe.alt='';pe.src=P.I[0];pe.style.cssText='width:'+P.w+'px;height:'+P.h+'px;--f:1;--x:'+sp[0]+'px;--y:'+sp[1]+'px';
@@ -749,9 +751,9 @@ if(t-lastSp>230){lastSp=t;sk.classList.remove('on');void sk.offsetWidth;sk.class
 return}
 if(t<LV){if(ph<2){ph=2;pe.classList.remove('hit');oe.classList.remove('hit');
 if(pHurt){pe.src=P.H[0];pe.classList.add('red');pe.style.setProperty('--x',(-GAP-22+dxP)+'px')}else pe.src=P.S[P.S.length-1];
-if(oHurt){if(O)oe.src=O.H[0];oe.classList.add('red');oe.style.setProperty('--x',(GAP+22+dxO)+'px')}else if(O)oe.src=O.S[O.S.length-1]}
+if(oHurt){if(O)oe.src=O.H[0];oe.classList.add('red');oe.style.setProperty('--x',(GAP+22+dxO)+'px')}else if(O)oe.src=O.S[O.S.length-1];if(pDead)setTimeout(()=>flyOff(pe,-1,vw,vh),220);if(oDead)setTimeout(()=>flyOff(oe,1,vw,vh),220)}
 return}
-if(ph<3){ph=3;pe.style.opacity=0;oe.style.opacity=0;pe.style.setProperty('--x',sp[0]+'px');pe.style.setProperty('--y',sp[1]+'px');oe.style.setProperty('--x',so[0]+'px');oe.style.setProperty('--y',so[1]+'px')}
+if(ph<3){ph=3;if(!pDead){pe.style.opacity=0;pe.style.setProperty('--x',sp[0]+'px');pe.style.setProperty('--y',sp[1]+'px')}if(!oDead){oe.style.opacity=0;oe.style.setProperty('--x',so[0]+'px');oe.style.setProperty('--y',so[1]+'px')}}
 },80)}
 function bigSel(BP,G,t){const A=G.mgA?t-G.mgA:1e9,B=G.mgB?t-G.mgB:1e9;let set='idle',i=Math.floor(t/260)%4;
 if(G.over){const k=S.res&&S.res.k;if(k==='win'){set='down';i=0}else if(k==='lose'){set='slash';i=4}}
