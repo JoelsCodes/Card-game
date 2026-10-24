@@ -414,7 +414,7 @@ a.innerHTML=`<div class="bar"><button onclick="S.screen='menu';render()">Back</b
 if(S.pack)a.insertAdjacentHTML('beforeend',`<div class="ov"><div class="box"><h2>You got a card</h2><div class="one">${cardH(S.pack,'p')}</div><p class="sub">Added to your collection.</p><div class="row"><button onclick="S.pack=null;render()">Close</button></div></div></div>`)}
 else if(sc==='draft'){const D=S.dr;a.innerHTML=`<h2>Draft: pick ${D.step+1} of 10</h2><p class="sub">Choose one ${'★'.repeat(Math.min(5,1+(D.step>>1)))} card for your deck.</p><div class="grid g3">${D.opts.map((c,i)=>cardH(c,'p','',`onclick="draftPick(${i})"`)).join('')}</div>`}
 else if(sc==='deck'){const n=S.opp,R=matchRules(n);
-a.innerHTML=`<div class="bar"><button onclick="S.screen=S.opp.custom?'hall':'menu';render()">Back</button><b>vs ${n.n}</b></div><p class="sub">Rules: <b>${R.join(', ')||'none'}</b>${n.custom||n.imm||n.wb?'':' (includes today’s regional rules)'}. Entry fee: ${n.custom?0:10*n.d} MGP.${R.includes('Draft')?' Draft: your deck is built in the draft.':''}</p>${S.msg?`<p class="foe">${S.msg}</p>`:''}
+a.innerHTML=`<div class="bar"><button onclick="S.screen=S.opp.custom?'hall':'menu';render()">Back</button><b>vs ${n.n}</b></div><p class="sub">Rules: <b>${R.join(', ')||'none'}</b>${n.custom||n.imm||n.wb?'':' (includes today’s regional rules)'}. No entry fee.${R.includes('Draft')?' Draft: your deck is built in the draft.':''}</p>${S.msg?`<p class="foe">${S.msg}</p>`:''}
 ${beltH()}<h2>Choose 10 cards (${S.pick.length}/10)</h2><p class="sub">Up to 4 4★/5★ cards, and 2 5★.</p>
 <div class="row"><button onclick="autoPick()">Auto-pick best</button><button class="pri" ${S.pick.length===10||R.includes('Draft')?'':'disabled'} onclick="startGame()">Start match</button></div>
 <div class="grid g4" style="margin-top:12px">${owned().map(id=>cardH(CARDS[id],'p',S.pick.includes(id)?'sel':'',`onclick="togglePick(${id})"`,coll[id]>1?`<span class="cnt">×${coll[id]}</span>`:'')).join('')}</div>`}
@@ -449,7 +449,7 @@ function dkClear(){P.decks[P.dk]=[];S.msg='';save();render()}
 function chooseNpc(i){if(!tierOpen(NPCS[i].d))return;S.opp=NPCS[i];S.msg='';loadDeck();startGame()}
 function startGame(){const n=S.opp,rules=resolve(matchRules(n)),dr=rules.includes('Draft');S.pick=S.pick.filter(id=>coll[id]>0);
 if(!dr&&S.pick.length<10){S.msg='Not enough valid cards for a deck.';S.screen='menu';return render()}
-const fee=n.custom?0:10*n.d;if(P.gil<fee){S.msg='Not enough MGP for the entry fee.';S.screen='menu';return render()}P.gil-=fee;save();
+const fee=0;save();
 if(dr){S.dr={step:0,pick:[],opts:shuf(CARDS.filter(c=>c.lv===1)).slice(0,3),rules};S.screen='draft';return render()}
 let ph=S.pick.map(id=>CARDS[id]);if(rules.includes('Random'))ph=shuf(Object.keys(coll).map(Number)).slice(0,10).map(id=>CARDS[id]);launch(ph,shuf(n.deck).slice(0,10),rules)}
 function draftPick(i){const D=S.dr;D.pick.push(D.opts[i]);D.step++;if(D.step>=10)return launch(D.pick,[1,1,2,2,3,3,4,4,5,5].map(l=>shuf(CARDS.filter(c=>c.lv===l))[0]),D.rules);D.opts=shuf(CARDS.filter(c=>c.lv===Math.min(5,1+(D.step>>1)))).slice(0,3);render()}
