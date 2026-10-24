@@ -1,5 +1,5 @@
-// Version bump deletes the old cache on activate.
-const CACHE_NAME = 'triple-triad-v6';
+// Keep this name stable: a new name deletes the saved images on activate, so bump only with a fill step first.
+const CACHE_NAME = 'triple-triad-v5';
 // Small set cached at install so the game opens offline right away.
 const PRECACHE = [
   './',
