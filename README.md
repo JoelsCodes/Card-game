@@ -68,7 +68,8 @@ Whenever Claude makes changes to the files, just:
 
 ```
 Card-game/
-├── index.html          # Main game file
+├── index.html          # Main game file (code only; images and music are in assets/)
+├── assets/             # Card, sprite and art images and the Original music track (content-hashed names)
 ├── manifest.json       # PWA configuration
 ├── service-worker.js   # Offline support
 ├── serve.py           # Local development server

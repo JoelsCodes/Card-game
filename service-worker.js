@@ -1,76 +1,70 @@
-const CACHE_NAME = 'triple-triad-v4';
-const ASSETS_TO_CACHE = [
+// Version bump deletes the old cache on activate.
+const CACHE_NAME = 'triple-triad-v5';
+// Small set cached at install so the game opens offline right away.
+const PRECACHE = [
   './',
   './index.html',
   './manifest.json',
+  './apple-touch-icon.png',
   './sunday_morning_gambit_2.mp3',
   './table_geometry.mp3'
 ];
 
-// Install: Cache assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE).catch(() => {
-        // Ignore errors for assets that might not be available yet
-        return Promise.resolve();
-      });
-    })
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.addAll(PRECACHE).catch(() => Promise.resolve())
+    )
   );
   self.skipWaiting();
 });
 
-// Activate: Clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches.keys().then((names) =>
+      Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
+    )
   );
   self.clients.claim();
 });
 
-// Fetch
+// Assets have content-hashed names, so a cached copy never goes stale: serve it first.
+function cacheFirst(req) {
+  return caches.open(CACHE_NAME).then((cache) =>
+    cache.match(req).then((hit) => {
+      if (hit) return hit;
+      return fetch(req).then((res) => {
+        if (res.ok) cache.put(req, res.clone());
+        return res;
+      });
+    })
+  );
+}
+
+// The page: show the cached copy at once, refresh it in the background for next time.
+function staleWhileRevalidate(req) {
+  return caches.open(CACHE_NAME).then((cache) =>
+    cache.match(req).then((hit) => {
+      const fresh = fetch(req).then((res) => {
+        if (res.ok) cache.put(req, res.clone());
+        return res;
+      }).catch(() => hit);
+      return hit || fresh;
+    })
+  );
+}
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
   const isPage = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('.html');
-
   if (isPage) {
-    // Pages: network first so every visit gets the latest game when online,
-    // falling back to the cached copy when offline.
-    event.respondWith(
-      fetch(req).then((response) => {
-        if (response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(req, copy));
-        }
-        return response;
-      }).catch(() => {
-        return caches.match(req).then((r) => r || caches.match('./index.html'));
-      })
-    );
+    event.respondWith(staleWhileRevalidate(req));
     return;
   }
-
-  // Other assets (audio, manifest): cache first, fallback to network
-  event.respondWith(
-    caches.match(req).then((response) => {
-      if (response) return response;
-      return fetch(req).then((response) => {
-        if (response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(req, copy));
-        }
-        return response;
-      });
-    })
-  );
+  if (url.pathname.includes('/assets/') || url.pathname.endsWith('.mp3') || url.pathname.endsWith('.png')) {
+    event.respondWith(cacheFirst(req));
+  }
 });
