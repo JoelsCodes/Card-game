@@ -41,16 +41,13 @@ function cacheFirst(req) {
   );
 }
 
-// The page: show the cached copy at once, refresh it in the background for next time.
-function staleWhileRevalidate(req) {
+// The page: always ask the network so updates show right away; use the cached copy only when offline.
+function networkFirst(req) {
   return caches.open(CACHE_NAME).then((cache) =>
-    cache.match(req).then((hit) => {
-      const fresh = fetch(req).then((res) => {
-        if (res.ok) cache.put(req, res.clone());
-        return res;
-      }).catch(() => hit);
-      return hit || fresh;
-    })
+    fetch(req).then((res) => {
+      if (res.ok) cache.put(req, res.clone());
+      return res;
+    }).catch(() => cache.match(req))
   );
 }
 
@@ -61,7 +58,7 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
   const isPage = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('.html');
   if (isPage) {
-    event.respondWith(staleWhileRevalidate(req));
+    event.respondWith(networkFirst(req));
     return;
   }
   if (url.pathname.includes('/assets/') || url.pathname.endsWith('.mp3') || url.pathname.endsWith('.png')) {
