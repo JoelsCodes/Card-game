@@ -373,7 +373,7 @@ function topUp(){if(!P.st){P.st=1;const w=CARDS.find(c=>c.o==='Warrior of Light'
 
 topUp();
 const rankOf=xp=>1+Math.floor(Math.sqrt(xp/40)),rankXp=r=>40*(r-1)*(r-1);
-const tierDone=d=>Math.min(3,NPCS.filter(n=>n.d===d&&P.beat.includes(n.n)).length),tierOpen=d=>!!P.testAll||d<=1||tierDone(d-1)>=3;const unlocked=k=>!!P.testAll||unlocked(k);
+const tierDone=d=>Math.min(3,NPCS.filter(n=>n.d===d&&P.beat.includes(n.n)).length),tierOpen=d=>!!P.testAll||d<=1||tierDone(d-1)>=3;const unlocked=k=>!!P.testAll||P.unl.includes(k);
 function bar(){const r=rankOf(P.xp),a=rankXp(r),b=rankXp(r+1),p=Math.round((P.xp-a)/(b-a)*100);return `<div style='margin:10px 0'><div style='display:flex;justify-content:space-between'><b>Rank ${r}</b><span>${P.gil} MGP</span></div><div style='height:8px;border-radius:4px;background:var(--line);margin:6px 0 2px;overflow:hidden'><div style='width:${p}%;height:100%;background:var(--gold)'></div></div><div class='sub'>${P.xp-a} / ${b-a} XP to rank ${r+1}</div></div>`}
 const A=v=>v===10?'A':v,LC=['','#8b93a8','#4aa56a','#4f86ff','#b36be0','#e3b84f'];
 function cardH(c,o,x='',click='',cnt=''){if(x.includes('back'))return`<div class="card ${o} back" style="--lc:#555"></div>`;const bv=CARDS[c.id].v,nv=(i,k)=>`<b class="${k}"${c.v[i]!==bv[i]?` style="color:${c.v[i]>bv[i]?'#7dff9a':'#ff8a8a'}"`:''}>${A(c.v[i])}</b>`;
@@ -666,7 +666,7 @@ if(!k&&it.bomb>0&&ap>=1){const cl=G.cols;let bs=0,bt=-1;for(let q=0;q<B.length;q
 if(!k&&it.trap>0&&ap>=2&&G.traps.o==null&&Math.random()<.35){const em=B.map((x,i)=>x?-1:i).filter(i=>i>=0);if(em.length>1){k='trap';t=em[Math.random()*em.length|0]}}
 if(!k&&it.bolt>0&&ap>=2){const bt=B.map((x,i)=>x&&x.c&&x.who==='p'&&!x.sm&&x.hp<=2?i:-1).filter(i=>i>=0);if(bt.length){k='bolt';t=bt[0]}}
 if(!k&&it.remedy>0&&ap>=1){const rc=own.filter(i=>B[i].c.tv)[0];if(rc!==undefined){k='remedy';t=rc}}
-if(!k&&(it.flip>0||it.reclash>0)&&ap>=1){const val=(c,i)=>{const x=clash(B,i,c,'o',G.mod,G.rules);return Object.values(x.d).reduce((a,b)=>a+b,0)-x.self};let bg=-1,bt=-1,bk=null;own.forEach(i=>{const c=B[i].c,gain=val(flipSides(c),i)-val(c,i);if(it.flip>0&&gain>=2&&gain>bg){bg=gain;bt=i;bk='flip'}else if(it.reclash>0&&ap>=2&&gain>=3&&gain>bg){bg=gain;bt=i;bk='reclash'}});if(bt>=0){k=bk;t=bt}}
+if(!k&&(it.flip>0||it.reclash>0)&&ap>=1){const val=(c,i)=>{const x=clash(B,i,c,'o',G.mod,G.rules);return Object.values(x.d).reduce((a,b)=>a+b,0)-x.self};let bg=-1,bt=-1,bk=null;own.forEach(i=>{const c=B[i].c,gain=val(flipSides(c),i)-val(c,i);if(it.flip>0&&gain>=2&&gain>bg){bg=gain;bt=i;bk='flip'}if(it.reclash>0&&ap>=2&&gain>=2&&gain>bg){bg=gain;bt=i;bk='reclash'}});if(bt>=0){k=bk;t=bt}}
 if(!k&&it.draw>0&&ap>=2&&G.hands.o.length<=2&&G.decks.o.length>=2){k='draw';t=0}
 if(k)applyItem(G,'o',k,t)}
 function itemBar(G){const btn=k=>`<button class="chip ${G.item===k?'pri':''}" ${canItem(G,'p',k)||G.item===k?'':'disabled'} onclick="useItem('${k}')">${IN[k]} ×${G.items.p[k]} · ${ic(G,'p',k)} AP</button>`;
