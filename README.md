@@ -70,6 +70,8 @@ Whenever Claude makes changes to the files, just:
 Card-game/
 ├── index.html          # Main game file (code only; images and music are in assets/)
 ├── assets/             # Card, sprite and art images and the Original music track (content-hashed names)
+├── assets-manifest.json # List of assets/ files the app keeps cached offline
+├── scripts/make-asset-manifest.js # Rebuild assets-manifest.json after adding or removing assets
 ├── manifest.json       # PWA configuration
 ├── service-worker.js   # Offline support
 ├── serve.py           # Local development server
