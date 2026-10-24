@@ -757,7 +757,7 @@ const duelOn=()=>!!(S.G&&S.G.dU>Date.now());
 function killsOf(G,x){const d={},k=[];x.list.forEach(f=>{d[f.L]=(d[f.L]||0)+f.dm});Object.keys(d).forEach(L=>{const q=G.board[L];if(q&&q.c&&q.who!=='n'&&q.hp<=d[L])k.push(q.who)});return k}
 function flyOff(el,dir,vw,vh){if(!el)return;el.classList.remove('hit');el.style.transition='transform .5s cubic-bezier(.6,0,.85,.4),filter .5s ease-in,opacity .18s ease-in .32s';el.style.setProperty('--x',(dir*vw*.62)+'px');el.style.setProperty('--y',(vh*.01)+'px');el.style.setProperty('--r',(dir*-7)+'deg');el.style.filter='brightness(.35) saturate(.25)';el.style.opacity='0'}
 function duelDom(G,x,fast,w){
-const n=S.opp,OF=({"Wildborn Rog":1,"Tobin Ridgerunner":1,"Onion Knight":1,"Firion":1,"Captain Basch":1,"Rydia":1,"Tidus":1,"Yuna":1,"Terra":1,"Cecil":1,"Vivi":1,"Tifa":1,"Rinoa":1,"Warden Ramza":1,"Cloud":1,"Squall":1,"Lightning":1,"Noctis":1,"Clive":1,"Gilgamesh":1,"Balthier":1,"Auron":1})[n.n]?1:-1,BP=BIG['Dummy'],B=BIG[n.n];
+const n=S.opp,OF=({"Wildborn Rog":1,"Tobin Ridgerunner":1})[n.n]?1:-1,BP=BIG['Dummy'],B=BIG[n.n];
 const mk=s=>({S:s.slash,H:s.hurt,I:s.idle,w:Math.round(s.w*1.05),h:Math.round(s.h*1.05)});
 const AT=w==='p'?mk(PL):mk(B||BP),AF=w==='p'?1:(B?-OF:1);
 const DM={S:BP.throw,H:BP.hurt,I:BP.idle,w:Math.round(BP.w*1.05),h:Math.round(BP.h*1.05)};
@@ -798,7 +798,7 @@ const total=Math.max(1800,(fast?300:450)+x.list.length*(fast?485:850)+300),T0=Da
 const vw=innerWidth,vh=innerHeight,cx=vw/2,cy=vh*.46;
 const rc=(id,d)=>{const el=document.getElementById(id),r=el&&el.getBoundingClientRect();return r&&r.width?[r.left+r.width/2-cx,r.top+r.height/2-cy]:d};
 const sp=rc('pg',[-vw*.35,vh*.3]),so=rc('mg',[vw*.35,-vh*.3]);const kd=killsOf(G,x),pDead=kd.includes('p'),oDead=kd.includes('o');
-const GAP=Math.min(54,vw*.14),dxP=(PL.w/2-PL.ax)*1.05,OF=({"Wildborn Rog":1,"Tobin Ridgerunner":1,"Onion Knight":1,"Firion":1,"Captain Basch":1,"Rydia":1,"Tidus":1,"Yuna":1,"Terra":1,"Cecil":1,"Vivi":1,"Tifa":1,"Rinoa":1,"Warden Ramza":1,"Cloud":1,"Squall":1,"Lightning":1,"Noctis":1,"Clive":1,"Gilgamesh":1,"Balthier":1,"Auron":1})[n.n]?1:-1,dxO=BP?-OF*(BP.ax-BP.w/2)*1.05:0;
+const GAP=Math.min(54,vw*.14),dxP=(PL.w/2-PL.ax)*1.05,OF=({"Wildborn Rog":1,"Tobin Ridgerunner":1})[n.n]?1:-1,dxO=BP?-OF*(BP.ax-BP.w/2)*1.05:0;
 const e=document.createElement('div');e.className='duel';
 const pe=document.createElement('img');pe.className='ds';pe.alt='';pe.src=P.I[0];pe.style.cssText='width:'+P.w+'px;height:'+P.h+'px;--f:1;--x:'+sp[0]+'px;--y:'+sp[1]+'px';
 let oe;if(O){oe=document.createElement('img');oe.src=O.I[0];oe.style.cssText='width:'+O.w+'px;height:'+O.h+'px'+(O.px?';image-rendering:pixelated':'')}else{oe=document.createElement('div');oe.className='av0';oe.textContent=n.n[0];oe.style.cssText='width:64px;height:64px'}
