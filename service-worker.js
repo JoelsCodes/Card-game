@@ -1,5 +1,7 @@
 // Keep this name stable: a new name deletes the saved images on activate, so bump only with a fill step first.
-const CACHE_NAME = 'triple-triad-v5';
+const CACHE_NAME = 'vanguards-end-v1';
+// Caches from earlier names; their saved files are moved into CACHE_NAME before they are deleted.
+const OLD_CACHES = ['triple-triad-v5', 'triple-triad-v6'];
 // Small set cached at install so the game opens offline right away.
 const PRECACHE = [
   './',
@@ -22,12 +24,28 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((names) =>
+    migrateOldCaches().then(() => caches.keys()).then((names) =>
       Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
     ).then(() => fillMissingAssets())
   );
   self.clients.claim();
 });
+
+// Copy saved files from old caches into the new one, so an update never removes the card art.
+function migrateOldCaches() {
+  return caches.open(CACHE_NAME).then((target) =>
+    Promise.all(OLD_CACHES.map((name) =>
+      caches.has(name).then((exists) => {
+        if (!exists) return null;
+        return caches.open(name).then((old) => old.keys().then((reqs) =>
+          Promise.all(reqs.map((req) =>
+            target.match(req).then((hit) => hit ? null : old.match(req).then((res) => res && target.put(req, res)))
+          ))
+        ));
+      })
+    ))
+  ).catch(() => null);
+}
 
 // Assets have content-hashed names, so a cached copy never goes stale: serve it first.
 function cacheFirst(req) {
