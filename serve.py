@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Simple HTTP server for Triple Triad PWA."""
+"""Simple HTTP server for the Vanguard’s End PWA."""
 
 import http.server
 import socketserver
@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
     with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
         url = f'http://localhost:{PORT}'
-        print(f'\n🎮 Triple Triad Server Running')
+        print(f'\n🎮 Vanguard’s End Server Running')
         print(f'━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         print(f'📱 Open in browser: {url}')
         print(f'📲 On your phone: http://<your-computer-ip>:{PORT}')
