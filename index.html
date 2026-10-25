@@ -1,13 +1,16 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.worldmap{position:relative;width:340px;max-width:100%;margin:10px auto 0;border-radius:16px;overflow:hidden;background:radial-gradient(ellipse at 30% 25%,#2a3a6a,#141834 65%,#0a0d22);border:1px solid var(--line)}
-.worldmap svg{position:absolute;left:0;top:0}
-.mroad{fill:none;stroke:#3b4478;stroke-width:3;stroke-dasharray:6 6}
-.mnode{position:absolute;width:44px;height:44px;border-radius:50%;padding:0;border:2px solid #5a6299;background:#252b52;color:#e8ecff;font:700 16px Georgia,serif;display:grid;place-items:center;overflow:hidden;cursor:pointer}
-.mnode img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
-.mnode.done{border-color:#9fe0b0;background:#2f6b40}
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.worldmap{position:relative;width:100%;max-width:520px;margin:10px auto 0;border-radius:16px;overflow:hidden;background:#0d1024;border:1px solid var(--line);line-height:0}
+.worldmap .mbg{display:block;width:100%;height:auto}
+.worldmap .mbg+.mbg{margin-top:-1px}
+.mn{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;width:0;pointer-events:none;overflow:visible}
+.mnode{pointer-events:auto;position:relative;width:40px;height:40px;border-radius:50%;padding:0;border:2.5px solid #e8d9a8;background:#1a1d36e6;color:#fff;font:700 16px Georgia,serif;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 8px #000a,0 0 0 2px #0006}
+.mav{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;overflow:hidden}
+.mav img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+.mnode.done{border-color:#7ee0a0}
 .mnode.next{border-color:#fff;background:var(--gold);color:#1a1200;animation:mpulse 1.4s ease-in-out infinite alternate}
-.mnode.locked{opacity:.45;color:#8a92b8;cursor:default}
-.mlab{position:absolute;transform:translateX(-50%);width:104px;text-align:center;font-size:10px;line-height:1.2;color:#c9d0f0;pointer-events:none}
-@keyframes mpulse{from{box-shadow:0 0 0 0 #f3d27a88}to{box-shadow:0 0 0 8px #f3d27a00}}
+.mnode.locked{opacity:.8;border-color:#8a92b8;background:#12142bd9;color:#aab2d8;cursor:default}
+.mck{position:absolute;right:-5px;bottom:-5px;width:18px;height:18px;border-radius:50%;background:#2f9a4f;color:#fff;font:700 11px/18px system-ui;text-align:center;font-style:normal;border:1.5px solid #fff}
+.mlab{position:absolute;top:100%;margin-top:4px;width:110px;text-align:center;font:600 10px/1.15 system-ui,sans-serif;color:#fff;text-shadow:0 1px 2px #000,0 0 6px #000,0 0 10px #000}
+@keyframes mpulse{from{box-shadow:0 0 0 0 #ffd76aaa,0 2px 8px #000a}to{box-shadow:0 0 0 12px #ffd76a00,0 2px 8px #000a}}
 @media (prefers-reduced-motion:reduce){.mnode.next{animation:none}}
 </style></head><body>
 <!DOCTYPE html>
@@ -553,19 +556,19 @@ function dkSet(i){P.dk=i;S.msg='';save();render()}
 function dkToggle(id){const d=P.decks[P.dk],k=d.indexOf(id);S.msg='';if(k>=0)d.splice(k,1);else if(d.length<10){if(okAdd(d,id))d.push(id);else S.msg='Deck limit: two 4★ cards, and only one 5★.'}save();render()}
 function dkAuto(){autoPick();P.decks[P.dk]=[...S.pick];S.msg='';save();render()}
 function dkClear(){P.decks[P.dk]=[];S.msg='';save();render()}
-const MAP_W=340,MAP_COLS=[60,170,280],MAP_ROW=100,MAP_TOP=36;
-// Serpentine layout: three nodes per row, alternating direction so the road runs unbroken.
-const mapPos=i=>{const r=Math.floor(i/3),c=i%3,col=r%2?2-c:c;return{x:MAP_COLS[col],y:MAP_TOP+r*MAP_ROW}};
+const MAPIMG=["assets/a19ad37677468dd7.jpg","assets/c5727c3d98cb4ca3.jpg","assets/014f425537253042.jpg","assets/ee937cdc415fd20c.jpg","assets/ceb89cbc0425bf0f.jpg"],MAPRATIO=7.537037037037037,MAPPOS=[[0.518, 0.9833], [0.4571, 0.9555], [0.3709, 0.9296], [0.5008, 0.9055], [0.4711, 0.8791], [0.4189, 0.8503], [0.4993, 0.825], [0.5161, 0.8068], [0.4744, 0.7819], [0.3664, 0.7607], [0.4512, 0.7388], [0.5323, 0.717], [0.4377, 0.6961], [0.5677, 0.6791], [0.4352, 0.6629], [0.5137, 0.644], [0.527, 0.623], [0.535, 0.6038], [0.4734, 0.5775], [0.4132, 0.5543], [0.5249, 0.5312], [0.5432, 0.5067], [0.5405, 0.4835], [0.4637, 0.4667], [0.5247, 0.4442], [0.5297, 0.4179], [0.4925, 0.3968], [0.4582, 0.3694], [0.543, 0.3464], [0.4615, 0.3279], [0.4574, 0.3049], [0.5712, 0.2831], [0.505, 0.2631], [0.4998, 0.2195], [0.5502, 0.1878], [0.5727, 0.1627], [0.3793, 0.1436], [0.5577, 0.124], [0.5262, 0.1019], [0.5282, 0.0755]];
+// Nodes follow the road in the artwork: opponents are laid out in tier order from the bottom (1★) to the top (5★).
 function mapNext(){return NPCS.findIndex(n=>tierOpen(n.d)&&!P.beat.includes(n.n))}
-function worldMap(){const nx=mapNext(),H=MAP_TOP+Math.ceil(NPCS.length/3)*MAP_ROW+20;
-const pts=NPCS.map((n,i)=>{const p=mapPos(i);return p.x+','+p.y}).join(' ');
-const nodes=NPCS.map((n,i)=>{const p=mapPos(i),open=tierOpen(n.d),won=P.beat.includes(n.n),cls=!open?'locked':won?'done':i===nx?'next':'open';
+function worldMap(){const nx=mapNext();
+if(!S.mapScrolled){S.mapScrolled=1;setTimeout(()=>{const e=document.querySelector('.mnode.next')||document.querySelector('.mnode.done:last-of-type');if(e)e.scrollIntoView({block:'center'})},60)}
+const order=NPCS.map((n,i)=>i).sort((x,y)=>NPCS[x].d-NPCS[y].d||x-y);
+const nodes=order.map((i,k)=>{const n=NPCS[i],p=MAPPOS[k]||[.5,.5],open=tierOpen(n.d),won=P.beat.includes(n.n),cls=!open?'locked':won?'done':i===nx?'next':'open';
 const src=open?(SPRS[n.n]?SPRS[n.n].idle[0]:(window.AV||{})[n.n]):'';
-return '<button class="mnode '+cls+'" style="left:'+(p.x-22)+'px;top:'+(p.y-22)+'px" aria-label="'+n.n+', '+(!open?'locked':won?'beaten':'open')+'" onclick="S.npc='+i+';render()">'+(src?'<img alt="" src="'+src+'">':open?n.n[0]:'?')+'</button><span class="mlab" style="left:'+p.x+'px;top:'+(p.y+26)+'px">'+n.n+'</span>'}).join('');
-return '<div class="worldmap" style="height:'+H+'px"><svg width="'+MAP_W+'" height="'+H+'" viewBox="0 0 '+MAP_W+' '+H+'" aria-hidden="true"><polyline class="mroad" points="'+pts+'"/></svg>'+nodes+'</div>'}
+return '<div class="mn" style="left:'+(p[0]*100).toFixed(2)+'%;top:'+(p[1]*100).toFixed(2)+'%"><button class="mnode '+cls+'" aria-label="'+(open?n.n:'Locked opponent')+', '+(!open?'locked':won?'beaten':'open')+'" onclick="S.npc='+i+';render()">'+'<span class="mav">'+(src?'<img alt="" src="'+src+'">':open?n.n[0]:'?')+'</span>'+(won?'<i class="mck">✓</i>':'')+'</button>'+(cls==='next'?'<span class="mlab">'+n.n+'</span>':'')+'</div>'}).join('');
+return '<div class="worldmap">'+MAPIMG.map(u=>'<img class="mbg" alt="" decoding="async" src="'+u+'">').join('')+nodes+'</div>'}
 function npcSheet(i){const n=NPCS[i],open=tierOpen(n.d),won=P.beat.includes(n.n);
-return '<div class="sheet-bg" onclick="S.npc=null;render()"></div><div class="sheet" role="dialog" aria-label="'+n.n+'"><div class="grab"></div><h3>'+n.n+'</h3><p class="sub">'+gl(n.g)+' · '+'★'.repeat(n.d)+'</p><p class="sub">'+(open?'Rules: '+n.rules.join(', '):'Locked: beat 3 opponents rated '+(n.d-1)+' ★ ('+tierDone(n.d-1)+'/3)')+'</p><p class="sub">'+(won?'Beaten':open?'Not beaten yet':'')+'</p><div class="row"><button class="pri" '+(open?'':'disabled')+' onclick="chooseNpc('+i+')">'+(won?'Challenge again':'Challenge')+'</button><button onclick="S.npc=null;render()">Close</button></div></div>'}
-function chooseNpc(i){if(!tierOpen(NPCS[i].d))return;S.opp=NPCS[i];S.npc=null;S.msg='';loadDeck();startGame()}
+return '<div class="sheet-bg" onclick="S.npc=null;render()"></div><div class="sheet" role="dialog" aria-label="Opponent"><div class="grab"></div><h3>'+(open?n.n:'???')+'</h3><p class="sub">'+(open?gl(n.g):'Unknown')+' · '+'★'.repeat(n.d)+'</p><p class="sub">'+(open?'Rules: '+n.rules.join(', '):'Locked: beat 3 opponents rated '+(n.d-1)+' ★ ('+tierDone(n.d-1)+'/3)')+'</p><p class="sub">'+(won?'Beaten':open?'Not beaten yet':'')+'</p><div class="row"><button class="pri" '+(open?'':'disabled')+' onclick="chooseNpc('+i+')">'+(won?'Challenge again':'Challenge')+'</button><button onclick="S.npc=null;render()">Close</button></div></div>'}
+function chooseNpc(i){if(!tierOpen(NPCS[i].d))return;S.opp=NPCS[i];S.npc=null;S.mapScrolled=0;S.msg='';loadDeck();startGame()}
 function startGame(){const n=S.opp,rules=resolve(matchRules(n)),dr=rules.includes('Draft');S.pick=S.pick.filter(id=>coll[id]>0);
 if(!dr&&S.pick.length<10){S.msg='Not enough valid cards for a deck.';S.screen='menu';return render()}
 save();
