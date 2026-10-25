@@ -92,16 +92,16 @@ button:disabled{opacity:.45;cursor:default}
 @keyframes banmove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 @keyframes twinkle{50%{opacity:.9}}
 .shop2{}
-.title{position:fixed;inset:0;z-index:20;overflow:hidden;background:#0a0d22;color:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.tbg{position:absolute;inset:-4%;background-size:cover;background-position:center 18%;animation:tzoom 22s ease-in-out infinite alternate}
+.title{position:fixed;inset:0;z-index:20;overflow:hidden;background:#0b0b0b;color:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tbg{position:absolute;left:0;right:0;top:46%;transform:translateY(-50%);aspect-ratio:1080/1446;background-size:100% 100%;-webkit-mask-image:radial-gradient(ellipse 72% 49% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 72% 49% at 50% 50%,#000 45%,transparent 100%);animation:tfade 1.2s ease-out}
 .tshade{position:absolute;inset:0;background:linear-gradient(to bottom,#0a0d2299 0,#0a0d2200 28%,#0a0d2200 45%,#0a0d22cc 78%,#0a0d22 100%)}
 .tcont{position:absolute;left:0;right:0;bottom:0;padding:0 24px calc(54px + env(safe-area-inset-bottom));text-align:center;display:flex;flex-direction:column;align-items:center}
 .tsub{font:600 12px/1 system-ui,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#ffe7a3cc;margin-bottom:14px;text-shadow:0 1px 8px #000}
 .ttl{margin:0;font:700 clamp(46px,15vw,76px)/1.02 Georgia,'Times New Roman',serif;letter-spacing:.04em;background:linear-gradient(to bottom,#fff7d6,#f3c969 60%,#b8862b);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 14px #000c)}
 .tline{width:64px;height:2px;margin:20px 0 28px;background:linear-gradient(90deg,#0000,#ffe7a3,#0000)}
-.tstart{border:1.5px solid #ffe7a3aa;background:#0a0d2266;color:#fff;border-radius:999px;padding:14px 38px;font:600 15px system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:tpulse 2.2s ease-in-out infinite}
-.tstat{margin-top:18px;font:500 12px system-ui,sans-serif;color:#c9d0f0aa;letter-spacing:.06em}
-@keyframes tzoom{from{transform:scale(1)}to{transform:scale(1.09)}}
+.tstart{border:1.5px solid #e8b9a4aa;background:#0a0a0a88;color:#f3d2c2;border-radius:999px;padding:14px 38px;font:600 15px system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:tpulse 2.2s ease-in-out infinite}
+.tstat{margin-top:18px;font:500 12px system-ui,sans-serif;color:#cfa793aa;letter-spacing:.06em}
+@keyframes tfade{from{opacity:0}to{opacity:1}}
 @keyframes tpulse{0%,100%{opacity:.75;box-shadow:0 0 0 0 #ffe7a300}50%{opacity:1;box-shadow:0 0 18px 2px #ffe7a355}}
 @media (prefers-reduced-motion:reduce){.tbg,.tstart{animation:none}}
 .seg{display:flex;gap:3px;padding:3px;border-radius:12px;background:var(--line);margin:2px 0 12px}
@@ -517,7 +517,7 @@ document.body.classList.toggle('has-tabs',!!on);if(!on){t.style.display='none';r
 t.style.display='flex';const cur={menu:'play',unlocks:'unlocks',shop:'shop',decks:'decks'}[sc];
 t.innerHTML=TABDEF.map(([k,l,sn])=>`<button class="tab${cur===k?' on':''}" ${cur===k?'aria-current="page"':''} onclick="S.screen='${sn}';render()">${TABICON[k]}<span>${l}</span></button>`).join('')}
 function render(){BLASTDRAW=!!(S.G&&S.G.blast&&!S.G.blast.rd);if(S.G&&S.G.blast)S.G.blast.rd=1;ensureP();if(S.screen==='coll'){S.screen='shop';S.shopTab='coll'}const a=document.getElementById('app'),sc=S.screen,TABS={menu:'play',unlocks:'unlocks',shop:'shop',decks:'decks'},tabbed=!!TABS[sc];const changed=S._ls!==sc;S._ls=sc;a.className=(sc==='game'?'gm':'')+(tabbed?' tabbed':'')+(changed?' enter':'');drawTabs(sc,tabbed);document.body.style.backgroundImage=sc==='game'?`linear-gradient(rgba(8,10,25,.55),rgba(8,10,25,.55)),url(${BGS[S.bg||0]})`:'';document.body.style.backgroundSize='cover';document.body.style.backgroundPosition='center';document.body.style.backgroundAttachment='fixed';
-if(sc==='title')a.innerHTML=`<main class="title" onclick="S.screen='menu';bgmSync();render()"><div class="tbg" style="background-image:url(assets/a19ad37677468dd7.jpg)"></div><div class="tshade"></div><div class="tcont"><div class="tsub">A Final Fantasy card game</div><h1 class="ttl">Vanguard’s<br>End</h1><div class="tline"></div><button class="tstart" onclick="event.stopPropagation();S.screen='menu';bgmSync();render()">Tap to start</button><div class="tstat">Rank ${rankOf(P.xp)} · ${P.gil} MGP</div></div></main>`;
+if(sc==='title')a.innerHTML=`<main class="title" onclick="S.screen='menu';bgmSync();render()"><div class="tbg" style="background-image:url(assets/122b5b3678f58b75.jpg)"></div><div class="tcont"><button class="tstart" onclick="event.stopPropagation();S.screen='menu';bgmSync();render()">Tap to start</button><div class="tstat">Rank ${rankOf(P.xp)} · ${P.gil} MGP</div></div></main>`;
 else if(sc==='menu')a.innerHTML=`<h1>Vanguard’s End</h1><p class="sub">Final Fantasy edition with Final Fantasy XIV rules. ${CARDS.length} cards · ${NPCS.length} opponents. Win to earn MGP and a chance at their cards. Nothing is lost when you lose.</p>${S.msg?`<p class="foe">${S.msg}</p>`:''}${bar()}
 <p class="sub" style="margin-top:12px">Regional rules (change every 7 matches): <b>${regional().join(', ')}</b> (apply to most opponents)</p>
 <h2>World map</h2>${worldMap()}${S.npc!=null?npcSheet(S.npc):''}`;
