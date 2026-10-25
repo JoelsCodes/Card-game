@@ -1,6 +1,6 @@
-# Triple Triad: Final Fantasy Edition - Mobile App
+# Vanguard’s End - Mobile App
 
-Your Triple Triad card game is now set up as a **Progressive Web App (PWA)** that you can install on your phone!
+Your Vanguard’s End card game is now set up as a **Progressive Web App (PWA)** that you can install on your phone!
 
 ## 🚀 Quick Start
 
@@ -25,7 +25,7 @@ python3 -m http.server 8000
 1. Open Safari and go to `http://<your-computer-ip>:8000`
 2. Tap the **Share** button
 3. Select **Add to Home Screen**
-4. Name it "Triple Triad" and tap **Add**
+4. Name it "Vanguard’s End" and tap **Add**
 5. The app appears on your home screen!
 
 ### Android
