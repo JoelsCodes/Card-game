@@ -58,6 +58,9 @@ button:disabled{opacity:.45;cursor:default}
 .say{margin:6px 0;padding:6px 10px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-size:14px}
 @keyframes deal{0%{transform:translate(0,0) scale(.6) rotate(-6deg);opacity:0}12%{opacity:1}100%{transform:translate(var(--x),var(--y)) scale(1) rotate(0deg);opacity:1}}
 .card.pop{animation:pp .35s ease-out}
+.bw.ifsrc .card{box-shadow:0 0 0 3px #ff8a2a,0 0 18px #ff8a2a;animation:ifpulse .5s ease-in-out 3}
+.bw.ifhit .card{box-shadow:0 0 0 3px #ff4d4d,0 0 14px #ff4d4d;animation:ifpulse .5s ease-in-out 3}
+@keyframes ifpulse{50%{filter:brightness(1.6)}}
 .card.r4.pop::after,.card.r5.pop::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;border-radius:inherit}
 .card.r4.pop::after{background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);background-size:250% 100%;background-position:150% 0;animation:shine .9s ease-out 1 forwards}
 .card.r5.pop::after{background:linear-gradient(120deg,#ff6b6b,#ffd93d,#6bff95,#6bd8ff,#b36bff,#ff6bd6);background-size:300% 300%;mix-blend-mode:color-dodge;animation:holo 1.2s ease-out 1 forwards}
@@ -551,7 +554,7 @@ function impactFx(idx,dm){const w=document.querySelector('.bw[data-i="'+idx+'"]'
 const c=w.querySelector('.card');if(c){c.classList.remove('flip','pop');void c.offsetWidth;c.classList.add('shk')}
 const f=document.createElement('div');f.className='dmg';f.textContent='-'+dm;w.appendChild(f);setTimeout(()=>f.remove(),950)}
 function bwrap(G,i,h){const f=G.fight;let a='',st='';if(f&&(i===f.a||i===f.b)){if(f.fast)a+=' fast';const dx=(f.b%G.cols)-(f.a%G.cols),dy=Math.floor(f.b/G.cols)-Math.floor(f.a/G.cols),sg=i===f.a?1:-1;a+=' bt';st=` style="--ux:${dx*sg};--uy:${dy*sg}"`}
-const hf=G.hfx&&G.hfx.i===i&&Date.now()-G.hfx.t<1600?G.hfx:null;const fx=hf?{k:'heal',n:hf.n}:G.fx&&G.fx.i===i&&Date.now()-G.fx.t<1600?G.fx:(G.fxm&&G.fxm.i.includes(i)&&Date.now()-G.fxm.t<1600?{k:'heal',n:1}:null);if(fx&&fx.k==='smoke')a+=' sburst';const blst=G.blast&&BLASTDRAW&&Date.now()-G.blast.t<1600&&G.blast.sq.includes(i)?G.blast:null;if(G.pulse&&G.pulse.g.includes(i)&&Date.now()-G.pulse.t<2000)a+=' pl';return `<div class="bw${a}" data-i="${i}"${st}>${h}${fx&&fx.k==='heal'?HEALFX(fx.n):''}${blst?BLASTFX(blst,i):''}</div>`}
+const hf=G.hfx&&G.hfx.i===i&&Date.now()-G.hfx.t<1600?G.hfx:null;const fx=hf?{k:'heal',n:hf.n}:G.fx&&G.fx.i===i&&Date.now()-G.fx.t<1600?G.fx:(G.fxm&&G.fxm.i.includes(i)&&Date.now()-G.fxm.t<1600?{k:'heal',n:1}:null);if(fx&&fx.k==='smoke')a+=' sburst';if(G.ifx&&Date.now()-G.ifx.t<1800){if(G.ifx.src===i)a+=' ifsrc';if(G.ifx.hit.includes(i))a+=' ifhit'}const blst=G.blast&&BLASTDRAW&&Date.now()-G.blast.t<1600&&G.blast.sq.includes(i)?G.blast:null;if(G.pulse&&G.pulse.g.includes(i)&&Date.now()-G.pulse.t<2000)a+=' pl';return `<div class="bw${a}" data-i="${i}"${st}>${h}${fx&&fx.k==='heal'?HEALFX(fx.n):''}${blst?BLASTFX(blst,i):''}</div>`}
 const HEALFX=n=>'<div class="healfx"><span class="ring"></span><span class="hs h1"></span><span class="hs h2"></span><span class="hs h3"></span><span class="hs h4"></span><span class="hs h5"></span><span class="hs h6"></span><em class="hpl">+'+n+'</em></div>';
 function deathFx(j){const w=document.querySelector('.bw[data-i="'+j+'"]'),card=w&&w.querySelector('.card');if(!card)return;w.classList.add('dying');const N=8;
 for(let k=0;k<N;k++){const s=document.createElement('div');s.className='dsl';const c=card.cloneNode(true);c.className=c.className.replace(/\b(flip|pop|shk|tg|sel)\b/g,'');s.appendChild(c);
@@ -628,7 +631,7 @@ Object.values(CMD).forEach(c=>c.d='Passive: '+c.pas+' Overdrive (once per match)
 const ic=(G,w,k)=>Math.max(0,IC[k]-(G.disc&&G.disc[w]&&G.turn===w?1:0));
 const odTargets=(G,w)=>G.cmd[w]==='ifrit'?G.board.map((x,i)=>x&&x.c&&!x.sm?i:-1).filter(i=>i>=0):[];
 const nbrs=(G,j)=>{const cl=G.cols,r=[];if(j%cl>0)r.push(j-1);if(j%cl<cl-1)r.push(j+1);if(j-cl>=0)r.push(j-cl);if(j+cl<G.board.length)r.push(j+cl);return r};
-function explode(G){const hit=[];let again=true;while(again){again=false;G.board.forEach((e,j)=>{if(e&&e.c&&e.hp<=0&&G.cmd&&G.cmd[e.who]==='ifrit'&&!G.ipas[e.who]){G.ipas[e.who]=1;again=true;toast((e.who==='p'?'Your':S.opp.n+'’s')+' Ifrit: '+e.c.n+' explodes!');nbrs(G,j).forEach(q=>{const f=G.board[q];if(f&&f.c&&!f.sm){f.hp-=1;hit.push(q)}})}})}return hit}
+function explode(G){const hit=[];let again=true;while(again){again=false;G.board.forEach((e,j)=>{if(e&&e.c&&e.hp<=0&&G.cmd&&G.cmd[e.who]==='ifrit'&&!G.ipas[e.who]){G.ipas[e.who]=1;again=true;const hq=nbrs(G,j).filter(q=>{const f=G.board[q];return f&&f.c&&!f.sm});G.ifx={src:j,hit:hq.slice(),t:Date.now()};toast((e.who==='p'?'Your':S.opp.n+'’s')+' Ifrit: '+e.c.n+' explodes! Hits: '+(hq.map(q=>G.board[q].c.n).join(', ')||'nothing')+'.');hq.forEach(q=>{const f=G.board[q];f.hp-=1;hit.push(q)})}})}return hit}
 function canOd(G,w){const k=G.cmd&&G.cmd[w];if(!k||G.od[w]||G.over||G.busy||G.turn!==w)return false;if(k==='ifrit')return odTargets(G,w).length>0;if(k==='choco')return G.board.some(x=>x&&x.c&&x.who===w&&x.hp<hpOf(x.c));return true}
 function odApply(G,w,t){const k=G.cmd[w],who=w==='p'?'You':S.opp.n;odCine(k,w);
 if(k==='ifrit'){const e=G.board[t];e.hp-=3;G.flash=[t];toast(who+': Ifrit Overdrive!');G.ilog=who+' unleashed Ifrit’s Overdrive on '+e.c.n+' (-3 HP).';reap(G)}
