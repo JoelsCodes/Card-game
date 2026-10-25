@@ -64,6 +64,45 @@ button:disabled{opacity:.45;cursor:default}
 .shopban .sbs{position:relative;display:block;font-size:12px;color:#c9d0f0}
 @keyframes banmove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 @keyframes twinkle{50%{opacity:.9}}
+.shop2{}
+.stop{display:flex;align-items:center;gap:10px;padding:6px 0 10px}
+.stop b{flex:1;font:600 18px system-ui,-apple-system,sans-serif}
+.stop .ib{width:36px;height:36px;border-radius:50%;border:0;background:var(--panel);display:grid;place-items:center;color:inherit;cursor:pointer;box-shadow:0 1px 3px #0003}
+.stop .ib svg{width:18px;height:18px}
+.bal{display:inline-flex;align-items:center;gap:6px;font:600 14px system-ui,sans-serif;background:var(--panel);border-radius:999px;padding:6px 12px;box-shadow:0 1px 3px #0003}
+.coin{width:16px;height:16px;flex:none;vertical-align:-3px}
+.hero{padding:6px 2px 4px}
+.hero h2{margin:0;font:700 24px Palatino,Georgia,serif;letter-spacing:.2px}
+.hero p{margin:4px 0 0;font:400 13px/1.45 system-ui,sans-serif;opacity:.75}
+.shelf{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.ptile{display:flex;flex-direction:column;align-items:stretch;text-align:left;background:var(--panel);border:0;border-radius:16px;padding:10px;box-shadow:0 2px 10px #0003;cursor:pointer;color:inherit;font:inherit;transition:transform .12s ease,box-shadow .12s ease}
+.ptile:active{transform:scale(.97)}
+.ptile.off{opacity:.45;cursor:not-allowed;filter:grayscale(.6)}
+.pimg{display:block;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#0a0d1e}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.pinfo{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.pinfo b{font:600 15px system-ui,sans-serif}
+.pinfo small{font:400 12px/1.35 system-ui,sans-serif;opacity:.7}
+.pprice{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font:700 14px system-ui,sans-serif;align-self:flex-start;background:color-mix(in srgb,#e3b84f 18%,transparent);padding:4px 10px;border-radius:999px}
+.grow{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:0;border-radius:14px;padding:14px 16px;font:500 15px system-ui,sans-serif;color:inherit;cursor:pointer;box-shadow:0 1px 4px #0002;margin-bottom:10px}
+.grow .gv{display:inline-flex;align-items:center;gap:6px;opacity:.85;font-weight:600}
+.grow .chev{width:14px;height:14px;opacity:.6}
+.sbtn{font:600 15px system-ui,sans-serif;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;color:inherit;background:var(--panel);box-shadow:0 1px 3px #0002;transition:transform .1s ease}
+.sbtn:active{transform:scale(.98)}
+.sbtn.pri{background:var(--gold);color:#1a1200}
+.sbtn:disabled{opacity:.45;cursor:not-allowed}
+.sbtn.wide{width:100%}
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.sheet-bg{position:fixed;inset:0;background:#0008;z-index:30;animation:fi .2s ease-out}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:78vh;overflow:auto;background:var(--panel);border-radius:20px 20px 0 0;padding:10px 16px 22px;z-index:31;box-shadow:0 -8px 30px #0006;animation:sheetup .25s ease-out}
+@keyframes sheetup{from{transform:translateY(100%)}to{transform:none}}
+.grab{width:40px;height:4px;border-radius:2px;background:#8887;margin:0 auto 10px}
+.sheet h3{margin:0 0 8px;font:600 17px system-ui,sans-serif}
+.glist{display:flex;flex-direction:column;gap:6px}
+.gitem{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;background:transparent;border:0;border-radius:12px;padding:12px 10px;font:500 15px system-ui,sans-serif;color:inherit;cursor:pointer}
+.gitem.on{background:color-mix(in srgb,var(--gold) 16%,transparent);font-weight:600}
+.gitem .tick{color:var(--gold);font-weight:700}
+@media (prefers-reduced-motion:reduce){.sheet,.sheet-bg{animation:none}.ptile{transition:none}}
 .pkbox{max-width:360px}
 .pkstage{position:relative;width:200px;height:260px;margin:4px auto 10px;display:grid;place-items:center}
 .pkstage .pkseal{position:absolute;width:150px;height:auto;filter:drop-shadow(0 0 14px #7a5ac8);animation:packshake .9s ease-in-out both}
@@ -439,11 +478,19 @@ else if(sc==='hall')a.innerHTML=`<div class="bar"><button onclick="S.screen='men
 else if(sc==='coll'){const f=S.filter,list=f==='Owned'?owned():CARDS.filter(c=>c.g===f).map(c=>c.id),sp=Object.keys(coll).reduce((t,id)=>t+(coll[id]-1)*SELL[CARDS[id].lv],0);
 a.innerHTML=`<div class="bar"><button onclick="S.screen='menu';render()">Back</button><select aria-label="Filter" onchange="S.filter=this.value;render()">${['Owned',...GAMES].map(g=>`<option ${g===f?'selected':''} value="${g}">${g==='Owned'?'Owned cards':gl(g)}</option>`).join('')}</select></div>${sp?`<button style="width:100%;margin-bottom:8px" onclick="sellSpares()">Sell spare copies (+${sp} MGP)</button>`:''}${setBox(f)}
 <div class="grid g4">${list.map(id=>{const c=CARDS[id];return coll[id]?cardH(c,'','','',coll[id]>1?`<span class="cnt">×${coll[id]}</span>`:''):cardH(c,'','off')}).join('')}</div>`}
-else if(sc==='shop'){const L=packLevel();
-a.innerHTML=`<div class="bar"><button onclick="S.screen='menu';render()">Back</button><b>Card shop</b></div>${bar()}<div class="shopban"><span class="sbt">Open a pack</span><span class="sbs">See what the stars bring</span></div><p class="sub">Each pack holds one card, matched to your deck’s overall rank: up to ${'★'.repeat(L)}, with a 2.5% chance of one rank higher.</p>
-<button class="npc" ${P.gil<PRICE.std?'disabled':''} onclick="buy()"><span><b>Standard pack</b><small>One card from any game</small></span><span class="stars">${PRICE.std} MGP</span></button>
-<button class="npc" ${P.gil<PRICE.game?'disabled':''} onclick="buy(document.getElementById('pg').value)"><span><b>Game pack</b><small>One card from the game you pick</small></span><span class="stars">${PRICE.game} MGP</span></button>
-<select id="pg" aria-label="Game for game pack" onchange="S.pg=this.value">${GAMES.map(g=>`<option ${g===S.pg?'selected':''} value="${g}">${gl(g)}</option>`).join('')}</select>`;
+else if(sc==='shop'){const L=packLevel(),pg=S.pg||GAMES[0],sp=Object.keys(coll).reduce((t,id)=>t+(coll[id]-1)*SELL[CARDS[id].lv],0);
+const COIN='<svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#e3b84f"/><circle cx="8" cy="8" r="4.6" fill="none" stroke="#8a6a1f" stroke-width="1"/></svg>';
+const CHEV='<svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const BACK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const tile=(t,d,price,can,on)=>`<button class="ptile${can?'':' off'}" ${can?'':'disabled'} onclick="${on}"><span class="pimg"><img alt="" src="assets/6936379bb5a92c3b.png"></span><span class="pinfo"><b>${t}</b><small>${d}</small></span><span class="pprice">${COIN}${price}</span></button>`;
+a.innerHTML=`<header class="stop"><button class="ib" aria-label="Back" onclick="S.screen='menu';render()">${BACK}</button><b>Shop</b><span class="bal">${COIN}${P.gil}</span></header>
+<section class="hero"><h2>Open a pack</h2><p>Each pack matches your deck's overall rank: up to ${'★'.repeat(L)}, with a 2.5% chance of one rank higher.</p></section>
+${bar()}
+<div class="shelf">${tile('Standard pack','One card from any game',PRICE.std,P.gil>=PRICE.std,'buy()')}${tile('Game pack','One card from the game you pick',PRICE.game,P.gil>=PRICE.game,'S.gpConfirm=1;render()')}</div>
+<button class="grow" onclick="S.gpSheet=1;render()"><span>Game for game packs</span><span class="gv">${gl(pg)}${CHEV}</span></button>
+${sp?`<button class="sbtn sec wide" onclick="sellSpares()">Sell spare copies · +${sp} MGP</button>`:''}
+${S.gpSheet?`<div class="sheet-bg" onclick="S.gpSheet=0;render()"></div><div class="sheet" role="dialog" aria-label="Choose a game"><div class="grab"></div><h3>Choose a game</h3><div class="glist">${GAMES.map((g,i)=>`<button class="gitem${g===pg?' on':''}" onclick="S.pg=GAMES[${i}];S.gpSheet=0;render()"><span>${gl(g)}</span>${g===pg?'<span class="tick">✓</span>':''}</button>`).join('')}</div></div>`:''}
+${S.gpConfirm?`<div class="sheet-bg" onclick="S.gpConfirm=0;render()"></div><div class="sheet" role="dialog" aria-label="Confirm purchase"><div class="grab"></div><h3>Buy a game pack?</h3><p class="sub">One card from ${gl(pg)} for ${PRICE.game} MGP.</p><div class="srow"><button class="sbtn sec" onclick="S.gpConfirm=0;render()">Cancel</button><button class="sbtn pri" ${P.gil<PRICE.game?'disabled':''} onclick="S.gpConfirm=0;buy('${pg}')">Buy</button></div></div>`:''}`
 if(S.pack)a.insertAdjacentHTML('beforeend',`<div class="ov"><div class="box pkbox"><div class="pkstage r${S.pack.lv}" style="--lc:${LC[S.pack.lv]}"><div class="pkray"></div>${S.pack.lv>=4?'<div class="pkring"></div>':''}<img class="pkseal" alt="" src="assets/6936379bb5a92c3b.png"><div class="pkc">${cardH(S.pack,'p')}</div></div><h2 class="pkh">${S.pack.lv>=5?'Legendary pull!':S.pack.lv===4?'Rare pull!':'You got a card'}</h2><p class="sub">${S.packDup?'Duplicate: +'+S.packDup+' MGP':'Added to your collection.'}</p><div class="row"><button onclick="S.pack=null;render()">Close</button></div></div></div>`)}
 else if(sc==='draft'){const D=S.dr;a.innerHTML=`<h2>Draft: pick ${D.step+1} of 10</h2><p class="sub">Choose one ${'★'.repeat(Math.min(5,1+(D.step>>1)))} card for your deck.</p><div class="grid g3">${D.opts.map((c,i)=>cardH(c,'p','',`onclick="draftPick(${i})"`)).join('')}</div>`}
 else if(sc==='deck'){const n=S.opp,R=matchRules(n);
