@@ -326,6 +326,23 @@ body.has-tabs #app{padding-bottom:84px}
 #app.gm .items button{font-size:12px;padding:6px 8px}
 #app.gm .bar button{padding:6px 18px}
 @media (min-height:830px){.vb{width:2px!important}}
+
+/* ===== Brushed-metal theme (always on) ===== */
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"]{color-scheme:dark;--bg:#0b0d14;--panel:#222632;--ink:#eef0f6;--mute:#a1a9bd;--line:#4a4130;--me:#4f86ff;--foe:#e2566a;--gold:#e3b84f;--neu:#1c202b;--m1:#3a3f4d;--m2:#1b1e28;--m3:#262a36;--gb:linear-gradient(145deg,#f4e3b2,#8a6a2a 30%,#e9cf8c 55%,#6f5420 80%,#d9bd75);--gf:linear-gradient(180deg,#f6e2a6,#c29a45 55%,#9a7428)}
+body{background:radial-gradient(120% 70% at 50% -10%,#1b2030,#0b0d14 60%) fixed,#0b0d14;color:var(--ink)}
+.box,.kbub,.ptile,.grow,.sbtn,.say,.ucard,.sheet,.bal,#tabs,.stop .ib,.row button,.bar button,.sheet button:not(.pri):not(.sbtn):not(.gitem),select{border:1.5px solid transparent;background:linear-gradient(180deg,var(--m1),var(--m2) 50%,var(--m3)) padding-box,var(--gb) border-box;box-shadow:inset 0 1px 0 #ffffff40,inset 0 -8px 18px #00000066,inset 0 0 0 1px #0008,0 10px 22px #000a,0 2px 4px #000a;color:var(--ink)}
+.sheet{border-radius:22px 22px 0 0;border-bottom:0;backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
+.sheet-bg{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background:#05060ca0}
+#tabs{background:linear-gradient(180deg,var(--m1),var(--m2) 50%,var(--m3)) padding-box,var(--gb) border-box;border-radius:20px 20px 0 0;border-bottom:0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.ptile.off,.sbtn:disabled{filter:grayscale(.5)}
+.kbub:before{background:var(--m2);border-left:1.5px solid #b48b3a;border-bottom:1.5px solid #b48b3a;border-top:0;border-right:0}
+button.pri,.sbtn.pri,.sheet button.pri,.tstart{background:var(--gf) padding-box,var(--gb) border-box;border:1.5px solid transparent;color:#2a1c05;font-weight:700;text-shadow:0 1px 0 #fff6;box-shadow:inset 0 1px 0 #fff,inset 0 -6px 12px #6b4d1366,0 10px 22px #000a}
+.seg{background:linear-gradient(180deg,#14161e,#1d2029);box-shadow:inset 0 2px 6px #000b,0 0 0 1.5px #5a4a22}
+.seg button.on{background:var(--gf);color:#2a1c05;box-shadow:inset 0 1px 0 #fff9,inset 0 -3px 6px #6b4d1355,0 3px 8px #0007}
+.pprice,.ptile .pprice{background:var(--gf);color:#2a1c05;box-shadow:inset 0 1px 0 #fff9,inset 0 -2px 5px #6b4d1366}
+.hero h2,h1,h2{text-shadow:0 1px 0 #000a}
+.ubar{background:#0c0e14;box-shadow:inset 0 2px 4px #000c,0 0 0 1px #5a4a22}.ubar>div{background:var(--gf)}
+.mnode{box-shadow:inset 0 1px 0 #fff5,0 2px 8px #000a}
 </style>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
