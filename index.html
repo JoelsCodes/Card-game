@@ -104,6 +104,15 @@ button:disabled{opacity:.45;cursor:default}
 .gitem .tick{color:var(--gold);font-weight:700}
 @media (prefers-reduced-motion:reduce){.sheet,.sheet-bg{animation:none}.ptile{transition:none}}
 .pkbox{max-width:360px}
+#tabs{position:fixed;left:0;right:0;bottom:0;z-index:15;display:flex;justify-content:space-around;align-items:stretch;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid #8883;padding:6px 6px calc(6px + env(safe-area-inset-bottom));}
+#tabs .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;color:inherit;opacity:.55;font:500 11px system-ui,sans-serif;padding:4px 0;cursor:pointer}
+#tabs .tab svg{width:24px;height:24px}
+#tabs .tab.on{opacity:1;color:var(--gold);font-weight:600}
+#tabs .tab:active{transform:scale(.94)}
+body.has-tabs #app{padding-bottom:84px}
+#app.enter{animation:screenin .28s cubic-bezier(.2,.8,.3,1)}
+@keyframes screenin{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#app.enter{animation:none}}
 .pkstage{position:relative;width:200px;height:260px;margin:4px auto 10px;display:grid;place-items:center}
 .pkstage .pkseal{position:absolute;width:150px;height:auto;filter:drop-shadow(0 0 14px #7a5ac8);animation:packshake .9s ease-in-out both}
 .pkstage .pkc{position:absolute;width:150px;opacity:0;transform:scale(.3) rotateY(90deg);animation:cardin .6s cubic-bezier(.2,.9,.3,1.25) .9s both;z-index:2}
@@ -457,7 +466,13 @@ function setBox(f){if(f==='Owned')return'';const all=CARDS.filter(c=>c.g===f),h=
 function claimSet(g){if(P.sets.includes(g))return;P.gil+=20*CARDS.filter(c=>c.g===g).length;P.xp+=100;P.sets.push(g);save();render()}
 function sellSpares(){let t=0;for(const id in coll){t+=(coll[id]-1)*SELL[CARDS[id].lv];coll[id]=1}P.gil+=t;save();render()}
 let BLASTDRAW=false;
-function render(){BLASTDRAW=!!(S.G&&S.G.blast&&!S.G.blast.rd);if(S.G&&S.G.blast)S.G.blast.rd=1;ensureP();const a=document.getElementById('app'),sc=S.screen;a.className=sc==='game'?'gm':'';document.body.style.backgroundImage=sc==='game'?`linear-gradient(rgba(8,10,25,.55),rgba(8,10,25,.55)),url(${BGS[S.bg||0]})`:'';document.body.style.backgroundSize='cover';document.body.style.backgroundPosition='center';document.body.style.backgroundAttachment='fixed';
+const TABICON={play:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>',cards:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="11" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 3h9a2 2 0 0 1 2 2v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',shop:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',decks:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>'};
+const TABDEF=[['play','Play','menu'],['cards','Cards','coll'],['shop','Shop','shop'],['decks','Decks','decks']];
+function drawTabs(sc,on){let t=document.getElementById('tabs');if(!t){t=document.createElement('nav');t.id='tabs';t.setAttribute('aria-label','Main');document.body.appendChild(t)}
+document.body.classList.toggle('has-tabs',!!on);if(!on){t.style.display='none';return}
+t.style.display='flex';const cur={menu:'play',coll:'cards',shop:'shop',decks:'decks'}[sc];
+t.innerHTML=TABDEF.map(([k,l,sn])=>`<button class="tab${cur===k?' on':''}" ${cur===k?'aria-current="page"':''} onclick="S.screen='${sn}';render()">${TABICON[k]}<span>${l}</span></button>`).join('')}
+function render(){BLASTDRAW=!!(S.G&&S.G.blast&&!S.G.blast.rd);if(S.G&&S.G.blast)S.G.blast.rd=1;ensureP();const a=document.getElementById('app'),sc=S.screen,TABS={menu:'play',coll:'cards',shop:'shop',decks:'decks'},tabbed=!!TABS[sc];const changed=S._ls!==sc;S._ls=sc;a.className=(sc==='game'?'gm':'')+(tabbed?' tabbed':'')+(changed?' enter':'');drawTabs(sc,tabbed);document.body.style.backgroundImage=sc==='game'?`linear-gradient(rgba(8,10,25,.55),rgba(8,10,25,.55)),url(${BGS[S.bg||0]})`:'';document.body.style.backgroundSize='cover';document.body.style.backgroundPosition='center';document.body.style.backgroundAttachment='fixed';
 if(sc==='menu')a.innerHTML=`<h1>Vanguard’s End</h1><p class="sub">Final Fantasy edition with Final Fantasy XIV rules. ${CARDS.length} cards · ${NPCS.length} opponents. Win to earn MGP and a chance at their cards. Nothing is lost when you lose.</p>${S.msg?`<p class="foe">${S.msg}</p>`:''}${bar()}
 <div class="row"><button class="pri" onclick="S.screen='coll';render()">Collection (${Object.keys(coll).length}/${CARDS.length})</button><button class="pri" onclick="S.screen='shop';render()">Card shop</button></div>
 <div class="row"><button onclick="S.hall=[];S.screen='hall';render()">Battlehall</button><button onclick="S.screen='story';render()">Story</button><button onclick="S.screen='guide';render()">Rules guide</button><button onclick="S.screen='settings';render()">Settings</button></div>
