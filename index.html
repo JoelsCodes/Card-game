@@ -123,6 +123,15 @@ button:disabled{opacity:.45;cursor:default}
 .scn-skip{position:absolute;top:calc(6vh + 10px);right:12px;z-index:5;border:1px solid #fff5;background:#0008;color:#fff;border-radius:999px;padding:6px 14px;font:600 12px system-ui,sans-serif;letter-spacing:.08em;cursor:pointer}
 .scn-fade{position:absolute;inset:0;background:#000;opacity:1;transition:opacity 1.1s ease;pointer-events:none;z-index:6}.scn.on .scn-fade{opacity:0}.scn.out .scn-fade{opacity:1;transition:opacity .6s ease}
 @media (prefers-reduced-motion:reduce){.scn-bg{animation:none}}
+.keeper{display:flex;gap:14px;align-items:center;margin:2px 0 14px}
+.kface{flex:none;width:76px;height:76px;border-radius:50%;overflow:hidden;border:2.5px solid var(--gold);box-shadow:0 2px 10px #0004;background:#2a3358}
+.kface img{display:block;width:170%;max-width:none;margin:-26% 0 0 -30%;animation:kpop .35s cubic-bezier(.2,1.4,.4,1)}
+.kbub{position:relative;flex:1;background:var(--panel);border-radius:14px;padding:9px 13px 10px;box-shadow:0 1px 4px #0003;animation:fi .3s ease-out}
+.kbub:before{content:'';position:absolute;left:-6px;top:50%;margin-top:-6px;width:12px;height:12px;background:var(--panel);transform:rotate(45deg);border-radius:2px}
+.kbub b{display:block;font:700 11px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.kbub p{margin:0;font:500 14px/1.35 system-ui,sans-serif}
+@keyframes kpop{from{transform:scale(.88);opacity:.3}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.kface img,.kbub{animation:none}}
 .seg{display:flex;gap:3px;padding:3px;border-radius:12px;background:var(--line);margin:2px 0 12px}
 .seg button{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 6px;font:600 14px system-ui,-apple-system,sans-serif;color:var(--mute);cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
 .seg button.on{background:var(--panel);color:inherit;box-shadow:0 1px 3px #0003}
@@ -527,7 +536,24 @@ const matchRules=n=>n.custom||n.wb?n.rules:[...new Set([...n.rules,...(n.imm?[]:
 const resolve=rs=>[...new Set(rs.map(r=>r==='Roulette'?shuf(ROUL)[0]:r))];
 function setBox(f){if(f==='Owned')return'';const all=CARDS.filter(c=>c.g===f),h=all.filter(c=>coll[c.id]).length,done=P.sets.includes(f);return `<p class="sub">Set: ${h}/${all.length} · Reward: ${20*all.length} MGP + 100 XP${done?' (claimed)':''}</p>`+(h===all.length&&!done?`<button class="pri" style="width:100%;margin-bottom:8px" onclick="claimSet('${f}')">Claim set reward</button>`:'')}
 function claimSet(g){if(P.sets.includes(g))return;P.gil+=20*CARDS.filter(c=>c.g===g).length;P.xp+=100;P.sets.push(g);save();render()}
-function sellSpares(){let t=0;for(const id in coll){t+=(coll[id]-1)*SELL[CARDS[id].lv];coll[id]=1}P.gil+=t;save();render()}
+const KEEP={"happy": "assets/e31308302e92b4e3.jpg", "hello": "assets/8afec91563dba703.jpg", "sorry": "assets/1f632a66d2a799ce.jpg", "smug": "assets/98c5db986008f4db.jpg", "pleased": "assets/d676be9811249cab.jpg", "think": "assets/0ef19cfb3cb4b638.jpg"};
+const KM={hello:'hello',rich:'smug',sorry:'sorry',think:'think',pick:'think',legend:'happy',pull:'pleased',dup:'smug',sold:'pleased'};
+const KL={hello:['Welcome in! Fresh packs just landed.','Back again? Good. I saved a few shiny ones for you.','Step right up. What’s it gonna be today?','Hey there! Ready to pull something great?'],
+rich:['Look at that MGP! Big spender energy. I like it.','Your pockets are heavy. Let’s fix that with a few packs.','Feeling lucky? Because I am.'],
+sorry:['Short on MGP? Win a few matches and come back.','Ah, can’t swing a pack yet. Go earn some, I’ll be here.','Not quite enough MGP. Beat a few opponents and I’ll hold your spot.'],
+think:['Hmm… let’s see what you’ve got.','Ooh, nice collection. Let’s have a look.','Take your time. Every card has a story.'],
+pick:['Which game feels lucky today?','Hmm… pick a favorite. I’ll shuffle the stack.','Choose wisely. I’ve got a good feeling about this one.'],
+legend:['WHOA! Did you see that?! That one’s a keeper!','No way. Legendary luck! Frame that card!','Okay, that’s a great pull. I’m a little jealous.'],
+pull:['Nice! Another one for the collection.','That’ll look good in your deck!','Pleasure doing business!'],
+dup:['A duplicate! Don’t worry, I bought it back for you.','Seen that one before… but hey, free MGP!','Heh, the cards keep finding you. Here’s your refund.'],
+sold:['Pleasure doing business! Spares sold.','Spare cards gone, MGP in your pocket. Easy.','Clean sweep! Your binder looks tidier already.']};
+function keeperSay(p){S.kp={p,t:Date.now(),l:pk(KL[p])};S.kg=null}
+function keeperGet(changed,tab){const fresh=S.kp&&Date.now()-S.kp.t<30000;let p,ck;
+if(fresh){p=S.kp.p;ck='f'+S.kp.t}else if(S.gpSheet||S.cfSheet){p='pick';ck='pick'}else if(tab==='coll'){p='think';ck='think'}else if(P.gil<PRICE.std){p='sorry';ck='sorry'}else{ck='greet';p=null}
+if(S.kg&&S.kg.ck===ck&&!(changed&&ck==='greet'))return S.kg;
+if(!p)p=P.gil>=700&&Math.random()<.45?'rich':'hello';
+S.kg={ck,m:KM[p],l:fresh?S.kp.l:pk(KL[p])};return S.kg}
+function sellSpares(){let t=0;for(const id in coll){t+=(coll[id]-1)*SELL[CARDS[id].lv];coll[id]=1}P.gil+=t;if(t)keeperSay('sold');save();render()}
 let BLASTDRAW=false;
 const TABICON={play:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>',unlocks:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 7.5-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',shop:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',decks:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>'};
 const TABDEF=[['play','Play','menu'],['unlocks','Unlocks','unlocks'],['shop','Shop','shop'],['decks','Decks','decks']];
@@ -555,9 +581,11 @@ const COIN='<svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx=
 const CHEV='<svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const BACK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const tab=S.shopTab==='coll'?'coll':'packs',f=S.filter||'Owned',own=Object.keys(coll).length,list=f==='Owned'?owned():CARDS.filter(c=>c.g===f).map(c=>c.id);
+const kv=keeperGet(changed,tab);
 const collH=`<section class="hero"><h2>Collection</h2><p>${own} of ${CARDS.length} cards collected.</p></section><div class="ubar" style="margin:4px 0 12px"><div style="width:${Math.round(100*own/CARDS.length)}%"></div></div><button class="grow" onclick="S.cfSheet=1;render()"><span>Show</span><span class="gv">${f==='Owned'?'Owned cards':gl(f)}${CHEV}</span></button>${sp?`<button class="sbtn sec wide" onclick="sellSpares()">Sell spare copies · +${sp} MGP</button>`:''}${setBox(f)}<div class="grid g4">${list.map(id=>{const c=CARDS[id];return coll[id]?cardH(c,'','','',coll[id]>1?`<span class="cnt">×${coll[id]}</span>`:''):cardH(c,'','off')}).join('')}</div>`;
 const tile=(t,d,price,can,on)=>`<button class="ptile${can?'':' off'}" ${can?'':'disabled'} onclick="${on}"><span class="pimg"><img alt="" src="assets/6936379bb5a92c3b.png"></span><span class="pinfo"><b>${t}</b><small>${d}</small></span><span class="pprice">${COIN}${price}</span></button>`;
 a.innerHTML=`<header class="stop"><b>Shop</b><span class="bal">${COIN}${P.gil}</span></header>
+<section class="keeper"><div class="kface"><img alt="" src="${KEEP[kv.m]}"></div><div class="kbub"><b>Shopkeeper</b><p>${kv.l}</p></div></section>
 <div class="seg" role="tablist"><button role="tab" class="${tab==='packs'?'on':''}" onclick="S.shopTab='packs';S.cfSheet=0;render()">Packs</button><button role="tab" class="${tab==='coll'?'on':''}" onclick="S.shopTab='coll';S.gpSheet=0;S.gpConfirm=0;render()">Collection</button></div>
 <div class="sbody" key="${tab}">${tab==='coll'?collH:`<section class="hero"><h2>Open a pack</h2><p>Each pack matches your deck's overall rank: up to ${'★'.repeat(L)}, with a 2.5% chance of one rank higher.</p></section>
 ${bar()}
@@ -585,7 +613,7 @@ if(G.item==='revive'&&G.turn==='p'&&!G.over)a.insertAdjacentHTML('beforeend',rev
 const PRICE={std:150,game:250};
 function packLevel(){const t=owned().slice(0,10).map(id=>CARDS[id].lv);return Math.round(t.reduce((a,b)=>a+b,0)/t.length)}
 function buy(g){const cost=g?PRICE.game:PRICE.std;if(P.gil<cost)return;if(g)S.pg=g;const L=packLevel(),up=Math.random()<.025&&L<5,all=CARDS.filter(c=>!g||c.g===g);let pool=all.filter(c=>up?c.lv===L+1:c.lv<=L);if(!pool.length){const mn=Math.min(...all.map(c=>c.lv));pool=all.filter(c=>c.lv===mn)}const best=pool[Math.random()*pool.length|0];
-if(!best)return;P.gil-=cost;const dup=!!coll[best.id];if(dup){P.gil+=SELL[best.lv]}else coll[best.id]=1;S.packDup=dup?SELL[best.lv]:0;save();S.pack=best;render()}
+if(!best)return;P.gil-=cost;const dup=!!coll[best.id];if(dup){P.gil+=SELL[best.lv]}else coll[best.id]=1;S.packDup=dup?SELL[best.lv]:0;keeperSay(best.lv>=4?'legend':dup?'dup':'pull');save();S.pack=best;render()}
 function winExtra(d){const n=S.opp;if(P.beat.includes(n.n))return'';const was=tierOpen(d+1);P.beat.push(n.n);P.gil+=100*d;S.res.first=100*d;let t=` · First victory! +${100*d} MGP`;
 if(d<5&&!was&&tierOpen(d+1)){t+=' · New opponents unlocked!';S.res.unlock=1}
 if(NPCS.filter(x=>x.d===d).every(x=>P.beat.includes(x.n))){const pool=CARDS.filter(c=>c.lv===Math.min(5,d+1)),c=pool[Math.random()*pool.length|0];coll[c.id]=(coll[c.id]||0)+1;t+=` · Tier cleared! Bonus card: ${c.n}`;S.res.tier=c.n}return t}
