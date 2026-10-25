@@ -560,8 +560,8 @@ function deathFx(j){const w=document.querySelector('.bw[data-i="'+j+'"]'),card=w
 for(let k=0;k<N;k++){const s=document.createElement('div');s.className='dsl';const c=card.cloneNode(true);c.className=c.className.replace(/\b(flip|pop|shk|tg|sel)\b/g,'');s.appendChild(c);
 s.style.cssText='clip-path:inset('+(k*100/N)+'% 0 '+(100-(k+1)*100/N)+'% 0);--dx:'+(k%2?1:-1)*(55+k*6)+'%;animation-delay:'+(k*40)+'ms';w.appendChild(s)}
 card.style.visibility='hidden'}
-function cineH(r,n){const SP=SPRS[n.n],im=(f,c)=>`<img class="${c}" src="${f}" alt="" style="image-rendering:pixelated">`;
-const spr=SP?im(SP.hurt[0],'cs a')+im((SP.place[2]||SP.place[0]),'cs b'):`<div class="cs a av0">${n.n[0]}</div>`;
+function cineH(r,n){const SP=SPRS[n.n],im=(f,c)=>`<img class="${c}" src="${f}" alt="" style="image-rendering:pixelated">`;const imB=(f,c,B)=>`<img class="${c}" src="${f}" alt="" style="width:${Math.round(B.w*.6)}px;height:${Math.round(B.h*.6)}px;left:${Math.round((48-B.w*.6)/2)}px;top:${Math.round((60-B.h*.6)/2)}px;max-width:none;${B.fl?'transform:scaleX(-1);':''}">`;
+const BP=BIG[n.n],spr=SP?im(SP.hurt[0],'cs a')+im((SP.place[2]||SP.place[0]),'cs b'):BP?imB(BP.hurt[0],'cs a',BP)+imB((BP.throw&&BP.throw[Math.min(2,BP.throw.length-1)])||BP.stance[0],'cs b',BP):`<div class="cs a av0">${n.n[0]}</div>`;
 return `<div class="ov cine" onclick="S.cine=0;render()" role="button" aria-label="Skip"><div class="cflash"></div><div class="cspw">${spr}</div><div class="cfl">${cardH(r.got,'p')}</div><div class="ctxt">${n.n} hands over a card!</div></div>`}
 const RS={skip:false,id:0},slp=ms=>new Promise(r=>setTimeout(r,ms));
 function resH(r,n){const k=r.k,T=k==='win'?'VICTORY!':k==='lose'?'DEFEAT':'DRAW',st=r.st||{},rows=r.dm?[['Your points',st.kills],['Their points',st.lost],['Neutral HP',Math.max(0,st.alive)],['Items used',st.items]]:[['Destroyed',st.kills],['Lost',st.lost],['Survivors',st.alive],['Items used',st.items]];
