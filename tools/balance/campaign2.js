@@ -8,7 +8,7 @@ vm.runInContext(`
 var __SHOP=${JSON.stringify(SHOP)},__SKILL=${JSON.stringify(SKILL)},__FARM=${FARM};
 (function(){const f=aiMoveM;aiMoveM=function(G){if(__SKILL==='mirror')return f(G);const a=S.opp.ai;S.opp.ai=+__SKILL;try{return f(G)}finally{S.opp.ai=a}}})();
 function __reset(){P={xp:0,gil:300,beat:[],sets:[],mc:0};coll={};S.pick=[];topUp();P.unl=['potion'];P.prog={};P.belt=[];P.cm=[null,null,null,null,null];P.dk=0;P.decks=[[],[],[],[],[]];ensureP();P.gate=1;try{P.sel=unlPick()}catch(e){P.sel=null}}
-const __IP=['bolt','bomb','revive','potion','remedy','reclash','flip','draw','smoke','trap','scout'],__CP=['mist','ifrit','choco'];
+const __IP=['bolt','bomb','revive','potion','remedy','reclash','flip','draw','smoke','trap','scout'],__CP=['mist',...Object.keys(CMD).filter(k=>k!=='mist')];
 function __belt(){P.belt=__IP.filter(k=>P.unl.includes(k)&&ITEMS[k]).slice(0,bmax());const cm=__CP.find(k=>P.unl.includes(k));if(cm)P.cm[P.dk]=cm}
 function __deck(){S.pick=[];autoPick();const ph=S.pick.map(id=>CARDS[id]);return{sum:ph.reduce((t,c)=>t+sum(c),0),lv:+(ph.reduce((t,c)=>t+c.lv,0)/Math.max(1,ph.length)).toFixed(2),n4:ph.filter(c=>c.lv===4).length,n5:ph.filter(c=>c.lv===5).length}}
 function __shop(st){for(let g=0;g<500;g++){const sk=seekPool().length;if(__SHOP==='seek'&&sk&&P.gil>=PRICE.seek){const b=P.gil;buy(null,1);if(P.gil===b)break;st.seek++;st.spent+=PRICE.seek;continue}
