@@ -3,15 +3,16 @@ const CACHE_NAME = 'vanguards-end-v1';
 // Caches from earlier names; their saved files are moved into CACHE_NAME before they are deleted.
 const OLD_CACHES = ['triple-triad-v5', 'triple-triad-v6'];
 // Files that moved or were removed; deleted from the cache on activate.
-const RETIRED = ['./sunday_morning_gambit_2.mp3', './table_geometry.mp3'];
+const RETIRED = ['./sunday_morning_gambit_2.mp3', './table_geometry.mp3', './icons/icon-192.png', './icons/icon-512.png', './icons/icon.svg'];
 // Small set cached at install so the game opens offline right away.
 const PRECACHE = [
   './',
   './index.html',
   './manifest.json',
   './apple-touch-icon.png',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
+  './icons/icon-192.ed95496c.png',
+  './icons/icon-512.02424a87.png',
+  './icons/apple-touch-icon.b2359862.png',
   './assets/c42b0d07f283a598.mp3',
   './assets/a829aaa4dca97035.mp3',
   './assets-manifest.json'
