@@ -365,7 +365,7 @@ button.pri,.sbtn.pri,.sheet button.pri,.tstart{background:var(--gf) padding-box,
 #bd.mt-B::after,#bd.mt-C::after,#bd.mt-D::after,#bd.mt-E::after{display:none}
 .bsheet .seg button.on{background:var(--gf)!important;color:#2a1c05!important;box-shadow:inset 0 1px 0 #fff9,inset 0 -3px 6px #6b4d1355,0 3px 8px #0007!important;border:0!important}
 .bsoon{text-align:center;padding:26px 10px 18px;border:1.5px dashed #6b5628;border-radius:14px;margin-top:10px}
-.bsheet .kface img{width:100%;height:100%;object-fit:cover}
+.bsheet .kface img{width:100%;height:100%;max-width:none;margin:0;object-fit:cover}
 .bgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px}
 .bcell{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
 .bcell .card{width:100%}
@@ -616,7 +616,7 @@ function brokerPrice(c){return 2*SELL[c.lv]}
 function brokerTick(){const B=P.bro||(P.bro={c:0,t:7+Math.floor(Math.random()*4),vis:0,left:0,stock:[]});if(BROKER_ALWAYS){B.vis=1;B.left=99;if(!B.stock.length||B.stock.every(x=>x==null)){B.stock=brokerStock();B.mood='hello'}save();return}if(B.vis){if(--B.left<=0){B.vis=0;B.c=0;B.t=7+Math.floor(Math.random()*4)}}else if(++B.c>=B.t){B.vis=1;B.left=3;B.mood='hello';B.stock=brokerStock()}save()}
 function buyBroker(i){const B=P.bro;if(!B||!B.vis)return;const id=B.stock[i];if(id==null)return;const c=CARDS[id],p=brokerPrice(c);if(P.gil<p){B.mood='sorry';save();render();return}P.gil-=p;coll[id]=(coll[id]||0)+1;B.stock[i]=null;B.mood='pleased';save();render()}
 const COINB='<svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#e3b84f"/><circle cx="8" cy="8" r="4.6" fill="none" stroke="#8a6a1f" stroke-width="1"/></svg>';
-const BKEEP={"smug": "assets/dd17c78bb9a547e1.jpg", "pleased": "assets/5b42b2535528f2c3.jpg", "happy": "assets/382fe61239327f6a.jpg", "hello": "assets/f94e165256098dd5.jpg", "sorry": "assets/693bcf91e5d1fd08.jpg", "think": "assets/f3635363a4ef759b.jpg"};
+const BKEEP={"smug": "assets/42015b491b1d024c.jpg", "pleased": "assets/e7efbe1689c55b68.jpg", "happy": "assets/24b59dd3195e9883.jpg", "hello": "assets/02721e77c285a9d9.jpg", "sorry": "assets/a5025908979011b3.jpg", "think": "assets/c020157662c3717e.jpg"};
 const BLINE={hello:'Psst. Gloamwood and Ruinspire finds, straight off the road.',pleased:'A fine choice. Keep that one out of sight.',sorry:'Coin runs short on the road, friend. Come back when it doesn\'t.',gone:'Sold out. The road calls, traveler.'};
 function brokerSheet(){const B=P.bro,left=B.left,mood=B.mood||'hello',sold=B.stock.every(x=>x==null),bt=S.bTab||'cards';
 const tiles=B.stock.map((id,i)=>{if(id==null)return '<div class="bcell"><div class="bsold">Sold</div></div>';const c=CARDS[id],pr=brokerPrice(c),can=P.gil>=pr;return `<div class="bcell">${cardH(c,'p','',can?`onclick="buyBroker(${i})"`:'')}<button class="sbtn ${can?'pri':''} bbuy" ${can?'':'disabled'} onclick="buyBroker(${i})">${COINB}${pr}</button></div>`}).join('');
