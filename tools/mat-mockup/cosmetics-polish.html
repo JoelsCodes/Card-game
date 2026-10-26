@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cosmetics: polished compact layouts</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;padding:24px 16px 48px;background:#0b0d14;color:#eef0f6;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1{font:700 20px Palatino,Georgia,serif;margin:0 0 4px;color:#e3b84f}
+.lede{color:#a1a9bd;margin:0 0 24px}
+.wrap{display:flex;flex-wrap:wrap;gap:28px;justify-content:center}
+.opt{width:390px}.opt h2{font:700 15px Palatino,Georgia,serif;margin:0 0 2px;color:#f3d27a}.opt p{margin:0 0 10px;color:#a1a9bd;font-size:13px}
+.phone{width:390px;padding:12px 14px 16px;border-radius:22px;background:linear-gradient(180deg,#171a25,#101219);box-shadow:0 0 0 2px #2a2f3e,0 20px 40px #000c}
+.hdr{display:flex;justify-content:space-between;align-items:center;font-weight:700;margin-bottom:10px}
+.bal{font-size:12px;color:#e3b84f;background:#0c0e14;border:1px solid #5a4a22;border-radius:999px;padding:3px 10px}
+.tabs{display:flex;gap:4px;background:#0c0e14;border-radius:14px;padding:4px;margin-bottom:10px;font-size:12px;box-shadow:inset 0 2px 4px #000c}
+.tabs span{flex:1;text-align:center;padding:7px 0;border-radius:10px;color:#a1a9bd}.tabs .on{background:linear-gradient(180deg,#f6e2a6,#c29a45 55%,#9a7428);color:#2a1c05;font-weight:700;box-shadow:inset 0 1px 0 #fff9}
+/* slim keeper strip */
+.keeper{display:flex;align-items:center;gap:10px;padding:6px 10px 6px 6px;border-radius:14px;background:linear-gradient(180deg,#1f2330,#161a24);border:1px solid #4a4130;margin-bottom:12px}
+.face{width:38px;height:38px;border-radius:50%;flex:none;background:radial-gradient(circle at 40% 35%,#f4d9a0,#7a5a22);border:2px solid #e3b84f;box-shadow:0 0 0 2px #0a0d1e}
+.keeper p{margin:0;font-size:12px;color:#d7dbe7;font-style:italic}
+.keeper b{font-style:normal;color:#e3b84f;font-size:11px;letter-spacing:.04em;text-transform:uppercase;margin-right:4px}
+/* tile system */
+.tile{position:relative;border-radius:14px;padding:6px;background:linear-gradient(180deg,#2a2f3d,#171a24);border:1px solid #4a4130;box-shadow:inset 0 1px 0 #ffffff26,0 6px 12px #000a}
+.tile .sw{height:72px;border-radius:9px;box-shadow:inset 0 0 0 1px #0008,inset 0 -10px 18px #0006}
+.tile .lbl{font-size:11px;font-weight:700;text-align:center;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .tag{position:absolute;top:-6px;right:-6px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;box-shadow:0 2px 4px #000a}
+.tag.own{background:#1f4d3a;color:#9fe3c0;border:1px solid #3c8a68}
+.tag.eq{background:linear-gradient(180deg,#f6e2a6,#c29a45);color:#2a1c05}
+.tag.buy{background:linear-gradient(180deg,#f6e2a6,#c29a45);color:#2a1c05}
+.tile.eq{border:1.5px solid #e3b84f;box-shadow:0 0 14px #e3b84f55,inset 0 1px 0 #ffffff26}
+.tile.lock .sw{filter:saturate(.35) brightness(.7)}
+.price{position:absolute;left:50%;transform:translateX(-50%);bottom:24px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:#0c0e14;color:#e3b84f;border:1px solid #5a4a22;white-space:nowrap}
+/* A: display case, 3 columns square-ish */
+.caseA{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.caseA .sw{height:96px}
+/* B: shelf rows, one tile per row with swatch band wide */
+.shelfB{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shelfB .tile{padding:5px}
+.shelfB .sw{height:58px}
+/* C: horizontal filmstrip, selected large */
+.stripC{display:flex;gap:8px;overflow:hidden;margin:0 -14px;padding:4px 14px 10px}
+.stripC .tile{flex:0 0 100px}
+.stripC .sw{height:110px}
+.focus{margin-top:12px;padding:12px;border-radius:16px;background:#1b1e28;border:1px solid #4a4130;display:flex;justify-content:space-between;align-items:center}
+.focus b{font-size:14px}.focus small{display:block;color:#a1a9bd;font-size:11px;margin-top:2px}
+.btn{padding:9px 14px;border-radius:12px;background:linear-gradient(180deg,#f6e2a6,#c29a45 55%,#9a7428);color:#2a1c05;font-weight:700;font-size:12px;box-shadow:inset 0 1px 0 #fff,0 6px 12px #000a}
+.btn.dim{opacity:.45}
+.mtl{background:linear-gradient(180deg,#3d4252,#1a1d27 45%,#2a2e3b) ,repeating-linear-gradient(100deg,#ffffff08 0 2px,#0000 2px 5px)}
+.felt{background:radial-gradient(ellipse at 50% 40%,#1c4a3f,#0a251f)}
+.rune{background:linear-gradient(135deg,rgba(127,227,255,.14),transparent 45%),linear-gradient(180deg,#0e1220,#06080f)}
+.parch{background:radial-gradient(ellipse at 30% 20%,#efe0b8,#b99a5e)}
+.frost{background:radial-gradient(circle at 80% 10%,rgba(200,235,255,.22),transparent 40%),linear-gradient(180deg,#2a3443,#141b26)}
+.void{background:radial-gradient(circle,#2a1648,#07040f)}
+</style></head><body>
+<h1>Cosmetics: polished compact layouts</h1>
+<p class="lede">The shopkeeper stays, as a slim one-line strip. Status lives on each tile as a small corner tag, so no text repeats. Phone width, 390 px.</p>
+<div class="wrap">
+
+<section class="opt"><h2>A. Display case</h2><p>Three columns of swatch tiles. The name sits under the swatch and the status is a corner tag. Feels like a shelf of mats.</p>
+<div class="phone">
+ <div class="hdr"><span>Shop</span><span class="bal">3000 MGP</span></div>
+ <div class="tabs"><span>Packs</span><span class="on">Cosmetics</span><span>Collection</span></div>
+ <div class="keeper"><div class="face"></div><p><b>Shopkeeper</b>Every mat tells a region's story.</p></div>
+ <div class="caseA">
+  <div class="tile"><div class="tag own" style="display:none"></div><div class="sw mtl"></div><div class="lbl">Brushed</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw felt"></div><div class="lbl">Felt table</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw rune"></div><div class="lbl">Runeglass</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw parch"></div><div class="lbl">Parchment</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw frost"></div><div class="lbl">Frost stone</div></div>
+  <div class="tile eq"><div class="tag eq">Equipped</div><div class="sw void"></div><div class="lbl">Voidrift</div></div>
+ </div>
+</div></section>
+
+<section class="opt"><h2>B. Lit shelf</h2><p>Two columns with wider swatches. Unowned mats show their price on the swatch, so buying and owning read at a glance.</p>
+<div class="phone">
+ <div class="hdr"><span>Shop</span><span class="bal">3000 MGP</span></div>
+ <div class="tabs"><span>Packs</span><span class="on">Cosmetics</span><span>Collection</span></div>
+ <div class="keeper"><div class="face"></div><p><b>Shopkeeper</b>Every mat tells a region's story.</p></div>
+ <div class="shelfB">
+  <div class="tile"><div class="tag own">Default</div><div class="sw mtl"></div><div class="lbl">Brushed metal</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw felt"></div><div class="lbl">Felt table</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw rune"></div><div class="lbl">Runeglass</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw parch"></div><div class="lbl">Parchment</div></div>
+  <div class="tile lock"><div class="sw frost"></div><div class="price">1500 MGP</div><div class="lbl">Frost stone</div></div>
+  <div class="tile eq"><div class="tag eq">Equipped</div><div class="sw void"></div><div class="lbl">Voidrift</div></div>
+ </div>
+</div></section>
+
+<section class="opt"><h2>C. Filmstrip</h2><p>One horizontal row of mats, with the selected mat detailed below. Most compact on the page, and the selection is the focus.</p>
+<div class="phone">
+ <div class="hdr"><span>Shop</span><span class="bal">3000 MGP</span></div>
+ <div class="tabs"><span>Packs</span><span class="on">Cosmetics</span><span>Collection</span></div>
+ <div class="keeper"><div class="face"></div><p><b>Shopkeeper</b>Every mat tells a region's story.</p></div>
+ <div class="stripC">
+  <div class="tile"><div class="sw mtl"></div><div class="lbl">Brushed</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw felt"></div><div class="lbl">Felt</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw rune"></div><div class="lbl">Runeglass</div></div>
+  <div class="tile"><div class="tag own">Owned</div><div class="sw parch"></div><div class="lbl">Parchment</div></div>
+  <div class="tile"><div class="sw frost"></div><div class="price">1500</div><div class="lbl">Frost</div></div>
+  <div class="tile eq"><div class="tag eq">Equipped</div><div class="sw void"></div><div class="lbl">Voidrift</div></div>
+ </div>
+ <div class="focus"><div><b>Voidrift</b><small>Violet starfield. Equipped.</small></div><span class="btn dim">Equipped</span></div>
+</div></section>
+
+</div></body></html>
