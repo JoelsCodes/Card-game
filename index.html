@@ -364,6 +364,54 @@ button.pri,.sbtn.pri,.sheet button.pri,.tstart{background:var(--gf) padding-box,
 #bd.mt-E .cell:empty:not(.ok){background:rgba(20,10,40,.7)!important;border:1px solid #6a46b0!important;box-shadow:inset 0 0 14px #5b2fa066,0 0 10px #8a5cd633!important}
 #bd.mt-B::after,#bd.mt-C::after,#bd.mt-D::after,#bd.mt-E::after{display:none}
 .bsheet .seg button.on{background:var(--gf)!important;color:#2a1c05!important;box-shadow:inset 0 1px 0 #fff9,inset 0 -3px 6px #6b4d1355,0 3px 8px #0007!important;border:0!important}
+.cat{margin:8px 0;border-radius:14px;background:linear-gradient(180deg,#2a2f3d,#171a24);border:1px solid #4a4130;padding:0 10px 10px}
+.cat>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:12px 4px;font-weight:700;color:#f3d27a}
+.cat>summary::-webkit-details-marker{display:none}
+.cat>summary::after{content:"\25BE";margin-left:10px;transition:transform .2s}
+.cat[open]>summary::after{transform:rotate(180deg)}
+.cat .cn{font-size:12px;color:#a1a9bd;font-weight:600;margin-left:auto;margin-right:10px}
+.fxp{position:relative;aspect-ratio:5/7;width:100%;border-radius:10px;overflow:hidden}
+.fxp .card{width:100%;height:100%}
+.fxt .fxp{margin-bottom:6px}
+.cost.fxt .tg{position:relative;top:auto;right:auto;display:inline-block;margin-bottom:5px}
+.fxt .fd{display:block;color:#a1a9bd;font-size:10.5px;line-height:1.25;margin-top:2px;white-space:normal;text-align:center}
+.fxt .fp{display:block;font-size:11px;font-weight:700;color:#e3b84f;margin-top:4px}
+.fxt .lb{white-space:normal}
+@keyframes fxSheen{from{background-position:150% 0}to{background-position:-50% 0}}
+@keyframes fxSpin{to{transform:rotate(360deg)}}
+@keyframes fxPulse{0%,100%{box-shadow:0 5px 10px #000b,0 0 0 1px #0009,0 0 0 #7fe3ff00}50%{box-shadow:0 5px 10px #000b,0 0 0 1px #0009,0 0 16px 4px #7fe3ffaa}}
+@keyframes fxFlick{0%,19%,21%,23%,25%,54%,56%,100%{box-shadow:0 5px 10px #000b,0 0 0 1.5px #ff4fd8,0 0 10px #ff4fd8}20%,24%,55%{box-shadow:0 5px 10px #000b,0 0 0 1.5px #4a2a44,0 0 0 #ff4fd800}}
+@keyframes fxRise{from{background-position:0 0}to{background-position:0 -22px}}
+@keyframes fxFall{from{background-position:0 0}to{background-position:0 26px}}
+@keyframes fxInk{0%,100%{opacity:.35}50%{opacity:.95}}
+@keyframes fxPix{from{opacity:.25}to{opacity:1}}
+@keyframes fxTwinkle{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes fxStain{from{background-position:0 0}to{background-position:72px 0}}
+@keyframes fxStamp{0%{transform:scale(1.25);opacity:0}60%{transform:scale(.96);opacity:1}100%{transform:none}}
+@keyframes fxShake{0%{transform:rotate(-3deg)}25%{transform:rotate(2.5deg)}50%{transform:rotate(-1.5deg)}75%{transform:rotate(.6deg)}100%{transform:none}}
+@keyframes fxBreathe{0%,100%{box-shadow:0 5px 10px #000b,0 0 0 1px #0009,0 0 4px #e3b84f00}50%{box-shadow:0 5px 10px #000b,0 0 0 1px #0009,0 0 18px #e3b84fcc}}
+/* Equipped effects. Scoped to .fx-KEY so the board and the shop previews share one definition. */
+.fx-halo .card{animation:fxPulse 2.4s ease-in-out infinite}
+.fx-tracer .card::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;background:conic-gradient(from 0deg,transparent 0 78%,#9fe3ff 88%,transparent 96%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:fxSpin 3s linear infinite;pointer-events:none;z-index:2}
+.fx-neon .card{animation:fxFlick 4s steps(1,end) infinite}
+.fx-gild .card{box-shadow:0 5px 10px #000b,inset 0 0 0 2px #e3b84f,inset 0 0 0 3px #6b4d13,0 0 10px #e3b84f55}
+.fx-gild .card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 40%,#fff8 50%,transparent 60%) 150% 0/250% 100%;animation:fxSheen 3.5s linear infinite;pointer-events:none;z-index:2}
+.fx-embers .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(circle,#ffb347 1.2px,transparent 2px) 0 0/18px 22px;animation:fxRise 1.8s linear infinite}
+.fx-petals .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(circle,#ffb6d9 2px,transparent 3px) 0 0/24px 26px;animation:fxFall 3.2s linear infinite;opacity:.85}
+.fx-coins .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(circle,#f3d27a 2px,#8a6a2a 3px,transparent 3.5px) 0 0/20px 20px;animation:fxFall 1.2s linear infinite}
+.fx-ink .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(circle at 15% 10%,#2b1a5acc 0 6%,transparent 14%),radial-gradient(circle at 88% 90%,#2b1a5a99 0 5%,transparent 12%);animation:fxInk 2.6s ease-in-out infinite}
+.fx-pixel .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:conic-gradient(#7dff9a 25%,transparent 0 50%,#7dff9a 0 75%,transparent 0) 0 0/12px 12px;animation:fxPix 1.4s steps(2,end) infinite alternate;opacity:.5}
+.fx-starlight .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(1.5px 1.5px at 20% 30%,#fff,transparent),radial-gradient(1px 1px at 70% 15%,#fff,transparent),radial-gradient(1.5px 1.5px at 45% 70%,#dfe9ff,transparent),radial-gradient(1px 1px at 85% 60%,#fff,transparent);animation:fxTwinkle 2.2s ease-in-out infinite}
+.fx-moon .card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;background:linear-gradient(160deg,transparent 30%,#cfe3ff3d 50%,transparent 70%) 150% 0/300% 100%;animation:fxSheen 9s linear infinite}
+.fx-stained .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(90deg,#e74c3c44 0 18px,#f1c40f44 18px 36px,#3498db44 36px 54px,#9b59b644 54px 72px);background-size:72px 100%;mix-blend-mode:soft-light;animation:fxStain 8s linear infinite}
+.fx-sketch .card{filter:saturate(.55) contrast(1.15)}
+.fx-sketch .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(45deg,#0009 0 1px,transparent 1px 5px);opacity:.2;mix-blend-mode:multiply}
+.fx-stamp .card{animation:fxStamp .45s cubic-bezier(.3,1.5,.5,1) 1}
+.fx-shake .card{animation:fxShake .6s ease-out 1}
+.fx-breathe .card{animation:fxBreathe 3s ease-in-out infinite}
+.fx-ribbon .card::before{content:"";position:absolute;left:-8%;right:-8%;bottom:16%;height:16%;background:linear-gradient(#d23b3b,#7b1d14);box-shadow:0 2px 4px #000b;transform:rotate(-8deg);border-top:1px solid #f3d27a88;border-bottom:1px solid #f3d27a88;pointer-events:none;z-index:2}
+.fx-seal .card::before{content:"";position:absolute;top:6%;right:6%;width:22%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#e25a5a,#7b1d14 70%);box-shadow:0 2px 4px #000b,inset 0 -2px 3px #0008;pointer-events:none;z-index:2}
+@media (prefers-reduced-motion:reduce){[class*=" fx-"] .card,[class*=" fx-"] .card::before{animation:none!important}}
 .bsoon{text-align:center;padding:26px 10px 18px;border:1.5px dashed #6b5628;border-radius:14px;margin-top:10px}
 .bsheet .kface img{width:100%;height:100%;max-width:none;margin:0;object-fit:cover}
 .bgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px}
@@ -687,7 +735,7 @@ const collH=`<section class="hero"><h2>Collection</h2><p>${own} of ${CARDS.lengt
 const tile=(t,d,price,can,on,img)=>`<button class="ptile${can?'':' off'}" ${can?'':'disabled'} onclick="${on}"><span class="pimg"><img alt="" src="assets/${img||'6936379bb5a92c3b.png'}"></span><span class="pinfo"><b>${t}</b><small>${d}</small></span><span class="pprice">${COIN}${price}</span></button>`;
 const cosTile=(k,n,sw)=>{const own=k==null||P.mats.includes(k),eq=(P.mat||null)===k,price=(MATS.find(m=>m.k===k)||{}).p,can=own||P.gil>=price,tag=eq?'<span class="tg gold">Equipped</span>':own&&k!=null?'<span class="tg own">Owned</span>':'';
 return `<button class="cost${eq?' eq':''}${can?'':' off'}" ${can?'':'disabled'} onclick="${own?`equipMat(${k==null?'null':"'"+k+"'"})`:`buyMat('${k}')`}">${tag}<div class="cw"><div class="sw ${sw}"></div>${own?'':`<span class="pr">${COIN}${price}</span>`}</div><div class="lb">${n}</div></button>`};
-const cosH=`<div class="cosg">${cosTile(null,'Brushed metal','cs-M')}${MATS.map(m=>cosTile(m.k,m.n,'cs-'+m.k)).join('')}</div>`;
+const cosH=catH('Board mats','mats',[cosTile(null,'Brushed metal','cs-M'),...MATS.map(m=>cosTile(m.k,m.n,'cs-'+m.k))].join(''),P.mats.length,MATS.length)+FXC.map((c,i)=>{const L=FX.filter(f=>f.c===c);return catH(c,'fx'+i,L.map(fxTile).join(''),L.filter(f=>P.fxo.includes(f.k)).length,L.length)}).join('');
 a.innerHTML=`<header class="stop"><b>Shop</b><span class="bal">${COIN}${P.gil}</span></header>
 <section class="keeper"><div class="kface"><img alt="" src="${KEEP[kv.m]}"></div><div class="kbub"><b>Shopkeeper</b><p>${kv.l}</p></div></section>
 <div class="seg" role="tablist"><button role="tab" class="${tab==='packs'?'on':''}" onclick="S.shopTab='packs';S.cfSheet=0;render()">Packs</button><button role="tab" class="${tab==='cos'?'on':''}" onclick="S.shopTab='cos';S.cfSheet=0;render()">Cosmetics</button><button role="tab" class="${tab==='coll'?'on':''}" onclick="S.shopTab='coll';render()">Collection</button></div>
@@ -708,7 +756,7 @@ a.innerHTML=`
 ${modeLine(G,n)}
 
 ${G.ilog?'<div class="sub" style="text-align:center">'+G.ilog+'</div>':''}
-<div id="bd" class="grid${matClass()}" style="position:relative;grid-template-columns:repeat(${G.cols},1fr)">${(()=>{const a=G.board.filter(x=>x&&x.who==='p').length,b=G.board.filter(x=>x&&x.who==='o').length,t=a+b,pc=t?Math.round(a/t*100):50;return `<div class="vb" title="Cards on board: you ${a} · Rog ${b}" style="position:absolute;left:calc(100% + (100vw - 100%)/4 - 1px);top:0;bottom:36px;width:6px;border-radius:3px;overflow:hidden;display:flex;flex-direction:column;background:#0a0d1e;box-shadow:0 0 0 1px #c9a24a,0 0 8px rgba(227,184,79,.35);pointer-events:none;z-index:2"><div style="flex:1;background:linear-gradient(#ff9a9a,#c93c3c)"></div><div style="height:${pc}%;background:linear-gradient(#9fe3ff,#3a8fd6);transition:height .4s"></div></div>`})()}${G.board.map((x,i)=>x?(x.b?`<div class="cell blk" aria-label="Blocked: ${x.name}"><span class="bn">${x.name}</span></div>`:cardB(i,{...ef(x.c),hp:x.hp,sm:x.sm},x.who,(G.flash.includes(i)?'flip':G.last===i?'pop':'')+(tg.includes(i)?' tg':''),tg.includes(i)?`onclick="itemTarget(${i})"`:'')):`<button class="cell ${(G.sel!=null&&G.turn==='p')||tg.includes(i)?'ok':''}" aria-label="Empty square ${i+1}${G.traps.p===i?' (your trap)':''}" onclick="${tg.includes(i)?'itemTarget('+i+')':'play('+i+')'}">${G.traps.p===i?'<span class="trapm">⚑</span>':''}</button>`).join('')}</div>
+<div id="bd" class="grid${matClass()}${fxClass()}" style="position:relative;grid-template-columns:repeat(${G.cols},1fr)">${(()=>{const a=G.board.filter(x=>x&&x.who==='p').length,b=G.board.filter(x=>x&&x.who==='o').length,t=a+b,pc=t?Math.round(a/t*100):50;return `<div class="vb" title="Cards on board: you ${a} · Rog ${b}" style="position:absolute;left:calc(100% + (100vw - 100%)/4 - 1px);top:0;bottom:36px;width:6px;border-radius:3px;overflow:hidden;display:flex;flex-direction:column;background:#0a0d1e;box-shadow:0 0 0 1px #c9a24a,0 0 8px rgba(227,184,79,.35);pointer-events:none;z-index:2"><div style="flex:1;background:linear-gradient(#ff9a9a,#c93c3c)"></div><div style="height:${pc}%;background:linear-gradient(#9fe3ff,#3a8fd6);transition:height .4s"></div></div>`})()}${G.board.map((x,i)=>x?(x.b?`<div class="cell blk" aria-label="Blocked: ${x.name}"><span class="bn">${x.name}</span></div>`:cardB(i,{...ef(x.c),hp:x.hp,sm:x.sm},x.who,(G.flash.includes(i)?'flip':G.last===i?'pop':'')+(tg.includes(i)?' tg':''),tg.includes(i)?`onclick="itemTarget(${i})"`:'')):`<button class="cell ${(G.sel!=null&&G.turn==='p')||tg.includes(i)?'ok':''}" aria-label="Empty square ${i+1}${G.traps.p===i?' (your trap)':''}" onclick="${tg.includes(i)?'itemTarget('+i+')':'play('+i+')'}">${G.traps.p===i?'<span class="trapm">⚑</span>':''}</button>`).join('')}</div>
 <div style="display:flex;align-items:flex-end;gap:8px;margin-top:4px"><div id="pgbox" style="display:flex;align-items:flex-end;min-height:88px;flex:none">${pgH(G)}</div><div id="mgbox" style="flex:1;min-width:0;display:flex;align-items:flex-end;gap:6px;min-height:${BIG[n.n]?96:64}px">${G.say?`<div class="say" style="flex:1;margin:0"><b>${n.n}:</b> “${G.say}”</div>`:'<span style="flex:1"></span>'}${bigH(G,n)}</div></div><div class="sub" style="text-align:center;font-size:11px;margin:2px 0">${G.alt&&G.mi.p===1?'Teammate’s hand':'Your hand'} · ${G.alt?'Cards left '+hn(G,'p'):'Deck '+G.decks.p.length} · Graveyard ${G.grave.p.length}</div><div class="htray" style="position:relative"><div id="apv" title="AP" style="position:absolute;left:calc(50% - 190px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;font-size:15px;line-height:1"><span style="font-size:10px;opacity:.8">AP</span>${[2,1,0].map(i=>`<span style="color:${G.ap.p>i?'#ffd24a':'#7a7f99'}">${G.ap.p>i?'●':'○'}</span>`).join('')}</div><div class="grid g5" style="grid-template-columns:repeat(${Math.max(5,G.hands.p.length)},minmax(0,1fr))">${G.hands.p.map((c,i)=>cardH(ef(c),'p',G.sel===i?'sel':'',`onclick="selCard(${i})"`)).join('')}</div></div><div class="htray" style="margin-top:10px"><div class="sub" style="text-align:center;font-size:11px;margin:2px 0">${G.alt&&G.mi.o===1?n.n+'’s partner':n.n}’s hand · ${G.alt?'Cards left '+hn(G,'o'):'Deck '+G.decks.o.length} · Graveyard ${G.grave.o.length} · AP ${G.ap.o}</div>${cmdRow(G,'o')}<div class="grid g5" style="grid-template-columns:repeat(${Math.max(5,G.hands.o.length)},minmax(0,1fr))">${G.hands.o.map(c=>G.open.has(c.id)?cardH(ef(c),'o'):cardH(c,'o','back')).join('')}</div></div><div id="apbar" style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin:6px 0 0"><span class="chip" style="font-size:12px;${G.chw&&G.chw.p?'opacity:.5':'box-shadow:0 0 8px 2px #7fd6ff'}">Chain Wave ${G.chw&&G.chw.p?'used':'ready'}</span>${G.cmd&&G.cmd.p?`<button class="chip ${G.item==='od'?'pri':''}" title="${CMD[G.cmd.p].n}: ${CMD[G.cmd.p].od}" style="display:flex;align-items:center;gap:4px;padding:2px 8px 2px 4px;${canOd(G,'p')?'box-shadow:0 0 8px 2px gold':''}" ${canOd(G,'p')||G.item==='od'?'':'disabled'} onclick="odUse()">${cspr(G.cmd.p,26)}<span style="font-size:12px">${G.od.p?'Used':'Overdrive'}</span></button>`:''}${Object.keys(G.items.p).map(k=>`<button class="chip ${G.item===k?'pri':''}" style="padding:5px 9px;font-size:12px" ${canItem(G,'p',k)||G.item===k?'':'disabled'} onclick="useItem('${k}')">${IN[k]} ×${G.items.p[k]} · ${ic(G,'p',k)}</button>`).join('')}${G.item?'<button class="chip" style="padding:5px 9px;font-size:12px" onclick="useItem(null)">Cancel</button>':''}</div><div class="bar" style="justify-content:center;margin:4px 0 0"><button onclick="if(this.dataset.arm){S.screen='menu';render()}else{this.dataset.arm=1;this.textContent='Confirm quit?';setTimeout(()=>{if(this.isConnected){delete this.dataset.arm;this.textContent='Quit'}},3000)}">Quit</button></div>`;
 if(G.item==='revive'&&G.turn==='p'&&!G.over)a.insertAdjacentHTML('beforeend',reviveH(G));if(S.intro)a.insertAdjacentHTML('beforeend',introH());if(G.over&&S.cine)a.insertAdjacentHTML('beforeend',cineH(S.res,n));else if(G.over){const r=S.res;a.insertAdjacentHTML('beforeend',resH(r,n));runRes(r)}}}
 const PRICE={std:150,seek:300,heavy:200},REMATCH=.4;
@@ -716,6 +764,33 @@ const MATS=[{k:'A',n:'Felt table',d:'Green felt, gold inlaid rule'},{k:'B',n:'Ru
 function matClass(){return P.mat&&MATS.some(m=>m.k===P.mat)?' mt-'+P.mat:''}
 function buyMat(k){const m=MATS.find(x=>x.k===k);if(!m||P.mats.includes(k)||P.gil<m.p)return;P.gil-=m.p;P.mats.push(k);P.mat=k;save();render()}
 function equipMat(k){if(k&&!P.mats.includes(k))return;P.mat=k;save();render()}
+const FXC=['Edge & Light','Particles','Character Themes','Motion','Ownership Signature'];
+const FX=[
+{k:'halo',c:0,n:'Halo ring',d:'Soft glow that pulses on landing'},
+{k:'tracer',c:0,n:'Tracer edge',d:'A bright dot runs around the border'},
+{k:'neon',c:0,n:'Neon outline',d:'A thin neon line that flickers'},
+{k:'gild',c:0,n:'Gilded bevel',d:'Metal bevel that catches the light'},
+{k:'embers',c:1,n:'Embers',d:'Sparks rise from the bottom edge'},
+{k:'petals',c:1,n:'Petals',d:'Soft petals drift past the card'},
+{k:'coins',c:1,n:'Coin shower',d:'Gold coins drop away from the card'},
+{k:'ink',c:1,n:'Ink splatter',d:'Quick splash of ink at the corners'},
+{k:'pixel',c:1,n:'Pixel burst',d:'Square pixels pop out, 8-bit style'},
+{k:'starlight',c:2,n:'Starlight',d:'Twinkling constellation across the card'},
+{k:'moon',c:2,n:'Moonlight glass',d:'Slow, cool reflection like light on glass'},
+{k:'stained',c:2,n:'Stained glass',d:'Coloured panes drift across the card'},
+{k:'sketch',c:2,n:'Hand-drawn sketch',d:'Pen hatching over a muted card'},
+{k:'stamp',c:3,n:'Stamp',d:'A rubber-stamp press when the card lands'},
+{k:'shake',c:3,n:'Shake-off',d:'A small wobble that settles'},
+{k:'breathe',c:3,n:'Breathing glow',d:'Glow that rises and falls'},
+{k:'ribbon',c:4,n:'Name ribbon',d:'A ribbon across the bottom of the card'},
+{k:'seal',c:4,n:'Corner seal',d:'A wax seal in the top corner'}
+].map(f=>({...f,p:800,c:FXC[f.c]}));
+function fxTile(f){const own=P.fxo.includes(f.k),eq=P.fx===f.k,can=own||P.gil>=f.p,tag=eq?'<span class="tg gold">Equipped</span>':own?'<span class="tg own">Owned</span>':'';
+return `<button class="cost fxt${eq?' eq':''}${can?'':' off'}" ${can?'':'disabled'} onclick="${own?`equipFx('${f.k}')`:`buyFx('${f.k}')`}">${tag}<div class="fxp fx-${f.k}">${cardH(CARDS[0],'p')}</div><div class="lb">${f.n}</div><small class="fd">${f.d}</small>${own?'':`<span class="fp">${COINB}${f.p}</span>`}</button>`}
+function catH(title,key,body,n,of){S.fxOpen=S.fxOpen||{};return `<details class="cat" ${S.fxOpen[key]?'open':''} ontoggle="S.fxOpen['${key}']=this.open"><summary><span>${title}</span><span class="cn">${n}/${of}</span></summary><div class="cosg">${body}</div></details>`}
+function buyFx(k){const f=FX.find(x=>x.k===k);if(!f||P.fxo.includes(k)||P.gil<f.p)return;P.gil-=f.p;P.fxo.push(k);P.fx=k;save();render()}
+function equipFx(k){if(!P.fxo.includes(k))return;P.fx=P.fx===k?null:k;save();render()}
+function fxClass(){return P.fx&&FX.some(f=>f.k===P.fx)?' fx-'+P.fx:''}
 function region(){let r=1;for(let d=2;d<=5;d++)if(tierOpen(d))r=d;return r}
 function packCap(){return Math.min(packLevel(),region())}
 function seekPool(){const c=packCap();return CARDS.filter(x=>x.lv<=c&&!coll[x.id]&&!isBro(x))}
@@ -1008,7 +1083,7 @@ else{const ap=G.ap.o;go=!G.used.o&&Object.keys(G.items.o).some(q=>G.items.o[q]>0
 if(go)odApply(G,'o',t)}
 function unlPool(){return ['revive','smoke','bomb','trap','scout','remedy','draw','bolt','flip','reclash'].concat(tierOpen(2)?CM_ORDER:[]).filter(k=>!unlocked(k))}
 function unlPick(ex){const p=unlPool().filter(k=>k!==ex);return p.length?p[Math.random()*p.length|0]:null}
-const ensureP=()=>{P.bro=P.bro||{c:0,t:7+Math.floor(Math.random()*4),vis:0,left:0,stock:[]};if(BROKER_ALWAYS&&!P.bro.vis){P.bro.vis=1;P.bro.left=99;P.bro.mood=P.bro.mood||'hello';if(!P.bro.stock||!P.bro.stock.length)P.bro.stock=brokerStock()};P.mats=(P.mats||[]).filter(k=>MATS.some(m=>m.k===k));if(P.mat!=null&&!P.mats.includes(P.mat))P.mat=null;if(P.beat)P.beat=P.beat.map(n=>n==='Moogle'?'Wildborn Rog':n==='Bartz'?'The Orions':n);P.unl=P.unl||['potion'];if(!P.unl.includes('potion'))P.unl.push('potion');P.prog=P.prog||{};if(P.sel===undefined)P.sel=null;if(P.sel&&P.unl.includes(P.sel))P.sel=null;if(!P.sel)P.sel=(!(P.mc>0)&&!P.unl.includes('revive'))?'revive':unlPick();P.cm=(P.cm||[]).slice(0,5);while(P.cm.length<5)P.cm.push(null);P.cm=P.cm.map(k=>k&&CMD[k]&&P.unl.includes(k)?k:null);P.dk=P.dk>=0&&P.dk<5?P.dk:0;P.belt=(P.belt||['potion']).filter(k=>P.unl.includes(k)).slice(0,bmax());P.decks=P.decks||[];while(P.decks.length<5)P.decks.push([]);P.decks=P.decks.slice(0,5).map(d=>(d||[]).filter(id=>coll[id]>0));P.dk=P.dk>=0&&P.dk<5?P.dk:0};
+const ensureP=()=>{P.fxo=(P.fxo||[]).filter(k=>FX.some(f=>f.k===k));if(!P.fxo.includes(P.fx))P.fx=null;P.bro=P.bro||{c:0,t:7+Math.floor(Math.random()*4),vis:0,left:0,stock:[]};if(BROKER_ALWAYS&&!P.bro.vis){P.bro.vis=1;P.bro.left=99;P.bro.mood=P.bro.mood||'hello';if(!P.bro.stock||!P.bro.stock.length)P.bro.stock=brokerStock()};P.mats=(P.mats||[]).filter(k=>MATS.some(m=>m.k===k));if(P.mat!=null&&!P.mats.includes(P.mat))P.mat=null;if(P.beat)P.beat=P.beat.map(n=>n==='Moogle'?'Wildborn Rog':n==='Bartz'?'The Orions':n);P.unl=P.unl||['potion'];if(!P.unl.includes('potion'))P.unl.push('potion');P.prog=P.prog||{};if(P.sel===undefined)P.sel=null;if(P.sel&&P.unl.includes(P.sel))P.sel=null;if(!P.sel)P.sel=(!(P.mc>0)&&!P.unl.includes('revive'))?'revive':unlPick();P.cm=(P.cm||[]).slice(0,5);while(P.cm.length<5)P.cm.push(null);P.cm=P.cm.map(k=>k&&CMD[k]&&P.unl.includes(k)?k:null);P.dk=P.dk>=0&&P.dk<5?P.dk:0;P.belt=(P.belt||['potion']).filter(k=>P.unl.includes(k)).slice(0,bmax());P.decks=P.decks||[];while(P.decks.length<5)P.decks.push([]);P.decks=P.decks.slice(0,5).map(d=>(d||[]).filter(id=>coll[id]>0));P.dk=P.dk>=0&&P.dk<5?P.dk:0};
 const gc=c=>{if(!c.tv)return c;const{tv,hp,...r}=c;return{...r,v:tv}};
 function reap(G){const xh=explode(G);if(xh.length)G.flash=[...(G.flash||[]),...xh];G.board.forEach((e,j)=>{if(e&&e.c&&e.hp<=0&&e.who!=='n'){G.grave[e.who].push(gc(e.c));G.board[j]=null;drawC(G,e.who)}})}
 function beltH(){const b=P.belt;return `<h2>Item belt (${b.length}/${bmax()})</h2><p class="sub">Choose up to ${bmax()} items to bring into the match. Unlock more from the main menu.</p><div class="row" style="flex-wrap:wrap">${Object.keys(ITEMS).map(k=>unlocked(k)?`<button class="chip ${b.includes(k)?'pri':''}" onclick="beltTog('${k}')">${ITEMS[k].n} · ${ITEMS[k].ap} AP</button>`:`<button class="chip" disabled>${ITEMS[k].n} (locked)</button>`).join('')}</div>`}
