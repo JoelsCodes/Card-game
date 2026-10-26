@@ -9,6 +9,7 @@ const path = require('path');
   await p.goto('file://' + path.resolve(__dirname, '../../index.html'));
   await p.waitForTimeout(400);
   const out = {};
+  await p.evaluate(() => { BROKER_ALWAYS = false; });  // schedule tests need the normal timer
   out.collections = await p.evaluate(() => ({ gloam: CARDS.filter(c => c.g === 'Gloamwood').length, ruin: CARDS.filter(c => c.g === 'Ruinspire').length, restricted: CARDS.filter(isBro).length }));
 
   // Appearance timing: fixed target of 8 matches.
