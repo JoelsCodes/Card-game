@@ -10,6 +10,9 @@ const path = require('path');
   await p.waitForTimeout(500);
   // Give the player gil and the full roster, then open the shop.
   await p.evaluate(() => { P.gil = 5000; P.testAll = 1; save(); S.screen = 'shop'; S.shopTab = 'packs'; render(); });
+  const packsHasMats = await p.evaluate(() => document.body.innerText.includes('Card mats'));
+  const tabs = await p.evaluate(() => [...document.querySelectorAll('.seg button')].map(b => b.textContent));
+  await p.evaluate(() => { S.shopTab = 'cos'; render(); });
   const shopHasMats = await p.evaluate(() => document.body.innerText.includes('Card mats'));
   await p.evaluate(() => buyMat('A'));
   const afterBuy = await p.evaluate(() => ({ gil: P.gil, mats: P.mats, mat: P.mat }));
@@ -20,7 +23,7 @@ const path = require('path');
   const broke = await p.evaluate(() => ({ gil: P.gil, mats: P.mats }));
   await p.evaluate(() => { P.gil = 9000; buyMat('B'); buyMat('C'); buyMat('D'); buyMat('E'); });
   const all = await p.evaluate(() => P.mats);
-  await p.evaluate(() => { S.screen = 'shop'; render(); });
+  await p.evaluate(() => { S.screen = 'shop'; S.shopTab = 'cos'; render(); });
   await p.locator('.shelf').nth(0).scrollIntoViewIfNeeded();
   await p.screenshot({ path: path.join(__dirname, 'shop-mats.png'), fullPage: false });
   // Start a real match and check the board skin for each mat.
@@ -35,6 +38,6 @@ const path = require('path');
     });
     await p.locator('#bd').screenshot({ path: path.join(__dirname, 'board-' + k + '.png') }).catch(e => console.log('shot', k, e.message));
   }
-  console.log(JSON.stringify({ shopHasMats, afterBuy, dupeGil: dupe, broke, all, boardClass: out, errors: errs }, null, 1));
+  console.log(JSON.stringify({ tabs, packsHasMats, shopHasMats, afterBuy, dupeGil: dupe, broke, all, boardClass: out, errors: errs }, null, 1));
   await b.close();
 })().catch(e => { console.error(e); process.exit(1); });
