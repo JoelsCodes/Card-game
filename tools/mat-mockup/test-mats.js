@@ -10,10 +10,10 @@ const path = require('path');
   await p.waitForTimeout(500);
   // Give the player gil and the full roster, then open the shop.
   await p.evaluate(() => { P.gil = 5000; P.testAll = 1; save(); S.screen = 'shop'; S.shopTab = 'packs'; render(); });
-  const packsHasMats = await p.evaluate(() => document.body.innerText.includes('Card mats'));
+  const packsHasMats = await p.evaluate(() => document.querySelector('.cosg') && document.querySelector('.cosg').innerText.includes('Felt table'));
   const tabs = await p.evaluate(() => [...document.querySelectorAll('.seg button')].map(b => b.textContent));
   await p.evaluate(() => { S.shopTab = 'cos'; render(); });
-  const shopHasMats = await p.evaluate(() => document.body.innerText.includes('Card mats'));
+  const shopHasMats = await p.evaluate(() => document.querySelector('.cosg') && document.querySelector('.cosg').innerText.includes('Felt table'));
   await p.evaluate(() => buyMat('A'));
   const afterBuy = await p.evaluate(() => ({ gil: P.gil, mats: P.mats, mat: P.mat }));
   // Buying again must be refused, and a broke player must not be able to buy.
@@ -24,7 +24,8 @@ const path = require('path');
   await p.evaluate(() => { P.gil = 9000; buyMat('B'); buyMat('C'); buyMat('D'); buyMat('E'); });
   const all = await p.evaluate(() => P.mats);
   await p.evaluate(() => { S.screen = 'shop'; S.shopTab = 'cos'; render(); });
-  await p.locator('.shelf').nth(0).scrollIntoViewIfNeeded();
+  await p.waitForTimeout(900);
+  await p.waitForTimeout(900);
   await p.screenshot({ path: path.join(__dirname, 'shop-mats.png'), fullPage: false });
   // Start a real match and check the board skin for each mat.
   const out = {};

@@ -363,6 +363,25 @@ button.pri,.sbtn.pri,.sheet button.pri,.tstart{background:var(--gf) padding-box,
 #bd.mt-E{background:radial-gradient(circle at 50% 50%,#2a1648 0%,#120a22 60%,#07040f 100%)!important;border:1.5px solid #8a5cd6!important;box-shadow:0 0 26px rgba(138,92,214,.35),inset 0 0 40px #000!important}
 #bd.mt-E .cell:empty:not(.ok){background:rgba(20,10,40,.7)!important;border:1px solid #6a46b0!important;box-shadow:inset 0 0 14px #5b2fa066,0 0 10px #8a5cd633!important}
 #bd.mt-B::after,#bd.mt-C::after,#bd.mt-D::after,#bd.mt-E::after{display:none}
+/* Cosmetics tab: two-column mat tiles */
+.cosg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.cost{position:relative;display:block;width:100%;border-radius:14px;padding:6px 6px 8px;background:linear-gradient(180deg,#2a2f3d,#171a24);border:1px solid #4a4130;box-shadow:inset 0 1px 0 #ffffff26,0 6px 12px #000a;color:#eef0f6;font:inherit;text-align:center;cursor:pointer}
+.cost:disabled{cursor:default}
+.cost.eq{border:1.5px solid #e3b84f;box-shadow:0 0 14px #e3b84f55,inset 0 1px 0 #ffffff26}
+.cost.off{opacity:.5;filter:saturate(.6)}
+.cost .cw{position:relative}
+.cost .sw{height:58px;border-radius:9px;box-shadow:inset 0 0 0 1px #0008,inset 0 -10px 18px #0006}
+.cost .pr{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#0c0e14;color:#e3b84f;border:1px solid #5a4a22;white-space:nowrap}
+.cost .lb{font-size:12px;font-weight:700;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cost .tg{position:absolute;top:4px;right:4px;z-index:2;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;box-shadow:0 2px 4px #000a}
+.cost .tg.own{background:#1f4d3a;color:#9fe3c0;border:1px solid #3c8a68}
+.cost .tg.gold{background:linear-gradient(180deg,#f6e2a6,#c29a45);color:#2a1c05}
+.cs-M{background:linear-gradient(180deg,#3d4252,#1a1d27 45%,#2a2e3b)}
+.cs-A{background:radial-gradient(ellipse at 50% 40%,#1c4a3f,#0a251f)}
+.cs-B{background:linear-gradient(135deg,rgba(127,227,255,.14),transparent 45%),linear-gradient(180deg,#0e1220,#06080f)}
+.cs-C{background:radial-gradient(ellipse at 30% 20%,#efe0b8,#b99a5e)}
+.cs-D{background:radial-gradient(circle at 80% 10%,rgba(200,235,255,.22),transparent 40%),linear-gradient(180deg,#2a3443,#141b26)}
+.cs-E{background:radial-gradient(circle,#2a1648,#07040f)}
 
 
 /* tier gateways */
@@ -644,7 +663,9 @@ const tab=['coll','cos'].includes(S.shopTab)?S.shopTab:'packs',f=S.filter||'Owne
 const kv=keeperGet(changed,tab);
 const collH=`<section class="hero"><h2>Collection</h2><p>${own} of ${CARDS.length} cards collected.</p></section><div class="ubar" style="margin:4px 0 12px"><div style="width:${Math.round(100*own/CARDS.length)}%"></div></div><button class="grow" onclick="S.cfSheet=1;render()"><span>Show</span><span class="gv">${f==='Owned'?'Owned cards':gl(f)}${CHEV}</span></button>${sp?`<button class="sbtn sec wide" onclick="sellSpares()">Sell spare copies · +${sp} MGP</button>`:''}${setBox(f)}<div class="grid g4">${list.map(id=>{const c=CARDS[id];return coll[id]?cardH(c,'','','',coll[id]>1?`<span class="cnt">×${coll[id]}</span>`:''):cardH(c,'','off')}).join('')}</div>`;
 const tile=(t,d,price,can,on)=>`<button class="ptile${can?'':' off'}" ${can?'':'disabled'} onclick="${on}"><span class="pimg"><img alt="" src="assets/6936379bb5a92c3b.png"></span><span class="pinfo"><b>${t}</b><small>${d}</small></span><span class="pprice">${COIN}${price}</span></button>`;
-const cosH=`<section class="hero"><h2>Card mats</h2><p>Dress up your match board. Each mat costs 1500 MGP, and your equipped mat shows on the board.</p></section><div class="shelf"><button class="ptile" onclick="equipMat(null)"><span class="pinfo"><b>Brushed metal</b><small>${P.mat?'Tap to use the default board':'Equipped'}</small></span></button>${MATS.map(m=>P.mats.includes(m.k)?`<button class="ptile" onclick="equipMat('${m.k}')"><span class="pinfo"><b>${m.n}</b><small>${P.mat===m.k?'Equipped':'Owned, tap to equip'}</small></span></button>`:tile(m.n,m.d,m.p,P.gil>=m.p,`buyMat('${m.k}')`)).join('')}</div>`;
+const cosTile=(k,n,sw)=>{const own=k==null||P.mats.includes(k),eq=(P.mat||null)===k,price=(MATS.find(m=>m.k===k)||{}).p,can=own||P.gil>=price,tag=eq?'<span class="tg gold">Equipped</span>':own&&k!=null?'<span class="tg own">Owned</span>':'';
+return `<button class="cost${eq?' eq':''}${can?'':' off'}" ${can?'':'disabled'} onclick="${own?`equipMat(${k==null?'null':"'"+k+"'"})`:`buyMat('${k}')`}">${tag}<div class="cw"><div class="sw ${sw}"></div>${own?'':`<span class="pr">${COIN}${price}</span>`}</div><div class="lb">${n}</div></button>`};
+const cosH=`<div class="cosg">${cosTile(null,'Brushed metal','cs-M')}${MATS.map(m=>cosTile(m.k,m.n,'cs-'+m.k)).join('')}</div>`;
 a.innerHTML=`<header class="stop"><b>Shop</b><span class="bal">${COIN}${P.gil}</span></header>
 <section class="keeper"><div class="kface"><img alt="" src="${KEEP[kv.m]}"></div><div class="kbub"><b>Shopkeeper</b><p>${kv.l}</p></div></section>
 <div class="seg" role="tablist"><button role="tab" class="${tab==='packs'?'on':''}" onclick="S.shopTab='packs';S.cfSheet=0;render()">Packs</button><button role="tab" class="${tab==='cos'?'on':''}" onclick="S.shopTab='cos';S.cfSheet=0;S.gpSheet=0;S.gpConfirm=0;render()">Cosmetics</button><button role="tab" class="${tab==='coll'?'on':''}" onclick="S.shopTab='coll';S.gpSheet=0;S.gpConfirm=0;render()">Collection</button></div>
