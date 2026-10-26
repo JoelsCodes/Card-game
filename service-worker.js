@@ -16,7 +16,7 @@ const PRECACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) =>
-      cache.addAll(PRECACHE).catch(() => Promise.resolve())
+      Promise.all(PRECACHE.map((p) => cache.add(p).catch(() => null)))
     )
   );
   self.skipWaiting();
@@ -66,8 +66,16 @@ function fillMissingAssets() {
     .then((r) => (r.ok ? r.json() : []))
     .then((list) => caches.open(CACHE_NAME).then((cache) =>
       cache.keys().then((keys) => {
-        const have = new Set(keys.map((k) => new URL(k.url).pathname));
-        const missing = list.filter((p) => !have.has('/' + p) && !have.has(p));
+        const want = new Set(list.map((p) => new URL(p, self.registration.scope).pathname));
+        const have = new Set();
+        const stale = [];
+        keys.forEach((k) => {
+          const path = new URL(k.url).pathname;
+          have.add(path);
+          if (list.length && path.includes('/assets/') && !want.has(path)) stale.push(k);
+        });
+        stale.forEach((k) => cache.delete(k));
+        const missing = list.filter((p) => !have.has(new URL(p, self.registration.scope).pathname));
         let i = 0;
         const worker = () => {
           if (i >= missing.length) return Promise.resolve();
@@ -83,12 +91,19 @@ function fillMissingAssets() {
 // The page: always ask the network so updates show right away; use the cached copy only when offline.
 function networkFirst(req, event) {
   if (event) event.waitUntil(fillMissingAssets());
-  return caches.open(CACHE_NAME).then((cache) =>
-    fetch(req).then((res) => {
+  return caches.open(CACHE_NAME).then((cache) => {
+    const saved = () => cache.match(req, { ignoreSearch: true })
+      .then((hit) => hit || cache.match('./index.html'))
+      .then((hit) => hit || cache.match('./'));
+    const net = fetch(req).then((res) => {
       if (res.ok) cache.put(req, res.clone());
       return res;
-    }).catch(() => cache.match(req))
-  );
+    });
+    if (event) event.waitUntil(net.catch(() => null));
+    // Slow or flaky network: show the saved page after 4 s; the download still updates the cache.
+    const slow = new Promise((resolve) => setTimeout(() => saved().then((hit) => hit && resolve(hit)), 4000));
+    return Promise.race([net.catch(() => saved().then((hit) => hit || Promise.reject())), slow]);
+  });
 }
 
 self.addEventListener('fetch', (event) => {

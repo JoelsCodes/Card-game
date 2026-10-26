@@ -7,8 +7,10 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "theme_color": "#0f1224",
-  "background_color": "#f1f2f8",
-  "categories": ["games"],
+  "background_color": "#0f1224",
+  "categories": [
+    "games"
+  ],
   "icons": [
     {
       "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%230f1224' width='192' height='192'/><text x='96' y='120' font-size='80' font-family='Georgia' font-weight='bold' fill='%23b88a1e' text-anchor='middle'>T³</text></svg>",
@@ -28,7 +30,7 @@
       "name": "New Game",
       "short_name": "Play",
       "description": "Start a new game",
-      "url": "/?action=new",
+      "url": "./?action=new",
       "icons": [
         {
           "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232f63d0' width='96' height='96'/><path fill='%23fff' d='M32 24v48l36-24z'/></svg>",
