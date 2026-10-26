@@ -16,7 +16,7 @@ const path = require('path');
   await open();
   out.rankOpen = { tile: await seekTile(), art: await p.evaluate(() => [...document.querySelectorAll('.ptile img')].some(i => i.src.includes('70af5f1f8165ef4a.jpg'))) };
   const gilBefore = await p.evaluate(() => P.gil);
-  await p.evaluate(() => { if (!seekPool().length) throw new Error('expected pool'); buy(null, 1); });
+  await p.evaluate(() => { if (!seekPool().length) throw new Error('expected pool'); buy(1); });
   out.rankOpen.charged = gilBefore - (await p.evaluate(() => P.gil));
   out.rankOpen.gotNewCard = await p.evaluate(() => Object.keys(coll).length);
 
@@ -26,7 +26,7 @@ const path = require('path');
   out.blocked = { tile: await seekTile(), cap: await p.evaluate(() => packCap()) };
   const gilB = await p.evaluate(() => P.gil);
   await p.locator('.ptile', { hasText: 'Seeker pack' }).click({ force: true }).catch(() => {});
-  await p.evaluate(() => buy(null, 1));
+  await p.evaluate(() => buy(1));
   out.blocked.chargedAfterAttempt = gilB - (await p.evaluate(() => P.gil));
   out.blocked.toast = await p.evaluate(() => (document.querySelector('.toast') || {}).textContent || null);
 

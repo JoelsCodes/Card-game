@@ -14,7 +14,7 @@ const path = require('path');
     const realRandom = Math.random; const seq = [roll, 0.5];
     Math.random = () => seq.length ? seq.shift() : 0.5;
     const before = Object.keys(coll).length, L = packCap();
-    buy(null, 1);
+    buy(1);
     Math.random = realRandom;
     const pulled = Object.keys(coll).map(Number).filter(id => CARDS[id].lv > 1).map(id => CARDS[id].lv);
     return { cap: L, owned: before, after: Object.keys(coll).length, pulledLevels: pulled, gil: P.gil };
