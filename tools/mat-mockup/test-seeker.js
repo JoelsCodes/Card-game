@@ -14,7 +14,7 @@ const path = require('path');
   // Case 1: a fresh roster with plenty still obtainable: artwork and pack eligibility.
   await p.evaluate(() => { P.gil = 5000; P.testAll = 1; coll = {}; CARDS.filter(c => c.lv <= 1).slice(0, 5).forEach(c => coll[c.id] = 1); save(); });
   await open();
-  out.rankOpen = { tile: await seekTile(), art: await p.evaluate(() => [...document.querySelectorAll('.ptile img')].some(i => i.src.includes('70af5f1f8165ef4a.jpg'))) };
+  out.rankOpen = { tile: await seekTile(), art: await p.evaluate(() => [...document.querySelectorAll('.ptile img')].some(i => i.src.includes('027d77f95709ef5b.jpg'))) };
   const gilBefore = await p.evaluate(() => P.gil);
   await p.evaluate(() => { if (!seekPool().length) throw new Error('expected pool'); buy(1); });
   out.rankOpen.charged = gilBefore - (await p.evaluate(() => P.gil));

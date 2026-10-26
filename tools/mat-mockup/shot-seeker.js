@@ -7,6 +7,6 @@ const path = require('path');
   await p.waitForTimeout(400);
   await p.evaluate(() => { P.gil = 5000; P.testAll = 1; coll = {}; CARDS.filter(c => c.lv <= 1).slice(0, 5).forEach(c => coll[c.id] = 1); save(); S.screen = 'shop'; S.shopTab = 'packs'; render(); });
   await p.waitForTimeout(900);
-  await p.locator('.shelf').screenshot({ path: path.join(__dirname, 'packs-seeker.png') });
+  await p.locator('.ptile', { hasText: 'Seeker pack' }).screenshot({ path: path.join(__dirname, 'seeker-tile.png') });
   await b.close();
 })().catch(e => { console.error(e); process.exit(1); });
