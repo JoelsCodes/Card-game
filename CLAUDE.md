@@ -25,5 +25,6 @@ Single-file vanilla-JS card-game PWA. Almost everything is in `index.html` (inli
 - `assets/` has content-hashed file names. After adding/removing assets run `node scripts/make-asset-manifest.js` (updates `assets-manifest.json`). The service worker is cache-first for `/assets/`, network-first for pages.
 
 ## Testing / balance
+- `tools/tests/smoke.js` (screens, shop, cosmetics, broker, a match, asset integrity) and `tools/tests/offline.js` (service worker, offline reload). Run both before pushing; see `tools/tests/README.md`.
 - `tools/balance/` has the campaign simulator (`node campaign.js 40`); see its README. It has NOT been re-run since the shop caps, rematch payouts and full-clear gateways were added.
 - Useful in headless tests: `P.testAll=1` unlocks everything; call `chooseNpc(i)` to start a match; `buy()`, `reward()`, `render()` are global.

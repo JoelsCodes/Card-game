@@ -1,7 +1,7 @@
 {
   "name": "Vanguard’s End",
   "short_name": "Vanguard’s End",
-  "description": "Classic card game from Final Fantasy VIII",
+  "description": "Vanguard’s End: a collectible fantasy card battler. Build decks, beat rivals across five realms, collect every card.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -13,16 +13,28 @@
   ],
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%230f1224' width='192' height='192'/><text x='96' y='120' font-size='80' font-family='Georgia' font-weight='bold' fill='%23b88a1e' text-anchor='middle'>T³</text></svg>",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%230f1224' width='512' height='512'/><text x='256' y='340' font-size='220' font-family='Georgia' font-weight='bold' fill='%23b88a1e' text-anchor='middle'>T³</text></svg>",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "shortcuts": [
@@ -33,8 +45,9 @@
       "url": "./?action=new",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232f63d0' width='96' height='96'/><path fill='%23fff' d='M32 24v48l36-24z'/></svg>",
-          "sizes": "96x96"
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
         }
       ]
     }
