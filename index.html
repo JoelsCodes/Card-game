@@ -363,6 +363,12 @@ button.pri,.sbtn.pri,.sheet button.pri,.tstart{background:var(--gf) padding-box,
 #bd.mt-E{background:radial-gradient(circle at 50% 50%,#2a1648 0%,#120a22 60%,#07040f 100%)!important;border:1.5px solid #8a5cd6!important;box-shadow:0 0 26px rgba(138,92,214,.35),inset 0 0 40px #000!important}
 #bd.mt-E .cell:empty:not(.ok){background:rgba(20,10,40,.7)!important;border:1px solid #6a46b0!important;box-shadow:inset 0 0 14px #5b2fa066,0 0 10px #8a5cd633!important}
 #bd.mt-B::after,#bd.mt-C::after,#bd.mt-D::after,#bd.mt-E::after{display:none}
+.bsheet .kface img{width:100%;height:100%;object-fit:cover}
+.bgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px}
+.bcell{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.bcell .card{width:100%}
+.bbuy{width:100%;justify-content:center;padding:6px 4px;font-size:12px}
+.bsold{width:100%;aspect-ratio:5/7;border-radius:10px;display:grid;place-items:center;border:1.5px dashed #6b5628;color:#a1a9bd;font-size:11px}
 .pimg img[src$="027d77f95709ef5b.jpg"]{-webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 62%,transparent 100%)}
 /* Cosmetics tab: two-column mat tiles */
 .cosg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
@@ -604,9 +610,14 @@ const BROKER_G=['Gloamwood','Ruinspire'];
 const isBro=c=>BROKER_G.includes(c.g);
 function brokerStock(){const pool=CARDS.filter(isBro);return [0,1,2].map(()=>{let c=pool[Math.random()*pool.length|0];if(Math.random()<.25&&c.lv<5){const up=pool.filter(x=>x.lv===c.lv+1);if(up.length)c=up[Math.random()*up.length|0]}return c.id})}
 function brokerPrice(c){return 2*SELL[c.lv]}
-function brokerTick(){const B=P.bro||(P.bro={c:0,t:7+Math.floor(Math.random()*4),vis:0,left:0,stock:[]});if(B.vis){if(--B.left<=0){B.vis=0;B.c=0;B.t=7+Math.floor(Math.random()*4)}}else if(++B.c>=B.t){B.vis=1;B.left=3;B.stock=brokerStock()}save()}
-function buyBroker(i){const B=P.bro;if(!B||!B.vis)return;const id=B.stock[i];if(id==null)return;const c=CARDS[id],p=brokerPrice(c);if(P.gil<p)return;P.gil-=p;coll[id]=(coll[id]||0)+1;B.stock[i]=null;save();render()}
-function brokerSheet(){const B=P.bro,left=B.left;return `<div class="sheet-bg" onclick="S.broker=0;render()"></div><div class="sheet" role="dialog" aria-label="Traveling broker"><div class="grab"></div><h3>Traveling broker</h3><p class="sub">Leaves after ${left} more ${left===1?'match':'matches'}. Sells only Gloamwood and Ruinspire cards.</p><div class="grid g3">${B.stock.map((id,i)=>{if(id==null)return '<div class="sub" style="text-align:center">Sold</div>';const c=CARDS[id],p=brokerPrice(c),can=P.gil>=p;return `<div>${cardH(c,'p','',can?`onclick="buyBroker(${i})"`:'')}<p class="sub" style="text-align:center">${p} MGP${can?'':' · not enough MGP'}</p></div>`}).join('')}</div></div>`}
+function brokerTick(){const B=P.bro||(P.bro={c:0,t:7+Math.floor(Math.random()*4),vis:0,left:0,stock:[]});if(B.vis){if(--B.left<=0){B.vis=0;B.c=0;B.t=7+Math.floor(Math.random()*4)}}else if(++B.c>=B.t){B.vis=1;B.left=3;B.mood='hello';B.stock=brokerStock()}save()}
+function buyBroker(i){const B=P.bro;if(!B||!B.vis)return;const id=B.stock[i];if(id==null)return;const c=CARDS[id],p=brokerPrice(c);if(P.gil<p){B.mood='sorry';save();render();return}P.gil-=p;coll[id]=(coll[id]||0)+1;B.stock[i]=null;B.mood='pleased';save();render()}
+const COINB='<svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#e3b84f"/><circle cx="8" cy="8" r="4.6" fill="none" stroke="#8a6a1f" stroke-width="1"/></svg>';
+const BKEEP={"smug": "assets/dd17c78bb9a547e1.jpg", "pleased": "assets/5b42b2535528f2c3.jpg", "happy": "assets/382fe61239327f6a.jpg", "hello": "assets/f94e165256098dd5.jpg", "sorry": "assets/693bcf91e5d1fd08.jpg", "think": "assets/f3635363a4ef759b.jpg"};
+const BLINE={hello:'Psst. Gloamwood and Ruinspire finds, straight off the road.',pleased:'A fine choice. Keep that one out of sight.',sorry:'Coin runs short on the road, friend. Come back when it doesn\'t.',gone:'Sold out. The road calls, traveler.'};
+function brokerSheet(){const B=P.bro,left=B.left,mood=B.mood||'hello',sold=B.stock.every(x=>x==null);
+const tiles=B.stock.map((id,i)=>{if(id==null)return '<div class="bcell"><div class="bsold">Sold</div></div>';const c=CARDS[id],pr=brokerPrice(c),can=P.gil>=pr;return `<div class="bcell">${cardH(c,'p','',can?`onclick="buyBroker(${i})"`:'')}<button class="sbtn ${can?'pri':''} bbuy" ${can?'':'disabled'} onclick="buyBroker(${i})">${COINB}${pr}</button></div>`}).join('');
+return `<div class="sheet-bg" onclick="S.broker=0;render()"></div><div class="sheet bsheet" role="dialog" aria-label="Traveling broker"><div class="grab"></div><section class="keeper"><div class="kface"><img alt="" src="${BKEEP[sold?'think':mood]}"></div><div class="kbub"><b>Traveling broker</b><p>${sold?BLINE.gone:BLINE[mood]}</p></div></section><p class="sub">Leaves after ${left} more ${left===1?'match':'matches'}. Gloamwood and Ruinspire only.</p><div class="bgrid">${tiles}</div></div>`}
 function topUp(){if(!P.st){P.st=1;const w=CARDS.find(c=>c.o==='Warrior of Light');if(w)delete coll[w.id];P.wol=1;save()}if(!P.fx){P.fx=1;delete coll[CARDS.find(c=>c.o==='Kefka').id];delete coll[CARDS.find(c=>c.o==='Tifa').id]}while(Object.keys(coll).length<10){const c=shuf(CARDS.filter(c=>c.lv<=2&&!coll[c.id]&&!isBro(c)))[0];coll[c.id]=1}if(P.gil<10)P.gil=10;save()}
 
 topUp();
