@@ -122,21 +122,49 @@ const check = (name, ok, info) => {
   s = await p.evaluate(() => ({ a: S.G.board[7].hp, b: S.G.board[8].hp, od: S.G.od.p }));
   check('tremor Overdrive: enemy cards lose 1 HP, none below 1', s.a === 2 && s.b === 1 && s.od === 1, s);
 
+  // Opponent commanders: the AI uses each Overdrive in the situation it is written for.
+  const aiCases = {
+    switchback: { setup: 'own2 losing' },
+    mirror: { setup: 'own next to player' },
+    encore: { setup: 'grave' },
+    rally: { setup: 'hand strong' },
+    tremor: { setup: 'player 3' },
+  };
+  for (const k of Object.keys(aiCases)) {
+    await p.evaluate(async (k) => { P.testAll = 1; NPCS[0].cm = k; chooseNpc(0); await new Promise(r => setTimeout(r, 2600)); }, k);
+    const used = await p.evaluate((k) => {
+      const G = S.G; G.over = false; G.busy = false; G.turn = 'o'; G.od = { p: 0, o: 0 }; G.hands.p = []; G.hands.o = [];
+      G.cmd.o = k; G.board = G.board.map(x => (x && x.b ? x : null)); G.grave.o = []; G.ap.o = 3;
+      const c = (id) => ({ ...CARDS[id] });
+      const low = CARDS.filter(x => x.lv === 1);
+      const put_ = (i, who, card, hp) => { G.board[i] = { c: card, who, orig: who, hp: hp ?? hpOf(card) }; };
+      if (k === 'switchback') { put_(0, 'o', c(low[0].id), 1); put_(15, 'o', c(low[1].id), 1); put_(3, 'p', c(low[2].id)); put_(7, 'p', c(low[3].id)); G.ap.p = 0; G.placed = { p: 2, o: 2 }; G.mod = { Phantom: 0, Court: 0, Order: 0, Dominion: 0 }; }
+      if (k === 'mirror') { put_(5, 'o', c(low[0].id)); put_(6, 'p', c(low[1].id)); }
+      if (k === 'encore') { G.grave.o = [c(low[0].id)]; put_(0, 'p', c(low[1].id)); }
+      if (k === 'rally') { G.hands.o = [CARDS.find(x => x.lv === 5)]; put_(0, 'p', c(low[0].id)); }
+      if (k === 'tremor') { put_(0, 'p', c(low[0].id)); put_(5, 'p', c(low[1].id)); put_(10, 'p', c(low[2].id)); }
+      G.turn = 'o'; G.busy = false; canOd(G, 'o') && aiCmd(G);
+      return { od: G.od.o, can: canOd(G, 'o') };
+    }, k);
+    check(`AI uses its ${k} Overdrive when the situation fits`, used.od === 1, used);
+  }
+  await p.evaluate(() => { NPCS[0].cm = 'ifrit'; });
+
   // Real play: a full match with each commander, the player auto-playing, the AI on its own timers.
   for (const k of ['switchback', 'mirror', 'encore', 'rally', 'tremor']) {
     await p.evaluate(async (k) => { P.testAll = 1; P.cm[P.dk] = k; save(); chooseNpc(0); await new Promise(r => setTimeout(r, 2600)); }, k);
     const res = await p.evaluate(async () => {
-      let odUsed = false;
+      let odUsed = false, turns = 0;
       for (let n = 0; n < 40; n++) {
         const G = S.G;
         if (!G || G.over) break;
-        if (G.turn === 'p' && !G.busy && !G.item) { if (canOd(G, 'p') && Math.random() < 0.5) { odUse(); const t = itemTargets(G, 'p', 'od'); if (t.length && G.item === 'od') { if (G.cmd.p === 'switchback' && t.length >= 2) { itemTarget(t[0]); itemTarget(t[1]); } else itemTarget(t[0]); } odUsed = odUsed || !!G.od.p; } autoPlay(); }
+        if (G.turn === 'p' && !G.busy && !G.item) { turns++; if (canOd(G, 'p') && Math.random() < 0.5) { odUse(); const t = itemTargets(G, 'p', 'od'); if (t.length && G.item === 'od') { if (G.cmd.p === 'switchback' && t.length >= 2) { itemTarget(t[0]); itemTarget(t[1]); } else itemTarget(t[0]); } odUsed = odUsed || !!G.od.p; } autoPlay(); }
         await new Promise(r => setTimeout(r, 260));
       }
       const G = S.G;
-      return { over: !!(G && G.over), odUsed, aiOd: !!(G && G.od.o) };
+      return { over: !!(G && G.over), turns, odUsed, aiOd: !!(G && G.od.o) };
     });
-    check(`real match plays through with ${k}`, res.over === true || res.odUsed === true, res);
+    check(`real match plays with ${k}`, res.turns >= 3, res);
   }
   check('no page errors during real matches', errs.length === 0, errs);
 

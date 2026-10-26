@@ -640,7 +640,7 @@ function lineX(G){const X=LX[S.opp.n];if(!X||G.mode||!X.ahead||Math.random()>.22
 function itemX(G,w){const X=LX[S.opp.n],k=w==='o'?'item':'pitem';if(X&&!G.mode&&X[k]&&Math.random()<.6)G.say=pk(X[k])}
 const WB=['Captain Basch','Warden Ramza','General Zack','Marshal Gladiolus','Warmaster Seymour'];
 const NPCS=NR.split('\n').map(l=>{const[n,g,d,q]=l.split('|'),D=+d,r=rng(hash(n)),lo=[0,1,2,3,3,4][D],hi=[0,2,3,4,5,5][D],pool=CARDS.filter(c=>c.lv>=lo&&c.lv<=hi),own=sh(pool.filter(c=>c.og===g),r),rest=sh(pool.filter(c=>c.og!==g),r);let deck=[...own.slice(0,8),...rest].slice(0,15);const sg=CARDS.find(c=>c.n===n);if(sg&&!deck.includes(sg))deck[0]=sg;
-return{n,g,d:D,q,l:LN[n]||GEN,ai:D<2?0:D<3?1:2,deck,rules:sh(RP[D<2?0:D<3?1:2],r).slice(0,D<2?1:D<3?1+(r()<.5?1:0):2),imm:D===5,wb:WB.includes(n),cm:D>=2?['ifrit','choco','mist'][Math.abs(hash(n))%3]:null}});
+return{n,g,d:D,q,l:LN[n]||GEN,ai:D<2?0:D<3?1:2,deck,rules:sh(RP[D<2?0:D<3?1:2],r).slice(0,D<2?1:D<3?1+(r()<.5?1:0):2),imm:D===5,wb:WB.includes(n),cm:D>=2?['ifrit','choco','mist','switchback','mirror','encore','rally','tremor'][Math.abs(hash(n))%8]:null}});
 const KEY='ff3t_v3',PK='ff3t_prog';let coll={},S={screen:'title',opp:null,pick:[],G:null,res:null,filter:'Owned',msg:'',hall:[]};
 try{coll=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 let P={xp:0,gil:300,beat:[],sets:[]};try{Object.assign(P,JSON.parse(localStorage.getItem(PK)||'{}'))}catch(e){}P.beat=(P.beat||[]).map(x=>x==='Zidane'?'Dummy':x==='Wildborn Rogue'?'Wildborn Rog':x);
@@ -1078,8 +1078,14 @@ function cmSet(k){P.cm[P.dk]=k;P.belt=P.belt.slice(0,bmax());save();render()}
 function cmH(){const c=P.cm[P.dk];if(!tierOpen(2)&&!CM_ORDER.some(k=>unlocked(k)))return'';return `<h2>Commander (Deck ${P.dk+1})</h2><p class="sub">One commander per deck: a passive for the whole match plus an Overdrive you can use once per match. Unlock them from the Unlocks menu.</p><div class="row" style="flex-wrap:wrap"><button class="chip ${c?'':'pri'}" onclick="cmSet(null)">None</button>${CM_ORDER.map(k=>unlocked(k)?`<button class="chip ${c===k?'pri':''}" onclick="cmSet('${k}')">${cspr(k,22)} ${CMD[k].n}</button>`:`<button class="chip" disabled>${CMD[k].n} (locked)</button>`).join('')}</div>${c?`<div class="cmdr">${cspr(c,48)}<div class="cmi"><b>${CMD[c].n}</b><div class="sub">${CMD[c].d}</div></div></div>`:''}`}
 function cmdRow(G,w){const k=G.cmd&&G.cmd[w];if(!k)return'';const C=CMD[k],used=G.od[w],act=G.item==='od';return `<div class="cmdr">${cspr(k,36)}<div class="cmi"><b>${w==='p'?'':S.opp.n+'’s '}${C.n}</b><div class="sub">Passive: ${C.pas}${w==='p'?' Overdrive: '+C.od:''}</div></div>${w==='p'?`<button class="chip ${act?'pri':''}" ${canOd(G,'p')||act?'':'disabled'} onclick="odUse()">${act?'Cancel':used?'Overdrive used':'Overdrive'}</button>`:`<span class="chip ${used?'':'pri'}">${used?'Overdrive used':'Overdrive ready'}</span>`}</div>`}
 function aiCmd(G){const k=G.cmd.o;if(!k||G.od.o||!canOd(G,'o'))return;const B=G.board;let go=false,t=0;
-if(k==='ifrit'){const ts=odTargets(G,'o').filter(i=>B[i].who==='p'),kl=ts.filter(i=>B[i].hp<=3).sort((a,b)=>sum(B[b].c)-sum(B[a].c));if(kl.length){go=true;t=kl[0]}else if(ts.length&&B.filter(x=>!x).length<=4){go=true;t=ts.sort((a,b)=>B[b].hp-B[a].hp)[0]}}
+const mine=odTargets(G,'o'),foes=B.filter(x=>x&&x.c&&x.who==='p').length,losing=scr(G,'o')<scr(G,'p');
+if(k==='ifrit'){const ts=mine.filter(i=>B[i].who==='p'),kl=ts.filter(i=>B[i].hp<=3).sort((a,b)=>sum(B[b].c)-sum(B[a].c));if(kl.length){go=true;t=kl[0]}else if(ts.length&&B.filter(x=>!x).length<=4){go=true;t=ts.sort((a,b)=>B[b].hp-B[a].hp)[0]}}
 else if(k==='choco')go=B.filter(x=>x&&x.c&&x.who==='o'&&x.hp<hpOf(x.c)).length>=2;
+else if(k==='switchback'){if(losing&&mine.length>=2){go=true;t=[mine[0],mine[mine.length-1]]}}
+else if(k==='mirror'){const thr=mine.filter(i=>nbrs(G,i).some(j=>B[j]&&B[j].c&&B[j].who==='p'));if(thr.length){go=true;t=thr.sort((a,b)=>B[a].hp-B[b].hp)[0]}}
+else if(k==='encore'){if(mine.length&&G.grave.o.length){go=true;t=mine.sort((a,b)=>nbrs(G,b).filter(j=>B[j]&&B[j].who==='o').length-nbrs(G,a).filter(j=>B[j]&&B[j].who==='o').length)[0]}}
+else if(k==='rally')go=G.hands.o.some(c=>c.lv>=4);
+else if(k==='tremor')go=foes>=3;
 else{const ap=G.ap.o;go=!G.used.o&&Object.keys(G.items.o).some(q=>G.items.o[q]>0&&IC[q]===ap+1&&itemTargets(G,'o',q).length>0)}
 if(go)odApply(G,'o',t)}
 function unlPool(){return ['revive','smoke','bomb','trap','scout','remedy','draw','bolt','flip','reclash'].concat(tierOpen(2)?CM_ORDER:[]).filter(k=>!unlocked(k))}
