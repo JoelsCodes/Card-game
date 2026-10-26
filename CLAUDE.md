@@ -26,5 +26,5 @@ Single-file vanilla-JS card-game PWA. Almost everything is in `index.html` (inli
 
 ## Testing / balance
 - `tools/tests/smoke.js` (screens, shop, cosmetics, broker, a match, asset integrity) and `tools/tests/offline.js` (service worker, offline reload), and `tools/tests/commanders.js` (passives, Overdrives, a few full AI matches). Run them before pushing; see `tools/tests/README.md`.
-- `tools/balance/` has the campaign simulator (`node campaign.js 40`); see its README. It has NOT been re-run since the shop caps, rematch payouts and full-clear gateways were added.
+- `tools/balance/campaign2.js` is the current full-career simulator (beat all 40, rematch farming optional): `node campaign2.js RUNS seek|std mirror|0|1|2 FARM`. Writes JSON to /home/claude/balance_data. Last run Oct 26 2026 (results: tier 1 too easy, tiers 2-3 hardest, tiers 4-5 easier than 3; farming does not speed progress because pack rank is capped by region; all unlockables earned by region 3). `campaign.js` is the older version.
 - Useful in headless tests: `P.testAll=1` unlocks everything; call `chooseNpc(i)` to start a match; `buy()`, `reward()`, `render()` are global.
