@@ -115,12 +115,12 @@ const check = (name, ok, info) => {
   }, { c: C[3] });
   check('tremor passive: enemy card placed next to two of yours loses 1 HP', tp.flag === 1 && tp.hp === tp.base - 1, tp);
   r = await setup('tremor');
-  await put2(7, 'o', C[4], 3); await put2(8, 'o', C[5], 1);
+  await put2(7, 'o', C[4], 3); await put2(8, 'o', C[5], 1); await put2(2, 'o', C[2], 3); await put2(11, 'p', C[0]); await put2(12, 'p', C[1]);
   s = await p.evaluate(() => { const G = S.G; return { can: canOd(G, 'p') }; });
-  check('tremor: Overdrive ready when enemies are on the field', s.can === true, s);
+  check('tremor: Overdrive ready when enemies touch your cards', s.can === true, s);
   await p.evaluate(() => odUse());
-  s = await p.evaluate(() => ({ a: S.G.board[7].hp, b: S.G.board[8].hp, od: S.G.od.p }));
-  check('tremor Overdrive: enemy cards lose 1 HP, none below 1', s.a === 2 && s.b === 1 && s.od === 1, s);
+  s = await p.evaluate(() => ({ a: S.G.board[7].hp, b: S.G.board[8].hp, far: S.G.board[2] && S.G.board[2].hp, od: S.G.od.p }));
+  check('tremor Overdrive: touching enemy cards lose 1 HP, none below 1, others untouched', s.a === 2 && s.b === 1 && s.far === 3 && s.od === 1, s);
 
   // Opponent commanders: the AI uses each Overdrive in the situation it is written for.
   const aiCases = {
@@ -142,7 +142,7 @@ const check = (name, ok, info) => {
       if (k === 'mirror') { put_(5, 'o', c(low[0].id)); put_(6, 'p', c(low[1].id)); }
       if (k === 'encore') { G.grave.o = [c(low[0].id)]; put_(0, 'p', c(low[1].id)); }
       if (k === 'rally') { G.hands.o = [CARDS.find(x => x.lv === 5)]; put_(0, 'p', c(low[0].id)); }
-      if (k === 'tremor') { put_(0, 'p', c(low[0].id)); put_(5, 'p', c(low[1].id)); put_(10, 'p', c(low[2].id)); }
+      if (k === 'tremor') { put_(0, 'p', c(low[0].id)); put_(5, 'p', c(low[1].id)); put_(10, 'p', c(low[2].id)); put_(1, 'o', c(low[3].id)); put_(9, 'o', c(low[4].id)); }
       G.turn = 'o'; G.busy = false; canOd(G, 'o') && aiCmd(G);
       return { od: G.od.o, can: canOd(G, 'o') };
     }, k);
