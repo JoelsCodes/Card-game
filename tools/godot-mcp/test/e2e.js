@@ -53,7 +53,7 @@ function mcp(port) {
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-let passed = 0;
+let passed = 0, live = null;
 const ok = (cond, label) => { assert.ok(cond, label); passed++; console.log('  ok', label); };
 
 (async () => {
@@ -69,6 +69,7 @@ const ok = (cond, label) => { assert.ok(cond, label); passed++; console.log('  o
   for (let t = 0; t < 240 && !godotLog.includes('Claude Bridge listening'); t++) await sleep(500);
   if (!godotLog.includes('Claude Bridge listening')) throw new Error('plugin never started:\n' + godotLog);
   const { srv, tool } = mcp(PORT);
+  live = srv;
 
   const st = await tool('godot_get_editor_state');
   ok(st.project === 'Bridge Test' && /^4\./.test(st.godot), `editor state (Godot ${st.godot})`);
@@ -99,7 +100,8 @@ const ok = (cond, label) => { assert.ok(cond, label); passed++; console.log('  o
   ok((await tool('godot_select_nodes', { paths: ['Hero/Label'] })).selected[0] === 'Hero/Label', 'select_nodes');
   ok((await tool('godot_get_editor_state')).selected[0] === 'Hero/Label', 'selection visible in state');
 
-  ok((await tool('godot_save_scene')).saved === 'res://scenes/main.tscn', 'save_scene');
+  const sv = await tool('godot_save_scene');
+  ok(sv.saved === 'res://scenes/main.tscn', 'save_scene ' + JSON.stringify(sv));
   const saved = fs.readFileSync(path.join(proj, 'scenes', 'main.tscn'), 'utf8');
   ok(saved.includes('[node name="Hero" type="Sprite2D" parent="."]') && saved.includes('position = Vector2(100, 50)') && saved.includes('text = "hi"') && !saved.includes('Goblin'), 'saved .tscn content');
 
@@ -113,7 +115,7 @@ const ok = (cond, label) => { assert.ok(cond, label); passed++; console.log('  o
   ok(/bad path/.test((await tool('godot_write_file', { path: 'res://../escape.txt', content: 'x' })).error), 'path traversal rejected');
 
   const types = await tool('godot_list_node_types', { base: 'Control', filter: 'button' });
-  ok(types.types.includes('Button') && !types.types.includes('BaseButton'), 'list_node_types skips abstract classes');
+  ok(types.types.includes('MenuButton') && !types.types.includes('Label'), 'list_node_types filters by base and text');
   ok((await tool('godot_list_node_types', { filter: 'enemy' })).script_classes[0].class === 'Enemy', 'list_node_types finds class_name scripts');
 
   ok(/disabled/.test((await tool('godot_execute', { code: 'return 1' })).error), 'execute off by default');
@@ -123,4 +125,4 @@ const ok = (cond, label) => { assert.ok(cond, label); passed++; console.log('  o
   srv.kill();
   console.log(`\n${passed} checks passed`);
 })().catch((e) => { console.error('FAIL:', e.message); process.exitCode = 1; })
-  .finally(() => { godot.kill(); fs.rmSync(work, { recursive: true, force: true }); });
+  .finally(() => { live?.kill(); godot.kill(); fs.rmSync(work, { recursive: true, force: true }); });

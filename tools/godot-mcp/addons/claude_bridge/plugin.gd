@@ -13,6 +13,9 @@ const MAX_LIST := 2000
 var _server: TCPServer
 var _clients: Array = []
 var _port := DEFAULT_PORT
+# Some editor calls (save_scene shows a progress dialog) run the main loop
+# again from inside a request; don't handle more requests until it returns.
+var _busy := false
 
 
 func _enter_tree() -> void:
@@ -49,7 +52,7 @@ func _add_setting(key: String, value: Variant, type: int) -> void:
 
 
 func _process(_delta: float) -> void:
-	if _server == null:
+	if _server == null or _busy:
 		return
 	while _server.is_connection_available():
 		_clients.append({"peer": _server.take_connection(), "buf": PackedByteArray()})
@@ -71,8 +74,11 @@ func _process(_delta: float) -> void:
 				break
 			var line := buf.slice(0, i).get_string_from_utf8()
 			buf = buf.slice(i + 1)
+			c.buf = buf
 			if line.strip_edges() != "":
+				_busy = true
 				_handle_line(peer, line)
+				_busy = false
 		c.buf = buf
 
 
