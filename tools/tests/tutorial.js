@@ -45,6 +45,12 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
     const before = await p.evaluate(() => ({ gil: P.gil, beat: P.beat.includes('Quill') }));
     await p.evaluate(() => { chooseNpc(0); });
     await wait(400);
+    const setup = await p.evaluate(() => ({
+      cmd: S.G.cmd.p, oppCmd: S.G.cmd.o, itemsP: S.G.items.p, itemsO: S.G.items.o,
+      deckP: [...S.G.hands.p, ...S.G.decks.p].map(c => c.lv), deckO: [...S.G.hands.o, ...S.G.decks.o].map(c => c.lv),
+    }));
+    check('player has 10 level-2 cards, Quill 10 level-1 cards', setup.deckP.length === 10 && setup.deckP.every(l => l === 2) && setup.deckO.length === 10 && setup.deckO.every(l => l === 1), setup);
+    check('player is lent Ifrit and one Potion; Quill has no items', setup.cmd === 'ifrit' && !setup.oppCmd && JSON.stringify(setup.itemsP) === '{"potion":1}' && Object.keys(setup.itemsO).length === 0, setup);
     const start = await p.evaluate(() => ({
       screen: S.screen, opp: S.opp && S.opp.n, hand: S.G && S.G.hands.p.length,
       banner: !!document.querySelector('.tut'), rules: S.G && S.G.rules.length,
@@ -58,16 +64,24 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
         const G = S.G;
         if (!G) return { done: true };
         if (G.over) return { done: true };
-        if (G.turn === 'p' && !G.busy) { autoPlay(); }
+        if (G.turn === 'p' && !G.busy) {
+          // Try the lent Overdrive once, on an enemy card, as a player would.
+          if (!window.__od && G.placed.p >= 3 && canOd(G, 'p')) {
+            const t = odTargets(G, 'p').find(i => G.board[i].who === 'o');
+            if (t !== undefined) { window.__od = 1; odUse(); itemTarget(t); return { done: false }; }
+          }
+          autoPlay();
+        }
         return { done: false };
       });
       if (res.done) break;
       await wait(350);
     }
     await wait(2500);
-    const after = await p.evaluate(() => ({ gil: P.gil, beat: P.beat.includes('Quill'), k: S.res && S.res.k, first: S.res && S.res.first, screen: S.screen, over: !!(S.G && S.G.over), open1: tierOpen(1) }));
+    const after = await p.evaluate(() => ({ gil: P.gil, beat: P.beat.includes('Quill'), k: S.res && S.res.k, first: S.res && S.res.first, screen: S.screen, over: !!(S.G && S.G.over), open1: tierOpen(1), od: S.G.od.p, saved: P.cm[P.dk] || null }));
     check('match finished within 90 s', after.over === true, after);
     check('no page errors in the match', errs.length === 0, errs);
+    check('the lent Overdrive can be used, and does not change the saved commander', after.od === 1 && after.saved === null, after);
     await p.close();
     return { before, after };
   };

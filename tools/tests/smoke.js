@@ -47,7 +47,7 @@ const check = (name, ok, info) => {
     tryIt('fx', () => { buyFx(FX[0].k); if (P.fx !== FX[0].k) equipFx(FX[0].k); return P.fxo.includes(FX[0].k) && P.fx === FX[0].k; });
     tryIt('battery', () => { const was = !!P.bs; toggleBS(); const on = document.body.classList.contains('bsv') === !was; toggleBS(); return on; });
     tryIt('broker', () => { brokerSheet(); return true; });
-    try { chooseNpc(0); await new Promise(res => setTimeout(res, 2500)); o.match = S.screen === 'game' && !!document.getElementById('bd'); }
+    try { chooseNpc(NPCS.findIndex(n => n.d === 1)); await new Promise(res => setTimeout(res, 2500)); o.match = S.screen === 'game' && !!document.getElementById('bd'); }
     catch (e) { o.match = 'ERR ' + e.message; }
     return o;
   });
