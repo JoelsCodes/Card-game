@@ -33,7 +33,7 @@ const check = (name, ok, info) => {
   const r = await p.evaluate(async () => {
     const o = {};
     const tryIt = (k, f) => { try { o[k] = f(); } catch (e) { o[k] = 'ERR ' + e.message; } };
-    P.testAll = 1; P.gil = 999999;
+    P.beat = NPCS.map(n => n.n); P.gate = 5; P.unl = ['potion', 'revive', 'smoke', 'bomb', 'trap', 'scout', 'remedy', 'draw', 'bolt', 'flip', 'reclash', ...CM_ORDER]; P.gil = 999999;
     o.artMissing = CARDS.filter(c => !art(c)).map(c => c.id);
     o.musicOk = BM.every(u => /^assets\/[0-9a-f]{16}\.mp3$/.test(u));
     o.screens = {};

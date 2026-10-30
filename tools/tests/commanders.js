@@ -20,7 +20,7 @@ const check = (name, ok, info) => {
 
   // Starts a fresh match with the given player commander and an empty board.
   const setup = (k) => p.evaluate(async (k) => {
-    P.testAll = 1; P.cm = P.cm || []; P.cm[P.dk] = k; save();
+    P.beat = NPCS.map(n => n.n); P.gate = 5; P.unl = ['potion', 'revive', 'smoke', 'bomb', 'trap', 'scout', 'remedy', 'draw', 'bolt', 'flip', 'reclash', ...CM_ORDER]; P.cm = P.cm || []; P.cm[P.dk] = k; save();
     chooseNpc(0); await new Promise(r => setTimeout(r, 2600));
     const G = S.G;
     G.over = false; G.busy = false; G.turn = 'p'; G.od = { p: 0, o: 0 }; G.hands.p = []; G.hands.o = [];
@@ -131,7 +131,7 @@ const check = (name, ok, info) => {
     tremor: { setup: 'player 3' },
   };
   for (const k of Object.keys(aiCases)) {
-    await p.evaluate(async (k) => { P.testAll = 1; NPCS[0].cm = k; chooseNpc(0); await new Promise(r => setTimeout(r, 2600)); }, k);
+    await p.evaluate(async (k) => { P.beat = NPCS.map(n => n.n); P.gate = 5; P.unl = ['potion', 'revive', 'smoke', 'bomb', 'trap', 'scout', 'remedy', 'draw', 'bolt', 'flip', 'reclash', ...CM_ORDER]; NPCS[0].cm = k; chooseNpc(0); await new Promise(r => setTimeout(r, 2600)); }, k);
     const used = await p.evaluate((k) => {
       const G = S.G; G.over = false; G.busy = false; G.turn = 'o'; G.od = { p: 0, o: 0 }; G.hands.p = []; G.hands.o = [];
       G.cmd.o = k; G.board = G.board.map(x => (x && x.b ? x : null)); G.grave.o = []; G.ap.o = 3;
@@ -152,7 +152,7 @@ const check = (name, ok, info) => {
 
   // Real play: a full match with each commander, the player auto-playing, the AI on its own timers.
   for (const k of ['switchback', 'mirror', 'encore', 'rally', 'tremor']) {
-    await p.evaluate(async (k) => { P.testAll = 1; P.cm[P.dk] = k; save(); chooseNpc(0); await new Promise(r => setTimeout(r, 2600)); }, k);
+    await p.evaluate(async (k) => { P.beat = NPCS.map(n => n.n); P.gate = 5; P.unl = ['potion', 'revive', 'smoke', 'bomb', 'trap', 'scout', 'remedy', 'draw', 'bolt', 'flip', 'reclash', ...CM_ORDER]; P.cm[P.dk] = k; save(); chooseNpc(0); await new Promise(r => setTimeout(r, 2600)); }, k);
     const res = await p.evaluate(async () => {
       let odUsed = false, turns = 0;
       for (let n = 0; n < 40; n++) {
