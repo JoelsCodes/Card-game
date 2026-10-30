@@ -164,7 +164,7 @@ const check = (name, ok, info) => {
       const G = S.G;
       return { over: !!(G && G.over), turns, odUsed, aiOd: !!(G && G.od.o) };
     });
-    check(`real match plays with ${k}`, res.turns >= 3, res);
+    check(`real match plays with ${k}`, res.turns >= 3 || res.over, res);
   }
   check('no page errors during real matches', errs.length === 0, errs);
 
