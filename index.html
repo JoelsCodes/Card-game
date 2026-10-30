@@ -481,64 +481,578 @@ const SPRS={'Wildborn Rog':SPR};
 
 
 
-const RAW=`I|c:Warrior of Light^,Garland!,Princess Sarah,Matoya,Bikke,Astos,Lich!,Marilith!,Kraken!,Tiamat!,Chaos!,Elf Prince|m:Goblin,Imp,Wolf,Sahagin,Ogre,Gargoyle,Cockatrice,Mindflayer,Wererat,Sea Troll,Zombie,Warmech!,Evil Eye
-II|c:Firion^,Maria,Guy,Leon,Minwu,Josef,Gordon,Leila,Emperor Mateus!,Ricard,Paul,Scott|m:Flan,Adamantoise^,Leviathan Tide,Cyclops,Sergeant,Black Knight,Sand Worm,Iron Giant,Land Turtle,Palamecian Soldier
-III|c:Onion Knight^,Luneth,Arc,Refia,Ingus,Desch,Cid Haze,Xande!,Cloud of Darkness!,Aing,Topapa,Sara Altney|m:Garuda,Djinn,Nepto Dragon!,Medusa,Land Worm,Sand Bear,Iron Claw,Salamander,Jinn,Hein
-IV|c:Cecil^,Kain^,Rosa,Rydia,Edge,Tellah,Yang,Cid Pollendina,Palom,Porom,Edward,FuSoYa,Golbez!,Rubicante!,Barbariccia!,Cagnazzo!,Scarmiglione,Zeromus!|m:Mist Dragon,Antlion,Pale Dim,Searcher,Red D,Eagle Eye,Dark Imp,Dullahan,Baron Soldier
-V|c:Bartz^,Lenna,Galuf,Faris,Krile,Exdeath!,Gilgamesh^,King Tycoon,Dorgann,Kelgar,Xezat,Mid|m:Karlabos,Siren Fiend,Wing Raptor,Shield Dragon,Archeoavis!,Twin Tania,Atomos,Omega!,Shinryu!,Stingray
-VI|c:Terra^,Locke,Edgar,Sabin,Celes,Cyan,Shadow,Setzer,Relm,Strago,Gau,Mog Knight,Umaro,Gogo,Kefka!,Leo^,Emperor Gestahl,Ultros,Banon|m:Magitek Armor,Vargas,Dadaluma,Hidon,Doom Gaze^,Atma^,Humbaba,Tunnel Armor,Whelk,Typhon
-VII|c:Cloud^,Tifa^,Aerith,Barret,Red XIII,Yuffie,Cait Sith,Vincent,Cid Highwind,Sephiroth!,Zack,Rufus,Reno,Rude,Tseng,Hojo,Jenova!,Heidegger,Scarlet|m:Guard Scorpion,Hell House,Materia Keeper,Carry Armor,Midgar Zolom,Ruby Weapon!,Emerald Weapon!,Diamond Weapon!,Ultimate Weapon!|s:Knights of the Round!,Neo Bahamut!,Hades^,Kjata,Choco Mog
-VIII|c:Squall^,Rinoa,Quistis,Zell,Selphie,Irvine,Laguna,Seifer^,Edea,Ultimecia!,Cid Kramer,Fujin,Raijin,Kiros,Ward,Adel|m:T-Rexaur,Bite Bug,Grat,Elvoret,Iguion,Mobile Type 8,X-ATM092!,Abadon!,Propagator,Ochu|s:Quezacotl^,Siren,Brothers^,Diablos^,Pandemona,Cerberus,Doomtrain!,Eden!
-IX|c:Zidane^,Vivi,Garnet,Steiner,Freya,Quina,Eiko,Amarant,Beatrix^,Kuja!,Queen Brahne,Baku,Blank,Cinna,Marcus,Necron!,Regent Cid,Hilda|m:Plant Brain,Black Waltz,Gizamaluke,Ralvuimago,Lani,Hilgigars,Ozma!,Tantarian,Silver Dragon,Maliris|s:Madeen,Fenrir,Ark!,Alexander? 
-X|c:Tidus^,Yuna^,Wakka,Lulu,Kimahri,Auron^,Rikku,Seymour^,Jecht,Braska,Belgemine,Yunalesca!,Sin!,Dona,Barthello,Isaaru,Maechen,Biran Ronso,Yenke Ronso|m:Geosgaeno,Oblitzerator,Evrae,Spectral Keeper,Sinspawn Gui,Seymour Flux,Extractor,Lord Ochu|s:Valefor,Ixion^,Yojimbo^,Anima^,Magus Sisters^
-X-2|c:Paine^,Shuyin!,Lenne,Nooj,Gippal,Baralai,Leblanc,Logos,Ormi,Brother,Buddy|m:Vegnagun!,Mi'ihen Mech,Sin Remnant
-XII|c:Vaan,Ashe,Balthier^,Fran,Basch,Penelo,Larsa,Vayne!,Judge Gabranth^,Cid Bunansa,Ba'Gamnan,Al-Cid,Reddas,Venat!,Kytes|m:Mimic Queen,Elder Wyrm,Fafnir^,Pandora,Zodiark!,Hunt Rabbit|s:Belias,Famfrit^,Hashmal^,Shemhazai^,Ultima!,Exodus^,Zalera,Cuchulainn,Adrammelech
-XIII|c:Lightning^,Snow^,Hope,Vanille,Sazh,Fang,Serah,Cid Raines,Barthandelus!,Orphan!,Caius!,Noel,Lumina,Jihl Nabaat|m:Neochu,Vercingetorix,Gorgonopsid,Juggernaut,Long Gui,Rosch,Cieth,Cactuar King|s:Brynhildr,Hecatoncheir,Alexander Prime
-XIV|c:G'raha Tia^,Y'shtola,Thancred,Alphinaud,Alisaie,Urianger,Minfilia,Estinien^,Emet-Selch!,Hydaelyn!,Lahabrea,Elidibus!,Fordola,Hien,Yugiri,Ysayle,Haurchefant|m:Midgardsormr,Nidhogg^,Ravana,Bismarck,Thordan^,Zenos!,Ultima Prime
-XV|c:Noctis^,Prompto,Gladiolus,Ignis,Lunafreya,Ardyn!,Cor,Aranea,Ravus,Iris,Cindy,Regis,Verstael|m:Coeurl,Iron Giant,Garula,Deadeye,Naga,Dualhorn,Voretooth,Ironclad
-XVI|c:Clive^,Joshua,Jill,Cidolfus,Dion,Benedikta,Barnabas!,Hugo!,Gav,Otto,Torgal,Anabella|m:Dragon Hunt,Bomb King,Goblin Chief,Cursed Knight
-Tactics|c:Ramza^,Delita^,Agrias^,Mustadio,Rafa,Malak,Orlandeau!,Ovelia,Alma,Beowulf,Reis,Meliadoul,Wiegraf,Gafgarion,Zalbag,Dycedarg,Folmarv,Vormav
-Crisis Core|c:Zack^,Genesis!,Angeal!,Lazard,Cissnei,Hollander,Kunsel,Shinra Trooper|m:Minerva!,Gigas
-Type-0|c:Ace,Machina,Rem,Queen^,Deuce,Cater,Trey,Eight,Jack,King,Nine,Seven,Sice,Cinque,Kurasame^,Arecia!
-Dissidia|c:Cosmos!,Shantotto,Lann,Reynn,Feral Chaos!,Materia
-Mystic Quest|c:Benjamin,Kaeli,Tristam,Phoebe,Reuben,Dark King!|m:Flamerus Rex,Ice Golem,Gidrah,Spencer,Skullrus Rex,Minotaur Zombie
-Series|c:Black Mage,White Mage,Red Mage,Monk,Thief,Dragoon,Summoner,Samurai,Ninja,Paladin,Bard,Blue Mage,Time Mage,Geomancer,Mime,Chemist,Ranger,Berserker,Dark Knight,Knight,Moogle,Cid,Gilgamesh Jr,Chocobo,Black Chocobo,Gold Chocobo,Fat Chocobo|m:Cactuar,Tonberry^,Bomb,Malboro^,Behemoth^,Ahriman,Red Dragon^,Blue Dragon,Green Dragon,Ochu Jr,Morbol,Zu,Mandragora,Gigas Troll,Lamia,Harpy,Ghoul,Wraith,Skeleton,Vampire,Werewolf,Mimic,Sorcerer,Treant,Grenade,Wyvern,Dragon Zombie,Hecteyes,Slime,Coral Golem,Rust Bat,Cherry Bomb|s:Ifrit^,Shiva^,Ramuh^,Titan^,Odin!,Bahamut!,Leviathan^,Alexander!,Phoenix^,Carbuncle,Golem,Syldra,Diabolos^,Quetzalcoatl^,Kirin,Fenrir Wolf,Cait Familiar,Mog Guardian,Moogle Summon,Tonberry King`;
+
 function hash(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-const CARDS=[],GAMES=[],AL={'X-2':'X','Crisis Core':'VII'},REALM={"I": "Dawnveil", "II": "Ashcrown", "III": "Hollowmere", "IV": "Duskreach", "V": "Starfall", "VI": "Emberhold", "VII": "Neonspire", "VIII": "Mirrorlands", "IX": "Lanternvale", "X": "Tidemoor", "X-2": "Ebbtide", "XII": "Sunscar", "XIII": "Glasshaven", "XIV": "Moonwarren", "XV": "Nightroad", "XVI": "Ashen Throne", "Tactics": "Gallowmarch", "Crisis Core": "Soulforge", "Type-0": "Cadet Order", "Dissidia": "Rift Duel", "Mystic Quest": "Little Quest", "Series": "Wanderers"},NN={"I": {"c": ["Dawnblade Vanguard", "Warlord Gravenor", "Princess Elowen", "Hexwitch Marrow", "Captain Brackwater", "Thornmage Asher", "Gravecrown Sovereign", "Serpent Matriarch", "Abyssal Kraken Lord", "Stormwyrm Empress", "The Hollow Tyrant", "Moonleaf Prince"], "m": ["Cavern Gremlin", "Pocket Fiend", "Dusk Wolf", "Reef Stalker", "Hill Brute", "Rooftop Gargoyle", "Plumed Basilisk", "Brain Siphon", "Gutter Ratkin", "Brine Troll", "Grave Shambler", "Clockwork Colossus", "Gloom Eye"]}, "II": {"c": ["Ashen Vanguard", "Archer Maren", "Brawler Ox", "Rogue Lyle", "Sister Aurel", "Squire Joss", "Knave Gorran", "Veil Dancer", "Emperor Valdrik", "Duke Harrow", "Page Pell", "Scout Scotta"], "m": ["Jelly Blob", "Diamond Tortoise", "Tidal Serpent", "One-Eyed Giant", "Grunt Sergeant", "Black Lancer", "Sand Burrower", "Iron Titan", "Moss Tortoise", "Legion Soldier"]}, "III": {"c": ["Lantern Squire", "Wayfarer Lune", "Scholar Arden", "Tinker Refa", "Shieldbearer Ingrid", "Sage Desh", "Inventor Kidd", "Sorcerer Zanth", "Void Cloud", "Seer Aeron", "Elder Tobin", "Sovereign Sera"], "m": ["Gale Raptor", "Dust Djinn", "Hydra Wyrm", "Gorgon", "Burrow Worm", "Sand Bear", "Iron Talon", "Ember Salamander", "Spirit Jinn", "Fen Warden"]}, "IV": {"c": ["Paladin Cael", "Skyspear Kade", "White Rose Maiden", "Summoner Runa", "Shadow Prince Ede", "Sage Tellor", "Fist Master Yan", "Engineer Pollen", "Twin Mage Pip", "Twin Mage Pol", "Bard Prince Edmund", "Moon Sage Fusa", "Armored Usurper", "Flame Fiend Rubrik", "Gale Fiend Barba", "Tide Fiend Cagna", "Rot Fiend Scarm", "Zero Maw"], "m": ["Fog Drake", "Pit Lion", "Pale Dimm", "Seeker Wisp", "Crimson Whelp", "Hawk Eye", "Dark Imp", "Dullahan", "Keep Soldier"]}, "V": {"c": ["Wind Wanderer", "Princess Lenore", "Old Guard Gault", "Sky Pirate Fira", "Young Krill", "Void Warlock Exor", "Sword Rogue Gilmar", "King Tarin", "Dorn the Elder", "Kelgor", "Xerat", "Tinkerer Midge"], "m": ["Crab Lord Karl", "Siren Fiend", "Wing Raptor", "Shield Dragon", "Ancient Raptor", "Twin Thorn", "Gulping Void", "Final Construct", "Dragon Emperor", "Spine Ray"]}, "VI": {"c": ["Esper Maiden", "Treasure Rogue Lorne", "Machine King Edric", "Monk Prince Sabre", "Rune Knight Cele", "Bladesworn Cyr", "Masked Assassin", "Gambler Setz", "Painter Relia", "Elder Strage", "Wild Child Gaw", "Plush Guardian", "Snow Brute", "Mimic Master", "Jester Calamity", "General Lionel", "Emperor Gestor", "Octo Fiend", "Elder Banor"], "m": ["Arc Mech", "Mountain Ogre Varg", "Hulk Dadal", "Hydra Hidra", "Doom Gazer", "Atom Weapon", "Cedar Beast", "Burrow Mech", "Shell Guardian", "Typhoon Maw"]}, "VII": {"c": ["Mercenary Clay", "Brawler Tia", "Flower Maiden Ayla", "Gunarm Bram", "Flame Hound", "Ninja Yui", "Fortune Cat", "Gothic Gunner", "Pilot Highcrest", "Silver Seraph", "Soldier Zeke", "Heir Rufin", "Rod Agent", "Stone Agent", "Cold Agent", "Mad Professor", "Star Parasite", "Warden Heide", "Scarlet Matron"], "m": ["Sentry Scorpion", "Haunted Manor", "Gem Keeper", "Haul Mech", "Moor Serpent", "Crimson Colossus", "Emerald Colossus", "Diamond Colossus", "Ultimate Colossus"], "s": ["Twelve Round Knights", "Neo Drakon", "Lord of Gloom", "Quake Titan", "Plume Rider"]}, "VIII": {"c": ["Lone Gunblade", "Rebel Heroine Rina", "Instructor Quill", "Brawler Zeb", "Bubbly Sela", "Marksman Irvo", "Journalist Lagan", "Rival Sieg", "Sorceress Edda", "Time Witch", "Headmaster Kramm", "Wind Sentinel", "Thunder Sentinel", "Dual Blade Kyr", "Harpoon Warde", "Dread Empress Adela"], "m": ["Tyrant Rex", "Bite Bug", "Grasping Bulb", "Wind Wyvern", "Stone Iguana", "Walker Mark Eight", "Siege Walker X", "Abyss Beast", "Spawn Host", "Gulper Plant"], "s": ["Thunderbird", "Lullaby Siren", "Mountain Brothers", "Gravity Fiend", "Gale Spirit", "Hound of Three", "Spectre Express", "Garden Paradigm"]}, "IX": {"c": ["Thief Zed", "Little Hexer", "Princess Garnia", "Plate Knight Stein", "Dragoon Freyr", "Gourmet Quin", "Young Summoner Eika", "Bounty Fist", "General Beatrice", "Silver Trickster", "Queen Brann", "Troupe Boss", "Scrap Rogue", "Tailor Cinn", "Rogue Marek", "Last Void", "Regent Sidon", "Duchess Hilde"], "m": ["Thorn Brain", "Shadow Waltz", "Grotto Guardian", "Ruin Wyrm", "Huntress Lana", "Ice Giant", "Abyss Orb", "Tome Beast", "Argent Dragon", "Rime Queen"], "s": ["Archaic Seraph", "Dire Frost Wolf", "Star Ark", "Fortress Paladin"]}, "X": {"c": ["Blitz Ace Tyde", "Summoner Yue", "Reef Captain Wake", "Black Rose Lula", "Horned Guard Kimar", "Wandering Blademaster", "Alchemist Rik", "Pale Maester", "Fallen Champion", "High Summoner Braske", "Aeon Witch", "Undying Queen", "Great Calamity", "Lady Donna", "Guard Bartol", "Choirboy Isar", "Lore Keeper", "Horned Warrior Bira", "Horned Elder Yenk"], "m": ["Mire Digger", "Smasher Rig", "Sea Wyrm", "Phantom Keeper", "Spawn of Woe", "Flux Specter", "Soul Extractor", "Lord Gulper"], "s": ["Dawn Gryphon", "Thunder Unicorn", "Hired Ronin", "Chained Dread", "Three Sisters"]}, "X-2": {"c": ["Blade Dancer Pen", "Wraith Prince", "Lament Singer", "Veteran Nuj", "Mechanic Gip", "Praetor Bara", "Syndic Leda", "Syndic Logan", "Syndic Orm", "Surly Cousin", "Pilot Buddo"], "m": ["Doom Engine", "Highroad Mech", "Calamity Husk"]}, "XII": {"c": ["Street Scamp Vane", "Exiled Queen Asha", "Sky Rogue Balt", "Viera Archer Fenn", "Fallen Captain Basil", "Dancer Pen", "Boy Prince Lars", "Iron Chancellor", "Judge Gavrane", "Engineer Bunsen", "Bandit Boss Bagam", "Margrave Alcid", "Pirate Redd", "Veiled Sage", "Orphan Kyle"], "m": ["Mirror Queen", "Elder Wyrm", "Hoard Wyrm", "Box Fiend", "Star Eater", "Hunt Hare"], "s": ["Gate Warden", "Tide Lord", "Law Bringer", "Sky Magus", "Final Judge", "Exile Colossus", "Death Seraph", "Hound Spirit", "Wrath Magus"]}, "XIII": {"c": ["Soldier Lyra", "Frost Hero Nord", "Hopeful Hale", "Bright Vana", "Pilot Sash", "Huntress Fenra", "Crystal Sister Sera", "Commander Rain", "Fate Betrayer", "Orphan of Woe", "Eternal Knight", "Time Traveler Noa", "Lumi Child", "Overseer Jihla"], "m": ["Neo Gulper", "Glass Warlord", "Saber Gorgon", "Juggernaut Rig", "Long Wraith", "Ranger Rosh", "Cieth Husk", "Needle King"], "s": ["Flame Valkyrie", "Hundred Fists", "Fortress Sovereign"]}, "XIV": {"c": ["Crystal Scholar Graven", "Moon Mage Yselle", "Gunblade Thane", "Young Envoy Alfin", "Rapier Alise", "Archaic Sage Urian", "Oracle Minnel", "Dragon Knight Estan", "Ancient Shade", "Light Mother", "Dark Mage Laha", "Exarch Elid", "Executioner Fordal", "Hero Hiren", "Kunoichi Yugi", "Heretic Ysa", "Guardian Haurch"], "m": ["Worldcoil Wyrm", "Root Gnawer", "Blade Rakshasa", "Whale Titan", "Heavenward King", "Crimson Heir", "Final Judge Prime"]}, "XV": {"c": ["Exiled Prince Nox", "Shutter Prom", "Shield Gladd", "Chef Ignatius", "Oracle Lunara", "Fallen King", "Marshal Corvin", "Dragoon Arana", "Cold Prince Ravin", "Hopeful Irisa", "Mechanic Cinda", "King Regal", "Doctor Verstal"], "m": ["Cat Stalker", "Plated Giant", "Tusk Behemoth", "Deadeye Gunner", "Naga Coil", "Twin Horn", "Fang Voret", "Ironclad Brute"]}, "XVI": {"c": ["Fallen Heir Cleve", "Phoenix Heir Josh", "Frost Lady Jilian", "Elder Cidor", "Dragon Prince Dyon", "Dark Mistress Benna", "Ash Lord Barn", "Mad Mage Hugh", "Hunter Gavin", "Smith Otto", "Wolf Companion", "Queen Annabel"], "m": ["Dragon Hunter", "Blast King", "Goblin Chieftain", "Cursed Knight"]}, "Tactics": {"c": ["Fallen Noble Rhem", "Rising Commoner Dell", "Holy Knight Agra", "Gunner Mustar", "Sorceress Rafe", "Silent Malik", "Thunder God", "Princess Ovel", "Sister Almera", "Templar Beo", "Wyrm Maiden", "Heretic Knight Meli", "Corps Leader Wig", "Dark Mercenary Gaf", "Lord Zalbar", "Duke Dyce", "Inquisitor Folm", "Bishop Vorm"]}, "Crisis Core": {"c": ["Fledgling Soldier Zax", "Crimson Poet", "Honor Blade", "Director Lazar", "Agent Cisse", "Hollow Doctor", "Soldier Kuns", "Corp Trooper"], "m": ["Dream Goddess", "Giga Brute"]}, "Type-0": {"c": ["Card Cadet One", "Gear Cadet", "Healer Cadet", "Queen Cadet", "Flute Cadet", "Cannon Cadet", "Archer Cadet", "Scythe Cadet", "Katana Cadet", "Sovereign Cadet", "Spear Cadet", "Whip Cadet", "Chain Cadet", "Mace Cadet", "Cadet Instructor", "Ashen Queen"]}, "Dissidia": {"c": ["Harmony Goddess", "Cackling Archmage", "Brash Swordsman", "Twin Blade Rhea", "Feral Discord", "Gem Wisp"]}, "Mystic Quest": {"c": ["Young Hero Ben", "Axe Girl Kaela", "Treasure Hunter Tris", "Bow Maiden Phoebia", "Brawny Rube", "Shadow Monarch"], "m": ["Ember Rex", "Frost Golem", "Hydra Gide", "Mudgrub Spence", "Skull Rex", "Undead Minotaur"]}, "Series": {"c": ["Cinder Hexer", "Dawn Healer", "Crimson Duelist", "Iron Fist Monk", "Pickpocket Sprite", "Wyrm Lancer", "Rift Caller", "Blade Ronin", "Night Shinobi", "Oath Paladin", "Ballad Bard", "Mimic Scholar", "Hourglass Mage", "Earth Seer", "Echo Mime", "Tonic Chemist", "Glade Ranger", "Rage Berserker", "Gloom Knight", "Steel Knight", "Pom Sprite", "Master Engineer", "Blade Imp Junior", "Plume Runner", "Night Runner", "Gilded Runner", "Plump Runner"], "m": ["Needle Dancer", "Lantern Knifer", "Fuse Bomb", "Stench Blossom", "Horned Behemoth", "Floating Eye", "Scarlet Dragon", "Azure Dragon", "Jade Dragon", "Gulper Sprout", "Bog Tentacle", "Roc Hawk", "Screaming Root", "Hill Troll", "Coil Lamia", "Cliff Harpy", "Crypt Ghoul", "Hungry Wraith", "Rattle Skeleton", "Pale Vampire", "Moon Werewolf", "Chest Mimic", "Rogue Sorcerer", "Elder Treant", "Ember Grenade", "Sky Wyvern", "Rotting Dragon", "Many-Eyed Blob", "Green Slime", "Reef Golem", "Rust Bat", "Cherry Blast"], "s": ["Inferno Lord", "Frost Queen", "Storm Elder", "Quake Giant", "Rune Reaper", "Wyrm Sovereign", "Tidal Titan", "Fortress Judge", "Ember Phoenix", "Gem Guardian", "Clay Colossus", "Sea Drake", "Nightmare Imp", "Feathered Serpent", "Spirit Unicorn", "Moonhowl Wolf", "Fortune Familiar", "Pom Guardian", "Pom Rescue", "Lantern King"]}};
-RAW.trim().split('\n').forEach((l,gi)=>{const p=l.split('|'),g0=p[0],g=AL[g0]||g0;if(!GAMES.includes(g))GAMES.push(g);p.slice(1).forEach(sec=>{const t=sec[0];sec.slice(2).split(',').forEach((n,qi)=>{n=n.trim().replace('?','');if(!n)return;let mk='';if('^!'.includes(n.slice(-1))){mk=n.slice(-1);n=n.slice(0,-1)}
-const r=rng(hash(g0+n+'s'));let lv=({c:1,m:1,s:3})[t]+(r()*3|0)+(t==='c'&&r()<.3?1:0);if(mk==='^')lv=3+(r()<.5?1:0);if(mk==='!')lv=4+(r()<.5?1:0);lv=Math.min(5,lv);
-let rem=[0,6,11,16,21,26][lv]+(r()*3|0);const v=[1,1,1,1];while(rem>0){const i=r()*4|0;if(v[i]<10){v[i]++;rem--}}
-CARDS.push({id:CARDS.length,n:NN[g0][t][qi],o:n,og:g0,g,gi,t,lv,v,f:fac(g0,n,t)})})})});
-const NEWART={"160":"assets/fee842fee607b2d0.jpg","161":"assets/67f0800c9e544b1b.jpg","162":"assets/88d78732e02be7a7.jpg","163":"assets/a87e75aa0b944bb1.jpg","164":"assets/e5640bd63be84a97.jpg","165":"assets/9d90667b4d919b8c.jpg","166":"assets/b792e63e2448bee4.jpg","167":"assets/2190ee04e33b5539.jpg","168":"assets/ab4ea68e87b0f21e.jpg","169":"assets/6d9c25387fddf0ca.jpg","170":"assets/c2be03c505791b7f.jpg","171":"assets/79bdc9a3ba1da3b3.jpg","172":"assets/40fb1834119d3da5.jpg","173":"assets/93bf97a3cb12a945.jpg","174":"assets/f7ae6dcd79a8479a.jpg","175":"assets/d01322d9476dab6d.jpg","176":"assets/5d4fcf88ac13babc.jpg","177":"assets/9ceb77d355b43d2c.jpg","178":"assets/0b1c00f9c6d8c384.jpg","179":"assets/a6db449e57514181.jpg","140":"assets/f2d4a650a6ccb1c2.jpg","141":"assets/736d08fb659027b7.jpg","142":"assets/5bd89c4f9da89343.jpg","143":"assets/8b01a96bf7ef58f6.jpg","144":"assets/9b797b188aad1165.jpg","145":"assets/e69d91707570b196.jpg","146":"assets/b8de063687914eca.jpg","147":"assets/c9acb63bec8baab5.jpg","148":"assets/681699909424c2bb.jpg","149":"assets/f961bbf59457543f.jpg","150":"assets/16b1a4d604d99e0f.jpg","151":"assets/960978f5e9d85ea1.jpg","152":"assets/62d2b2970a5084a5.jpg","153":"assets/bcb5140f9201b629.jpg","154":"assets/9816ec000474212e.jpg","155":"assets/9e9e3145f1c39b2d.jpg","157":"assets/1512f418283b54e8.jpg","158":"assets/ee38a4f01039a010.jpg","159":"assets/b9c23cebd0476795.jpg","156":"assets/1b631e7bdbd65cbf.jpg","0": "assets/8c89381e402c6155.jpg", "1": "assets/83411e442a8456c2.jpg", "2": "assets/79a3ce1a41b73ce2.jpg", "3": "assets/62d4312da0c5e14c.jpg", "4": "assets/2fa3e9a0bf0ad85a.jpg", "5": "assets/6ff5acd42bfcfc46.jpg", "6": "assets/5bc4767c1c28ae13.jpg", "7": "assets/dfd4f65a52000bdc.jpg", "8": "assets/2b1b95ff8d163763.jpg", "10": "assets/c3bc2bcbc1ebf046.jpg", "11": "assets/c3e858f754c4439d.jpg", "12": "assets/8b16780876e317b0.jpg", "13": "assets/552d5bb2c6ca88ff.jpg", "14": "assets/2247ffe618e95219.jpg", "15": "assets/c4ec0f041cb237a3.jpg", "16": "assets/ee8c0c0984cf26c7.jpg", "17": "assets/25d6ad46075c71e0.jpg", "18": "assets/26d2768a6d678989.jpg", "19": "assets/ccda46e7397f7aac.jpg", "9": "assets/0e5cae7d6b37afc2.jpg"},NAMEOVR={"0": "Jarbound Sprite", "1": "Tidecrone Hag", "2": "Paper Requiem Child", "3": "Frostcrest Wyrm", "4": "Weeping Willow Knight", "5": "Starwatch Sage", "6": "Dawnbound Twins", "7": "Skylantern Dreamer", "8": "Forgetmenot Golem", "10": "Ashen Mother Roc", "11": "Lanternhorn Stag", "12": "Thread Weaver Nan", "13": "Silverleaf Wraith", "14": "Nebula Fang", "15": "Melting Clockwright", "16": "Hollow Oak Companion", "17": "Frost Scarecrow", "18": "Moth Serenade Bard", "19": "Lotus Bridge Spirit", "9": "Lighthouse Warden"};
+const CARDS=[],GAMES=[];
+const CD=[["Jarbound Sprite","c",4,[6,9,6,5],"Dominion"],
+["Tidecrone Hag","c",4,[6,7,7,7],""],
+["Paper Requiem Child","c",1,[2,3,5,2],"Order"],
+["Frostcrest Wyrm","c",1,[1,4,2,5],"Order"],
+["Weeping Willow Knight","c",1,[4,1,4,3],""],
+["Starwatch Sage","c",3,[6,8,2,4],"Dominion"],
+["Dawnbound Twins","c",5,[9,7,8,7],"Order"],
+["Skylantern Dreamer","c",5,[8,7,7,10],"Order"],
+["Forgetmenot Golem","c",5,[6,7,9,9],""],
+["Lighthouse Warden","c",5,[8,10,4,10],""],
+["Ashen Mother Roc","c",4,[6,8,5,7],"Dominion"],
+["Lanternhorn Stag","c",3,[8,3,2,7],""],
+["Thread Weaver Nan","m",3,[6,4,7,5],"Court"],
+["Silverleaf Wraith","m",1,[2,3,4,2],""],
+["Nebula Fang","m",3,[7,5,4,6],"Court"],
+["Melting Clockwright","m",3,[8,7,3,3],"Court"],
+["Hollow Oak Companion","m",3,[5,5,8,4],""],
+["Frost Scarecrow","m",2,[5,5,4,3],""],
+["Moth Serenade Bard","m",3,[3,6,6,5],"Court"],
+["Lotus Bridge Spirit","m",2,[3,4,3,5],""],
+["Peakrider Wyrm","m",3,[6,5,8,2],"Court"],
+["Starstaff Warlock","m",1,[6,2,3,1],""],
+["Cloudkeep Bastion","m",1,[2,3,4,3],"Court"],
+["Ironmane Chimera","m",5,[5,5,10,10],"Court"],
+["Glasshorn Unicorn","m",3,[4,4,4,8],""],
+["Tidesong Siren","c",4,[7,9,6,5],""],
+["Thistlecrown Ranger","c",2,[5,4,3,5],"Order"],
+["Cinderwing Herald","c",3,[6,6,4,6],""],
+["Gemroot Ancient","c",1,[2,1,6,3],""],
+["Goldtalon Roc","c",3,[7,3,3,7],""],
+["Thornwing Triad","c",4,[5,9,6,6],""],
+["Brewmaster Quill","c",3,[7,5,7,3],"Order"],
+["Prismguard Golem","c",2,[6,5,2,3],""],
+["Drownsong Naga","c",4,[5,6,9,7],""],
+["Dawnstrider Pegasus","c",3,[4,6,5,7],"Dominion"],
+["Nightblade Assassin","c",1,[1,3,3,4],"Order"],
+["Barkwarden Elder","c",4,[6,5,9,6],""],
+["Shardlance Knight","m",3,[8,3,2,8],""],
+["Moonbroom Hag","m",3,[5,6,3,8],""],
+["Twinlight Starseer","m",1,[2,3,4,2],"Court"],
+["Silvergreen Elf Regent","m",1,[5,2,2,2],"Court"],
+["Hornhide Dragonguard","m",3,[7,5,3,5],""],
+["Violetgaze Drow","m",3,[6,8,4,4],"Court"],
+["Pearlcrest Mermaid","m",1,[3,3,2,3],""],
+["Runeface Sorcerer","m",1,[1,3,3,3],"Court"],
+["Goldhalo Seraph","m",2,[3,4,6,4],""],
+["Stitchcap Goblin","m",2,[3,7,2,5],""],
+["Snowcrown Empress","c",4,[5,6,7,8],""],
+["Lashmark Huntress","c",1,[5,2,3,2],""],
+["Wildbloom Sprite","c",4,[7,8,6,5],""],
+["Cinderrune Adept","c",3,[7,5,4,6],""],
+["Hornback Drake","c",2,[4,4,5,2],"Dominion"],
+["Crossblade Drow","c",1,[3,2,3,3],""],
+["Tattercoat Brawler","c",4,[9,4,7,7],""],
+["Scarwing Fallen","c",5,[8,6,10,6],""],
+["Glacierbraid Berserker","c",5,[6,6,8,10],""],
+["Bluecape Ironknight","c",2,[6,2,3,5],""],
+["Hollowhood Outcast","c",2,[3,2,6,6],""],
+["Greencloak Hermit","c",2,[5,3,4,4],""],
+["Clawmarked Werewolf","m",1,[3,4,2,3],"Court"],
+["Roundhill Burrower","m",3,[4,7,2,8],""],
+["Firefly Apothecary","m",4,[6,9,5,7],""],
+["Lanternbough Archivist","m",2,[5,4,5,3],""],
+["Bridgewalk Foxling","m",1,[3,2,2,3],""],
+["Wandering Shellisle","m",2,[4,2,2,7],""],
+["Dragonfly Tinkerer","m",2,[4,7,3,3],"Court"],
+["Skymarket Merchant","m",1,[3,3,2,3],"Court"],
+["Glowmire Fairy","m",2,[3,4,3,5],""],
+["Tomehoard Drakeling","m",1,[3,3,3,2],"Court"],
+["Thimble Baker","c",4,[6,6,9,6],""],
+["Hearthvale Cottager","c",3,[6,5,5,6],""],
+["Burly Badger Baker","c",2,[4,4,4,4],""],
+["Mushrung Treefolk","c",3,[2,8,4,7],""],
+["Starline Angler","c",2,[6,5,4,2],""],
+["Crystalkettle Teamaster","c",1,[4,1,6,1],""],
+["Acornhelm Mouse","c",2,[6,3,4,3],""],
+["Quillwing Courier","c",1,[3,2,3,2],"Order"],
+["Cloudherd Shepherd","c",3,[4,3,7,6],""],
+["Hillsleeper Giant","c",1,[3,4,4,1],""],
+["Frostbloom Meadowkeeper","c",1,[2,3,2,4],"Order"],
+["Sunset Arch Sage","c",2,[2,7,3,3],"Order"],
+["Frostgate Castellan","c",5,[8,8,4,10],"Dominion"],
+["Glacierhold Explorer","c",5,[10,7,6,8],"Order"],
+["Magma Ridge Stalker","c",4,[8,3,7,9],"Dominion"],
+["Amethyst Hollow Mystic","c",4,[9,4,9,3],""],
+["Mossgrave Wanderer","c",3,[3,7,6,4],""],
+["Glimmerglade Ranger","c",4,[5,9,8,5],""],
+["Hedgemaze Knight","m",3,[4,5,6,6],"Court"],
+["Oasis Sunspear","m",3,[5,6,4,6],"Court"],
+["Wreckside Corsair","m",3,[5,7,5,4],"Court"],
+["Lantern Gravewalker","m",1,[3,2,4,3],"Court"],
+["Skyrune Archmage","m",1,[1,3,5,1],"Court"],
+["Brass Gearwright","m",2,[5,4,4,2],"Court"],
+["Tomekeeper Lorewarden","m",2,[5,5,2,4],""],
+["Vinehouse Botanist","m",2,[4,6,2,4],""],
+["Coalrail Miner","m",3,[3,7,6,6],"Court"],
+["Cinderdeep Stalker","c",4,[9,8,7,3],""],
+["Bogbridge Hexer","c",4,[5,8,6,7],""],
+["Banner Ruin Knight","c",1,[3,2,3,3],""],
+["Starchart Astronomer","c",3,[6,8,5,3],"Order"],
+["Glasswright Paladin","c",3,[5,7,3,6],"Order"],
+["Verdant Glassbow Archer","c",4,[9,8,5,3],"Order"],
+["Violetveil Shadeblade","c",3,[3,5,7,6],"Order"],
+["Emberforged Crusader","c",3,[6,3,6,5],""],
+["Lionshield Templar","c",2,[3,3,5,4],"Dominion"],
+["Bonecrown Reaper","c",3,[8,3,6,5],""],
+["Sunorb Mystic","c",2,[3,5,2,6],""],
+["Emberstaff Warden","c",4,[9,5,6,6],"Order"],
+["Starsong Sorceress","m",3,[8,2,7,4],""],
+["Twinsword Duelist","m",2,[4,6,3,4],"Court"],
+["Phoenixlight Rogue","m",2,[5,6,4,2],"Court"],
+["Lightshaft Swordsman","m",2,[4,2,6,5],"Court"],
+["Paintsplash Crusader","m",5,[8,8,8,7],"Court"],
+["Dragonglass Knight","m",2,[5,6,1,4],""],
+["Ivyhollow Bowman","m",1,[6,2,2,2],"Court"],
+["Rosewindow Cleric","m",5,[8,9,6,7],"Court"],
+["Wyrmward Shieldbearer","m",4,[5,4,8,8],"Court"],
+["Mooncharm Wizard","m",3,[4,3,7,7],"Court"],
+["Azurecape Vanguard","c",3,[5,5,8,3],""],
+["Tealglass Shade","c",1,[2,2,3,3],""],
+["Cliffclaw Griffon","c",2,[3,6,6,1],""],
+["Skyreach Griffon","c",2,[4,6,3,3],"Order"],
+["Silverspire Unicorn","c",2,[5,1,6,4],""],
+["Stormridge Drake","c",3,[6,3,6,7],""],
+["Shellcrest Mermaid","c",3,[3,5,7,5],"Order"],
+["Bullhorn Reaver","c",1,[2,2,2,6],"Dominion"],
+["Ridgeline Centaur","c",1,[2,2,4,4],"Dominion"],
+["Tempest Serpent","c",2,[3,3,5,5],"Dominion"],
+["Blackfist Ogre","c",1,[2,4,3,2],""],
+["Thornback Wyvern","c",3,[6,3,7,6],"Dominion"],
+["Lionmark Knight","c",3,[4,7,5,5],""],
+["Starhat Sorceress","c",1,[3,2,4,2],""],
+["Half-Light Sovereign","c",4,[7,6,9,5],""],
+["Gildplate Paladin","c",4,[5,7,7,7],"Dominion"],
+["Hoodwhisper Rogue","c",4,[4,9,7,7],""],
+["Ironbraid Dwarf","c",4,[6,7,6,7],""],
+["Thornwreath Druid","c",1,[3,2,2,5],""],
+["Scarbrow Ranger","m",2,[6,1,3,6],""],
+["Blanksun Monolith","m",1,[4,3,1,4],"Court"],
+["Obsidian Monolith","m",3,[7,5,7,2],"Court"],
+["Emberhair","m",2,[5,2,7,3],""],
+["Stormstreak","m",4,[6,6,6,9],""],
+["Mossbraid","m",4,[9,7,6,5],"Court"],
+["Cyberrogue","m",2,[4,7,3,3],""],
+["Goldmane","m",1,[2,2,6,2],"Court"],
+["Veilmask","m",3,[5,4,4,8],"Court"],
+["Lilacbloom","m",1,[5,2,2,1],"Court"],
+["Embermonk","c",4,[9,6,5,5],"Order"],
+["Azurelock","c",3,[8,5,3,4],""],
+["Constellar","c",1,[3,1,2,5],""],
+["Hoodfur","c",2,[5,1,4,6],""],
+["Verdant","c",4,[4,8,8,6],""],
+["Marigold","c",2,[6,2,4,4],""],
+["Neonvolt","c",3,[4,6,8,4],""],
+["Snowcoat","c",3,[7,6,4,5],""],
+["Lilacbraid","c",4,[7,6,7,7],"Order"],
+["Brassgear","c",5,[5,10,8,9],"Dominion"],
+["Crimsonscar","c",2,[5,4,1,5],"Order"],
+["Runemarked","c",1,[1,4,3,2],"Dominion"],
+["Starcrown","c",1,[2,3,3,2],"Order"],
+["Gunpair","c",1,[3,3,3,1],"Dominion"],
+["Infernal","c",1,[3,2,3,3],""],
+["Warmaul","c",2,[4,2,5,4],""],
+["Bulwark","c",5,[8,10,9,4],"Order"],
+["Wyrmbow","c",2,[4,6,2,3],"Order"],
+["Redsteel","c",3,[8,5,3,5],""],
+["Scourge","m",3,[4,8,4,5],"Court"],
+["Wyrmdirk","m",1,[6,3,1,2],""],
+["Gearmace","m",3,[5,4,7,4],""],
+["Arbalest","m",3,[5,6,7,4],"Court"],
+["Kusari","m",3,[5,6,4,6],"Court"],
+["Bolthilt","m",5,[10,5,8,7],"Court"],
+["Lantern","m",5,[6,10,10,5],"Court"],
+["Talons","m",5,[6,6,9,9],""],
+["Halowrap","m",4,[6,5,8,6],"Court"],
+["Hellhorn","s",5,[7,6,9,9],"Phantom"],
+["Pinions","s",4,[6,5,8,7],"Phantom"],
+["Regent","s",3,[5,5,7,3],"Phantom"],
+["Clawboot","s",3,[4,8,4,6],"Phantom"],
+["Lionarm","s",5,[7,10,9,6],"Phantom"],
+["Mapcloak","c",4,[6,6,8,6],""],
+["Loomseer","c",2,[3,2,5,5],"Order"],
+["Inkwright","c",4,[7,8,5,7],"Dominion"],
+["Rustguard","c",2,[7,3,3,4],""],
+["Windchime","c",2,[2,5,5,3],"Dominion"],
+["Astrolabe","c",1,[3,2,3,2],"Order"],
+["Lorefall","c",3,[5,3,5,8],"Order"],
+["Darkmask","c",4,[7,9,5,5],""],
+["Gloomveil","c",3,[7,3,3,8],""],
+["Bonewhale","c",5,[7,8,10,6],"Order"],
+["Sandglass","c",2,[4,6,6,1],""],
+["Icevault","c",3,[4,4,6,7],"Order"],
+["Rune Rift","c",3,[7,4,5,6],"Dominion"],
+["Koithrone","c",3,[7,4,6,5],""],
+["Chainhold","c",2,[4,5,2,4],""],
+["Vinecrown","c",3,[6,6,6,3],"Order"],
+["Hillgolem","m",1,[6,2,2,1],""],
+["Glasswing","m",2,[1,6,4,4],""],
+["Starstag","m",1,[3,3,5,1],""],
+["Moonwyrm","m",1,[2,3,4,2],"Court"],
+["Gem Guard","m",2,[2,5,5,3],""],
+["Frostblade","m",3,[5,8,5,4],"Court"],
+["Leaf Mage","m",5,[10,6,9,6],"Court"],
+["Gearheart","m",4,[9,9,5,2],""],
+["Sky Sailor","m",3,[6,6,3,5],""],
+["Cloud Monk","m",3,[2,5,5,8],"Court"],
+["Spore Elf","s",3,[8,8,3,2],"Phantom"],
+["Dune Rider","s",3,[6,3,5,6],"Phantom"],
+["Alchemist","s",3,[4,8,4,5],"Phantom"],
+["Ramen Punk","s",3,[6,5,6,3],"Phantom"],
+["Treescribe","s",4,[4,8,8,6],"Phantom"],
+["Rust Pilot","s",3,[6,4,4,7],"Phantom"],
+["Helmsman","s",5,[5,9,9,7],"Phantom"],
+["Ghost Rail","s",4,[5,7,9,5],"Phantom"],
+["Dusk Scout","c",3,[8,3,7,2],"Dominion"],
+["Scroll Cat","c",2,[6,6,3,2],""],
+["Gold Drake","c",1,[2,5,1,3],""],
+["Stargazer","c",2,[3,2,6,4],""],
+["Lone Rover","c",3,[8,4,4,6],""],
+["Deep Diver","c",2,[3,4,5,3],""],
+["Dune Acolyte Ilsa","c",1,[1,2,5,3],""],
+["Sandfist Bruiser","c",3,[4,3,6,7],""],
+["Sunblade Marshal","c",4,[6,7,9,4],""],
+["Mirage Trickster","c",5,[8,8,7,9],""],
+["Queen Sahlune","c",2,[3,3,4,5],"Order"],
+["Caravan Boss","c",1,[4,4,2,1],""],
+["Scrapyard Rogue","c",4,[8,7,5,5],"Order"],
+["Seamstress Vinn","c",2,[4,4,4,3],"Order"],
+["Outlaw Dessin","c",2,[4,3,4,5],"Dominion"],
+["Hollow Eclipse","c",5,[4,10,10,6],""],
+["Regent Aldous","c",3,[4,4,4,8],""],
+["Duchess Verane","c",3,[7,5,4,6],""],
+["Brambleback Brute","m",3,[5,7,5,3],""],
+["Shade Whirler","m",3,[5,6,6,4],""],
+["Cavemouth Sentinel","m",3,[6,4,4,8],"Court"],
+["Ruinback Wyrm","m",2,[6,2,4,5],"Court"],
+["Sandfang Stalker","m",1,[5,2,1,2],"Court"],
+["Frostbound Ogre","m",1,[3,3,3,3],""],
+["Voidglass Orb","m",5,[10,7,9,6],""],
+["Inkmaw Crawler","m",1,[3,4,1,3],"Court"],
+["Argentscale Drake","m",3,[7,5,5,5],"Court"],
+["Rimeveil Matron","m",3,[2,5,5,8],"Court"],
+["Archon of Glass","s",4,[7,5,7,8],"Phantom"],
+["Winterfang Alpha","s",5,[9,6,6,9],"Phantom"],
+["Starbound Galleon","s",4,[7,5,7,8],"Phantom"],
+["Bastion Colossus","s",5,[4,10,8,10],"Phantom"],
+["Sunjacket Swashbuckler","c",3,[4,6,8,3],""],
+["Tidecaller Maiden","c",3,[6,4,6,4],"Dominion"],
+["Reefwatch Captain","c",1,[3,1,4,2],"Dominion"],
+["Thornrose Sorceress","c",3,[6,3,7,6],""],
+["Hornguard Tamar","c",3,[7,4,5,4],""],
+["Wanderblade Corin","c",4,[7,7,5,6],""],
+["Alembic Savant","c",3,[5,5,5,5],""],
+["Pale Magistrate","c",4,[7,6,8,6],""],
+["Champion of Ash","c",4,[5,8,6,7],""],
+["Waterglass Pilgrim","c",2,[6,4,4,3],""],
+["Tidebinder Ione","c",3,[5,5,4,7],"Order"],
+["Undying Empress","c",5,[7,10,5,8],""],
+["Harbinger of Ruin","c",5,[10,9,8,4],""],
+["Lady Verrin","c",1,[2,3,2,3],""],
+["Warren Guard Bartek","c",3,[8,4,7,3],""],
+["Choir Novice Iselle","c",3,[6,5,5,6],"Order"],
+["Candle Archivist","c",1,[2,4,3,3],"Order"],
+["Hornmaster Brakk","c",3,[6,8,5,3],"Order"],
+["Elder Hornwick","c",2,[6,3,4,4],""],
+["Mudmire Digger","m",1,[2,2,6,2],"Court"],
+["Boulder Smasher","m",2,[4,4,3,5],""],
+["Tidegrim Wyrm","m",3,[7,3,5,6],"Court"],
+["Crypt Watcher","m",2,[4,1,6,4],"Court"],
+["Spawn of Sorrow","m",2,[7,3,4,3],"Court"],
+["Fluxwraith","m",2,[4,4,4,5],"Court"],
+["Soulmilker","m",2,[4,3,7,3],"Court"],
+["Gutterling Lord","m",1,[1,4,2,4],"Court"],
+["Dawnwing Gryphon","s",4,[6,9,5,7],"Phantom"],
+["Stormhorn Steed","s",3,[8,5,3,6],"Phantom"],
+["Hireling Ghost","s",4,[5,6,7,9],"Phantom"],
+["Chainbound Horror","s",4,[6,5,6,9],"Phantom"],
+["Triple Fates","s",4,[9,7,5,5],"Phantom"],
+["Swordsong Dancer","c",4,[4,8,4,9],""],
+["Wraith Regent","c",5,[8,9,6,9],"Dominion"],
+["Dirge Troubadour","c",3,[8,6,4,2],""],
+["Roadwarden Veteran","c",4,[5,7,8,7],""],
+["Cogsmith Halric","c",3,[3,6,6,7],"Dominion"],
+["Praetor Barrow","c",3,[5,4,6,5],"Order"],
+["Guildclerk Leda","c",1,[4,1,1,5],""],
+["Guildsman Orrin","c",3,[7,4,5,6],"Order"],
+["Guildsman Orsk","c",3,[7,3,5,5],""],
+["Grumpy Ferryman","c",1,[2,4,1,3],"Order"],
+["Skyhauler Pike","c",3,[8,3,5,6],""],
+["Ironwraith Engine","m",5,[9,5,9,7],""],
+["Highroad Automaton","m",1,[4,3,1,3],"Court"],
+["Calamity Shell","m",2,[4,5,3,4],"Court"],
+["Skyisle Rover","c",4,[9,5,6,5],"Order"],
+["Silverbow Princess","c",3,[5,3,6,6],""],
+["Cloudskiff Pirate","c",4,[8,6,9,3],""],
+["Meadowbow Scout","c",2,[5,7,3,2],"Dominion"],
+["Disgraced Captain","c",3,[5,7,5,3],""],
+["Fanwhirl Dancer","c",4,[6,9,5,7],""],
+["Young Prince Larkin","c",3,[5,6,5,4],""],
+["Chancellor Ironhand","c",4,[6,5,5,9],"Order"],
+["Judge Garrow","c",3,[4,8,3,7],""],
+["Engineer Pimm","c",2,[4,3,5,5],"Order"],
+["Highwayman Boss","c",1,[1,5,2,3],"Order"],
+["Margrave Alderic","c",2,[2,3,6,6],""],
+["Cutlass Rascal","c",1,[2,2,2,4],""],
+["Shrouded Oracle","c",4,[8,7,5,6],"Dominion"],
+["Foundling Kel","c",3,[4,6,5,7],""],
+["Glassfaced Matron","m",3,[4,5,8,4],""],
+["Greywing Wyrm","m",2,[3,3,5,4],""],
+["Coffer Dragon","m",4,[9,5,4,9],"Court"],
+["Lidjaw Crate","m",1,[2,2,3,3],"Court"],
+["Skymaw Devourer","m",4,[6,8,6,7],"Court"],
+["Coursing Hare","m",1,[1,5,2,3],"Court"],
+["Keeper of Gates","s",3,[4,4,7,7],"Phantom"],
+["Lord of Ebb","s",3,[6,4,3,8],"Phantom"],
+["Lawgiver Specter","s",3,[7,7,3,3],"Phantom"],
+["Skyloom Magus","s",4,[8,6,7,6],"Phantom"],
+["Judge of Ends","s",5,[8,6,10,7],"Phantom"],
+["Banished Colossus","s",4,[6,9,7,5],"Phantom"],
+["Dirge Seraph","s",3,[7,7,3,5],"Phantom"],
+["Gallows Hound","s",5,[10,7,4,9],"Phantom"],
+["Wrathmantle Magus","s",4,[5,6,7,7],"Phantom"],
+["Rosehair Vanguard","c",4,[9,5,6,7],""],
+["Frostguard Nordan","c",4,[6,7,8,5],""],
+["Sunrise Squire Hale","c",4,[4,8,8,6],""],
+["Brightcloak Vesna","c",2,[4,3,4,4],""],
+["Gliderpilot Sash","c",3,[6,5,5,6],"Order"],
+["Tracker Fenwick","c",2,[5,3,5,4],""],
+["Shardsister Selene","c",3,[8,5,4,5],""],
+["Captain Rainer","c",3,[5,4,4,8],""],
+["Oathbreaker Supreme","c",5,[8,7,7,10],""],
+["Child of Sorrows","c",5,[4,9,10,7],""],
+["Knight Everlasting","c",5,[10,7,6,9],"Order"],
+["Clockwalker Noor","c",3,[4,6,4,8],""],
+["Glimmer Child","c",2,[5,3,4,3],"Dominion"],
+["Overseer Hallam","c",2,[3,6,4,4],"Order"],
+["Gloomgulp Pup","m",1,[2,2,4,4],"Court"],
+["Shardmail Brute","m",1,[3,4,3,1],""],
+["Bladetusk Boar","m",2,[6,3,3,3],"Court"],
+["Siege Crawler","m",1,[2,2,3,3],"Court"],
+["Stretchshade","m",2,[7,4,3,3],"Court"],
+["Thornpaw Prowler","m",2,[4,4,3,5],"Court"],
+["Hollow Cicada","m",1,[3,3,3,2],"Court"],
+["Pincushion Lord","m",2,[5,4,3,4],""],
+["Emberwing Valkyrie","s",3,[8,8,3,3],"Phantom"],
+["Thousand-palm Giant","s",5,[6,10,8,8],"Phantom"],
+["Citadel Sovereign","s",4,[6,5,9,6],"Phantom"],
+["Prism Scholar Graves","c",3,[6,4,6,4],""],
+["Moonlit Novice","c",1,[2,3,3,4],""],
+["Lancepistol Thane","c",3,[7,5,5,3],"Order"],
+["Junior Envoy Alwin","c",3,[7,1,8,5],"Order"],
+["Foilmistress Alis","c",4,[5,6,7,9],"Order"],
+["Elder Sage Uriel","c",3,[6,2,5,7],""],
+["Seer Minna","c",2,[2,5,6,2],"Order"],
+["Wyrmrider Estevan","c",3,[5,4,6,5],""],
+["Shade of Ages","c",5,[9,7,5,10],""],
+["Dawnmother","c",5,[8,8,10,5],""],
+["Duskmage Lahar","c",3,[6,8,3,4],"Order"],
+["Exarch Eldin","c",4,[6,9,5,5],""],
+["Headsman Forde","c",4,[6,7,6,7],""],
+["Stalwart Hiram","c",2,[4,3,4,5],""],
+["Shadow Maiden Yui","c",2,[5,3,3,6],""],
+["Apostate Ysolde","c",2,[3,2,7,5],"Dominion"],
+["Guardian Hawke","c",3,[4,5,4,7],"Dominion"],
+["Worldring Serpent","m",3,[6,5,5,6],"Court"],
+["Rootgnaw Beast","m",4,[4,6,9,8],""],
+["Bladeclaw Tigerkin","m",2,[2,4,4,6],""],
+["Driftwhale","m",1,[4,1,2,4],""],
+["Skyward Monarch","m",3,[7,5,4,6],""],
+["Scarlet Pretender","m",5,[8,10,10,3],"Court"],
+["Judge Ascendant","m",3,[6,4,5,6],"Court"],
+["Phantomsword Prince","c",3,[3,4,8,6],""],
+["Lens Apprentice","c",2,[3,3,7,2],""],
+["Shieldbrother Gladwin","c",3,[5,5,4,8],"Order"],
+["Cook Ignatz","c",2,[3,5,4,3],"Order"],
+["Starlit Soothsayer","c",2,[3,4,3,7],""],
+["Amethyst Exile","c",4,[6,7,6,6],"Order"],
+["Field Marshal Corwen","c",2,[2,3,7,5],""],
+["Skyspear Arana","c",2,[1,4,6,6],""],
+["Frostborn Prince","c",3,[4,8,2,6],""],
+["Dawnseeker Irisa","c",3,[3,2,7,8],"Dominion"],
+["Wrench Maiden Cinda","c",3,[5,7,3,5],""],
+["King Aurelian","c",3,[4,7,5,5],"Order"],
+["Doctor Verrick","c",1,[2,3,3,2],"Order"],
+["Shadowpaw Stalker","m",2,[5,4,5,3],""],
+["Platemail Ogre","m",1,[2,4,3,1],"Court"],
+["Tuskbound Behemoth","m",2,[3,3,6,3],"Court"],
+["Bullseye Marauder","m",3,[3,7,5,6],"Court"],
+["Coilscale Serpent","m",1,[5,3,1,2],""],
+["Twinhorn Charger","m",2,[3,3,6,5],"Court"],
+["Fangtooth Gnasher","m",1,[2,5,4,1],"Court"],
+["Ironhide Crusher","m",2,[3,4,2,7],""],
+["Dispossessed Heir","c",4,[9,8,6,3],""],
+["Ashwing Scion","c",2,[3,4,3,7],""],
+["Hoarfrost Lady","c",1,[3,3,3,3],"Dominion"],
+["Elder Brannoch","c",2,[6,1,5,3],"Order"],
+["Drakeblood Prince","c",3,[6,7,5,4],""],
+["Mistress of Shadows","c",3,[7,7,3,5],""],
+["Ashlord Barrow","c",4,[6,5,6,8],""],
+["Frenzied Archmage","c",5,[9,5,9,8],""],
+["Huntsman Garrick","c",3,[5,5,4,7],""],
+["Anvil Smith Orm","c",2,[3,5,3,5],""],
+["Hound of the Hills","c",4,[7,7,3,9],""],
+["Little Queen Annis","c",1,[1,2,3,5],""],
+["Wyrm Stalker","m",2,[6,2,5,2],""],
+["Powderkeg Tyrant","m",2,[5,5,4,1],"Court"],
+["Scrapfang Chieftain","m",1,[3,3,3,2],""],
+["Hexbound Knight","m",3,[4,8,4,5],"Court"],
+["Ruined Noble Rhodes","c",3,[4,5,7,4],""],
+["Upstart Dellan","c",4,[6,9,5,7],""],
+["Sunlit Knight Agrin","c",3,[7,4,6,4],""],
+["Marksman Musk","c",3,[5,6,7,4],""],
+["Spark Sorceress","c",2,[4,3,3,5],""],
+["Quiet Malach","c",1,[2,3,2,3],"Order"],
+["Stormfather","c",5,[5,7,10,9],""],
+["Princess Oriel","c",2,[3,4,6,4],"Order"],
+["Sister Alma","c",1,[2,2,3,3],"Dominion"],
+["Templar Berrin","c",2,[7,4,2,3],"Dominion"],
+["Drake Maiden","c",1,[2,2,4,2],"Order"],
+["Apostate Knight Merl","c",3,[5,4,6,6],"Dominion"],
+["Legion Leader Wick","c",2,[2,3,5,7],"Dominion"],
+["Sellsword Gaff","c",1,[1,4,3,3],"Order"],
+["Lord Zandrel","c",2,[4,7,4,1],""],
+["Duke Dorrin","c",1,[4,2,3,1],""],
+["Inquisitor Fenn","c",1,[3,3,3,3],"Order"],
+["Bishop Valdis","c",2,[5,2,6,4],"Dominion"],
+["Raw Recruit Zane","c",3,[4,3,5,8],""],
+["Bloodink Poet","c",4,[7,5,9,4],"Dominion"],
+["Blade of Honor","c",4,[9,6,6,6],""],
+["Overseer Lazlo","c",1,[3,3,3,3],""],
+["Shadow Agent Cass","c",4,[7,6,8,6],""],
+["Plague Physician","c",1,[3,3,3,2],""],
+["Pikeman Kord","c",2,[5,3,6,3],""],
+["Legion Vanguard","c",4,[9,3,6,7],""],
+["Slumber Queen","m",5,[6,8,7,10],"Court"],
+["Mammoth Brute","m",3,[2,8,6,4],"Court"],
+["Dealer Recruit","c",1,[4,2,4,1],"Order"],
+["Gearhand Recruit","c",2,[4,5,3,4],"Dominion"],
+["Mender Recruit","c",3,[3,7,4,8],"Dominion"],
+["Regal Recruit","c",4,[5,7,9,6],""],
+["Piper Recruit","c",2,[5,4,3,3],"Order"],
+["Cannoneer Recruit","c",1,[2,2,5,3],""],
+["Bowhand Recruit","c",3,[5,7,5,4],""],
+["Reaper Recruit","c",4,[7,6,6,6],""],
+["Bladesworn Recruit","c",2,[4,4,5,2],"Dominion"],
+["Crowned Recruit","c",3,[3,6,4,8],""],
+["Pikebearer Recruit","c",1,[5,4,1,2],"Order"],
+["Lashbearer Recruit","c",1,[6,1,2,2],"Dominion"],
+["Chainwarden Recruit","c",3,[6,5,2,7],"Order"],
+["Maulbearer Recruit","c",1,[3,1,5,3],""],
+["Drill Instructor","c",3,[5,4,5,6],""],
+["Cinder Empress","c",4,[9,6,5,5],""],
+["Goddess of Accord","c",5,[8,7,7,8],"Dominion"],
+["Giggling Hedgewizard","c",1,[4,1,2,4],""],
+["Brinebrand Duelist","c",4,[5,7,9,5],"Order"],
+["Twinblade Rhona","c",3,[6,4,7,5],""],
+["Wildspark Harbinger","c",5,[10,10,4,8],""],
+["Gleamwisp","c",3,[3,7,4,7],"Order"],
+["Fledgling Champion","c",4,[5,6,9,5],""],
+["Axemaiden Kaela","c",4,[5,7,9,4],""],
+["Relic Seeker Tris","c",3,[6,5,7,2],"Dominion"],
+["Archer Phoebe","c",2,[4,2,4,5],"Order"],
+["Burly Ruben","c",1,[2,3,3,3],"Order"],
+["Umbral Monarch","c",4,[7,6,6,7],""],
+["Cinderfang Raptor","m",2,[3,5,3,5],""],
+["Rimestone Golem","m",3,[4,6,4,8],"Court"],
+["Fivehead Hydra","m",2,[2,4,5,5],"Court"],
+["Mudgrub","m",1,[3,5,2,2],""],
+["Skullcrest Raptor","m",3,[2,8,5,5],"Court"],
+["Barrow Minotaur","m",3,[3,6,6,5],"Court"],
+["Ashen Hexer","c",2,[2,2,5,6],""],
+["Daybreak Mender","c",4,[6,6,6,9],""],
+["Redsash Duelist","c",4,[8,7,6,4],""],
+["Iron Fist Monk","c",2,[4,4,3,5],""],
+["Cutpurse Sprite","c",4,[6,7,8,6],"Order"],
+["Plumed Hoplite","c",2,[2,2,7,5],"Order"],
+["Riftcaller Adept","c",2,[4,3,5,5],""],
+["Blade Ronin","c",1,[2,3,1,6],""],
+["Dusk Assassin","c",2,[4,3,3,5],"Order"],
+["Oath Paladin","c",2,[4,7,4,2],""],
+["Lantern Minstrel","c",4,[8,8,6,5],""],
+["Mirror Scholar","c",1,[1,5,3,3],"Dominion"],
+["Sandtime Mage","c",1,[2,3,2,3],"Order"],
+["Stonereader Seer","c",3,[7,8,4,3],""],
+["Echo Pantomime","c",3,[6,2,8,5],"Order"],
+["Tonic Brewer","c",2,[4,2,2,7],""],
+["Glade Warden","c",2,[5,3,1,6],"Dominion"],
+["Frenzied Axeman","c",2,[2,3,6,5],"Order"],
+["Gloom Knight","c",4,[4,6,7,8],""],
+["Steelplate Knight","c",1,[3,2,3,2],""],
+["Winged Tuftling","c",2,[6,1,4,4],""],
+["Chief Artificer","c",1,[2,5,2,1],""],
+["Knifeling Imp","c",2,[5,2,4,4],"Order"],
+["Plumed Strider","c",2,[4,5,5,3],"Order"],
+["Nightfeather Strider","c",3,[7,6,7,2],""],
+["Goldcrest Strider","c",3,[3,6,4,7],""],
+["Roundwing Strider","c",2,[6,3,4,2],""],
+["Thornjig Dancer","m",3,[6,6,7,2],""],
+["Gloomlamp Stabber","m",4,[5,6,6,9],"Court"],
+["Fuseling","m",1,[3,2,3,3],"Court"],
+["Rotpetal Horror","m",4,[8,6,8,4],""],
+["Hornback Brute","m",3,[8,3,7,3],""],
+["Drifting Gazer","m",3,[3,4,6,8],""],
+["Crimson Drakelet","m",3,[7,7,4,2],"Court"],
+["Bluescale Hatchling","m",1,[2,1,2,5],"Court"],
+["Jadescale Hatchling","m",1,[2,1,5,3],""],
+["Maw Sprout","m",3,[7,5,6,4],""],
+["Bogreach Tendril","m",3,[2,6,7,6],"Court"],
+["Skyhawk Roc","m",2,[4,4,3,5],"Court"],
+["Shrieking Mandrake","m",2,[3,6,2,4],"Court"],
+["Hillmoss Troll","m",2,[3,4,4,4],"Court"],
+["Coilbody Lamia","m",2,[2,5,3,7],"Court"],
+["Crag Harpy","m",3,[6,5,7,2],"Court"],
+["Tombgnawer","m",2,[4,4,6,3],"Court"],
+["Famished Shade","m",2,[2,6,4,4],""],
+["Clatterbones","m",2,[3,4,4,6],"Court"],
+["Paleblood Noble","m",1,[3,3,3,1],"Court"],
+["Moonshade Lycan","m",3,[8,7,1,5],"Court"],
+["Trunk Lurker","m",3,[6,8,2,5],"Court"],
+["Rogue Sorcerer","m",1,[1,3,4,3],"Court"],
+["Ancient Heartwood","m",2,[5,5,2,3],"Court"],
+["Cinderbomb","m",2,[7,3,2,5],"Court"],
+["Galewing Wyvern","m",3,[4,8,3,6],"Court"],
+["Decayed Drake","m",2,[5,2,4,5],"Court"],
+["Eyeball Ooze","m",1,[3,1,3,5],"Court"],
+["Moss Ooze","m",2,[2,6,3,5],"Court"],
+["Reefstone Golem","m",1,[4,3,2,3],"Court"],
+["Corroded Bat","m",2,[6,4,5,1],""],
+["Cherrybang","m",1,[2,2,2,6],""],
+["Lord of Cinders","s",4,[8,7,5,5],"Phantom"],
+["Regent of Winter","s",4,[6,6,9,6],"Phantom"],
+["Tempest Ancient","s",4,[8,2,9,6],"Phantom"],
+["Tremorhide Giant","s",3,[6,3,6,7],"Phantom"],
+["Glyphscythe Wraith","s",5,[9,5,7,10],"Phantom"],
+["Wyrmlord Sovereign","s",5,[10,8,9,5],"Phantom"],
+["Tideswell Colossus","s",3,[5,8,4,4],"Phantom"],
+["Bastion Arbiter","s",4,[7,6,6,6],"Phantom"],
+["Cinderflight Phoenix","s",3,[4,5,8,3],"Phantom"],
+["Geode Guardian","s",3,[5,5,6,4],"Phantom"],
+["Claybound Golem","s",3,[5,4,4,7],"Phantom"],
+["Brinecoil Drake","s",5,[8,9,4,10],"Phantom"],
+["Dreadmask Imp","s",4,[7,5,7,7],"Phantom"],
+["Featherscale Serpent","s",3,[4,6,8,4],"Phantom"],
+["Lumenhorn Spirit","s",5,[8,9,4,9],"Phantom"],
+["Pale Moon Howler","s",3,[8,6,3,4],"Phantom"],
+["Coinfleet Familiar","s",4,[3,8,6,9],"Phantom"],
+["Mossback Guardian","s",3,[4,7,6,3],"Phantom"],
+["Emberheart Savior","s",5,[10,7,6,7],"Phantom"],
+["Wisp Sovereign","s",4,[7,6,7,7],"Phantom"]];
+CD.forEach((r,id)=>CARDS.push({id,n:r[0],t:r[1],lv:r[2],v:r[3],f:r[4]}));
+const NEWART={"160":"assets/fee842fee607b2d0.jpg","161":"assets/67f0800c9e544b1b.jpg","162":"assets/88d78732e02be7a7.jpg","163":"assets/a87e75aa0b944bb1.jpg","164":"assets/e5640bd63be84a97.jpg","165":"assets/9d90667b4d919b8c.jpg","166":"assets/b792e63e2448bee4.jpg","167":"assets/2190ee04e33b5539.jpg","168":"assets/ab4ea68e87b0f21e.jpg","169":"assets/6d9c25387fddf0ca.jpg","170":"assets/c2be03c505791b7f.jpg","171":"assets/79bdc9a3ba1da3b3.jpg","172":"assets/40fb1834119d3da5.jpg","173":"assets/93bf97a3cb12a945.jpg","174":"assets/f7ae6dcd79a8479a.jpg","175":"assets/d01322d9476dab6d.jpg","176":"assets/5d4fcf88ac13babc.jpg","177":"assets/9ceb77d355b43d2c.jpg","178":"assets/0b1c00f9c6d8c384.jpg","179":"assets/a6db449e57514181.jpg","140":"assets/f2d4a650a6ccb1c2.jpg","141":"assets/736d08fb659027b7.jpg","142":"assets/5bd89c4f9da89343.jpg","143":"assets/8b01a96bf7ef58f6.jpg","144":"assets/9b797b188aad1165.jpg","145":"assets/e69d91707570b196.jpg","146":"assets/b8de063687914eca.jpg","147":"assets/c9acb63bec8baab5.jpg","148":"assets/681699909424c2bb.jpg","149":"assets/f961bbf59457543f.jpg","150":"assets/16b1a4d604d99e0f.jpg","151":"assets/960978f5e9d85ea1.jpg","152":"assets/62d2b2970a5084a5.jpg","153":"assets/bcb5140f9201b629.jpg","154":"assets/9816ec000474212e.jpg","155":"assets/9e9e3145f1c39b2d.jpg","157":"assets/1512f418283b54e8.jpg","158":"assets/ee38a4f01039a010.jpg","159":"assets/b9c23cebd0476795.jpg","156":"assets/1b631e7bdbd65cbf.jpg","0": "assets/8c89381e402c6155.jpg", "1": "assets/83411e442a8456c2.jpg", "2": "assets/79a3ce1a41b73ce2.jpg", "3": "assets/62d4312da0c5e14c.jpg", "4": "assets/2fa3e9a0bf0ad85a.jpg", "5": "assets/6ff5acd42bfcfc46.jpg", "6": "assets/5bc4767c1c28ae13.jpg", "7": "assets/dfd4f65a52000bdc.jpg", "8": "assets/2b1b95ff8d163763.jpg", "10": "assets/c3bc2bcbc1ebf046.jpg", "11": "assets/c3e858f754c4439d.jpg", "12": "assets/8b16780876e317b0.jpg", "13": "assets/552d5bb2c6ca88ff.jpg", "14": "assets/2247ffe618e95219.jpg", "15": "assets/c4ec0f041cb237a3.jpg", "16": "assets/ee8c0c0984cf26c7.jpg", "17": "assets/25d6ad46075c71e0.jpg", "18": "assets/26d2768a6d678989.jpg", "19": "assets/ccda46e7397f7aac.jpg", "9": "assets/0e5cae7d6b37afc2.jpg"};
 Object.assign(NEWART,{"20": "assets/8add51168678aa87.jpg", "21": "assets/9b86b90ce497c238.jpg", "22": "assets/1ba6263ee36292e9.jpg", "24": "assets/72d747216732416e.jpg", "25": "assets/59f06c19cbafc03d.jpg", "26": "assets/e165aece012b986d.jpg", "27": "assets/4b406ba6ebc2f312.jpg", "28": "assets/54d4e7c9b816b4a0.jpg", "29": "assets/7566fbd1b500af5e.jpg", "30": "assets/cd7d40f565afc045.jpg", "31": "assets/8526d95b29206c79.jpg", "32": "assets/7941015148570bf3.jpg", "33": "assets/b807581aa1b29cdf.jpg", "34": "assets/169fe6e87adb697d.jpg", "35": "assets/da26e63331f2ddde.jpg", "36": "assets/b1cdf6d9925a6e5c.jpg", "37": "assets/14af7771d6991f4b.jpg", "38": "assets/1ce0315caf2f564e.jpg", "39": "assets/4e9ee2559a25eb3e.jpg", "23": "assets/1adfd931c07d5d87.jpg"});
-Object.assign(NAMEOVR,{"20": "Peakrider Wyrm", "21": "Starstaff Warlock", "22": "Cloudkeep Bastion", "24": "Glasshorn Unicorn", "25": "Tidesong Siren", "26": "Thistlecrown Ranger", "27": "Cinderwing Herald", "28": "Gemroot Ancient", "29": "Goldtalon Roc", "30": "Thornwing Triad", "31": "Brewmaster Quill", "32": "Prismguard Golem", "33": "Drownsong Naga", "34": "Dawnstrider Pegasus", "35": "Nightblade Assassin", "36": "Barkwarden Elder", "37": "Shardlance Knight", "38": "Moonbroom Hag", "39": "Twinlight Starseer", "23": "Ironmane Chimera"});
 Object.assign(NEWART,{"40": "assets/9304f69a7d84f5e5.jpg", "41": "assets/b33cec167273dfaa.jpg", "42": "assets/0138142f682d1022.jpg", "43": "assets/34e6abc7e580bebe.jpg", "44": "assets/3cb4347229ee70c0.jpg", "45": "assets/012e3f7f52f7be91.jpg", "46": "assets/632f7268bd633305.jpg", "47": "assets/dc0f74a220a36a45.jpg", "48": "assets/8cd3b17897b54791.jpg", "49": "assets/ffa3ddaafe7c4d1e.jpg", "50": "assets/acc40fb061dbf76f.jpg", "51": "assets/4a69689e1e9bcb42.jpg", "52": "assets/210bee975bcfc5d7.jpg", "53": "assets/c88f4681ef1ca48d.jpg", "55": "assets/d517a856c7b20af6.jpg", "56": "assets/5f50d3b75e16b58b.jpg", "57": "assets/1744531a570da0e4.jpg", "58": "assets/132ff76eab5bc320.jpg", "59": "assets/35f168e2926cd66c.jpg", "54": "assets/0ef65c9c1dc6c93c.jpg"});
-Object.assign(NAMEOVR,{"40": "Emerald Circlet Maiden", "41": "Ironscale Dragonkin", "42": "Moonsilver Drow", "43": "Coralcrown Mermaid", "44": "Runeglow Warden", "45": "Haloed Seraph", "46": "Patchcap Goblin", "47": "Frostveil Empress", "48": "Silverscar Wanderer", "49": "Blossomveil Dryad", "50": "Emberrune Adept", "51": "Clawscar Drake", "52": "Twinblade Drow", "53": "Tatterback Brawler", "55": "Frostbraid Berserker", "56": "Ironback Knight", "57": "Hollowhood Outcast", "58": "Verdigris Cloakbearer", "59": "Wolfmark Lycan", "54": "Scarwing Fallen"});
-Object.assign(NAMEOVR,{"40": "Silvergreen Elf Regent", "41": "Hornhide Dragonguard", "42": "Violetgaze Drow", "43": "Pearlcrest Mermaid", "44": "Runeface Sorcerer", "45": "Goldhalo Seraph", "46": "Stitchcap Goblin", "47": "Snowcrown Empress", "48": "Lashmark Huntress", "49": "Wildbloom Sprite", "50": "Cinderrune Adept", "51": "Hornback Drake", "52": "Crossblade Drow", "53": "Tattercoat Brawler", "55": "Glacierbraid Berserker", "56": "Bluecape Ironknight", "57": "Hollowhood Outcast", "58": "Greencloak Hermit", "59": "Clawmarked Werewolf", "54": "Scarwing Fallen"});
 Object.assign(NEWART,{"60": "assets/caaf880289c8e621.jpg", "62": "assets/8d5dfd8670f8e705.jpg", "63": "assets/76f5f63535e202e0.jpg", "64": "assets/d1e5f8896653d263.jpg", "65": "assets/b917df4ea06df29a.jpg", "66": "assets/b27316d27d0bc70e.jpg", "67": "assets/ebe79a6873c96a2e.jpg", "68": "assets/cc3c5fdd4875117b.jpg", "69": "assets/34dd0451d426de89.jpg", "70": "assets/40814cc37e4c218d.jpg", "71": "assets/7d2b4434dc8830a6.jpg", "72": "assets/aa23f825b565a555.jpg", "73": "assets/6f750558c7c61e7d.jpg", "74": "assets/351ea1edb0807b14.jpg", "75": "assets/79a8ca17ec1c5c4d.jpg", "76": "assets/17661c19ac94e10a.jpg", "77": "assets/2c6a13500999a67c.jpg", "78": "assets/1c578789f977b6b1.jpg", "79": "assets/525838a1a068dd97.jpg", "61": "assets/4beb458eaca3918e.jpg"});
-Object.assign(NAMEOVR,{"60": "Roundhill Burrower", "62": "Lanternbough Archivist", "63": "Bridgewalk Foxling", "64": "Wandering Shellisle", "65": "Dragonfly Tinkerer", "66": "Skymarket Merchant", "67": "Glowmire Fairy", "68": "Tomehoard Drakeling", "69": "Thimble Baker", "70": "Hearthvale Cottager", "71": "Burly Badger Baker", "72": "Mushrung Treefolk", "73": "Starline Angler", "74": "Crystalkettle Teamaster", "75": "Acornhelm Mouse", "76": "Quillwing Courier", "77": "Cloudherd Shepherd", "78": "Hillsleeper Giant", "79": "Frostbloom Meadowkeeper", "61": "Firefly Apothecary"});
 Object.assign(NEWART,{"80": "assets/8670442fe938a9e6.jpg", "81": "assets/f42e4ac2bf41e8c0.jpg", "83": "assets/ff19343e3aa4e178.jpg", "84": "assets/99f1852362a01ab9.jpg", "85": "assets/2f9bf12e56bdeb17.jpg", "86": "assets/cfe76add97bf1fd5.jpg", "87": "assets/3d31f8098663e213.jpg", "88": "assets/f5bf1158632497de.jpg", "89": "assets/fd740fdad5b7b087.jpg", "90": "assets/e987bb13a7c9a0f9.jpg", "91": "assets/8194d179b75aac3a.jpg", "92": "assets/e7d4ad992598fb4b.jpg", "93": "assets/7d43d7bb9c5fa6be.jpg", "94": "assets/3e2fe2b5756dac02.jpg", "95": "assets/72e9c4ebfde92331.jpg", "96": "assets/9120c69064a3695b.jpg", "97": "assets/8be2ad094364ead0.jpg", "98": "assets/9432553c6cf216d8.jpg", "99": "assets/7b44735572179e99.jpg", "82": "assets/7f597deaa72ef5c5.jpg"});
-Object.assign(NAMEOVR,{"80": "Sunset Arch Sage", "81": "Frostgate Castellan", "83": "Magma Ridge Stalker", "84": "Amethyst Hollow Mystic", "85": "Mossgrave Wanderer", "86": "Glimmerglade Ranger", "87": "Hedgemaze Knight", "88": "Oasis Sunspear", "89": "Wreckside Corsair", "90": "Lantern Gravewalker", "91": "Skyrune Archmage", "92": "Brass Gearwright", "93": "Tomekeeper Lorewarden", "94": "Vinehouse Botanist", "95": "Coalrail Miner", "96": "Cinderdeep Stalker", "97": "Bogbridge Hexer", "98": "Banner Ruin Knight", "99": "Starchart Astronomer", "82": "Glacierhold Explorer"});
 Object.assign(NEWART,{"100": "assets/dcadf88a41bc8348.jpg", "101": "assets/bbd2e187d2fce3ae.jpg", "102": "assets/407170de14dabe89.jpg", "103": "assets/5dce15089b9472c3.jpg", "104": "assets/4f1a64e3f8c6cc05.jpg", "105": "assets/3e89287b59556efe.jpg", "106": "assets/ec220ea1eddaa97b.jpg", "107": "assets/278682aab3780df5.jpg", "108": "assets/5ec55044d1a3e618.jpg", "109": "assets/881abd9fe4588d24.jpg", "110": "assets/7f74ebf7ab879777.jpg", "111": "assets/c93c26207f0f3a28.jpg", "113": "assets/b08af390275967b0.jpg", "114": "assets/cc9bb8eba4cfe42b.jpg", "115": "assets/c23a180df25bc90a.jpg", "116": "assets/32b02e8359340404.jpg", "117": "assets/0479a4c965db0420.jpg", "118": "assets/8491390f48503d3f.jpg", "119": "assets/70fa720c52dabe03.jpg", "112": "assets/43190a193f9958bf.jpg"});
-Object.assign(NAMEOVR,{"100": "Glasswright Paladin", "101": "Verdant Glassbow Archer", "102": "Violetveil Shadeblade", "103": "Emberforged Crusader", "104": "Lionshield Templar", "105": "Bonecrown Reaper", "106": "Sunorb Mystic", "107": "Emberstaff Warden", "108": "Starsong Sorceress", "109": "Twinsword Duelist", "110": "Phoenixlight Rogue", "111": "Lightshaft Swordsman", "113": "Dragonglass Knight", "114": "Ivyhollow Bowman", "115": "Rosewindow Cleric", "116": "Wyrmward Shieldbearer", "117": "Mooncharm Wizard", "118": "Azurecape Vanguard", "119": "Tealglass Shade", "112": "Paintsplash Crusader"});
 Object.assign(NEWART,{"120": "assets/3e2c0a4e17ab081d.jpg", "121": "assets/658f75eefe2fa49c.jpg", "122": "assets/64bda6aed3a7a3ad.jpg", "123": "assets/0768e0e2956695d8.jpg", "124": "assets/eeeb3162bb0adce8.jpg", "125": "assets/0ae9a91a523548fb.jpg", "126": "assets/9d71fc7794c3a130.jpg", "127": "assets/86d175eb36d5a243.jpg", "128": "assets/7972b15f1f85a81e.jpg", "129": "assets/2c49fbfa4f30d166.jpg", "130": "assets/706816312010dd38.jpg", "131": "assets/4607c0b7e27f096f.jpg", "133": "assets/950c069164b59da8.jpg", "134": "assets/6fb1e9a77f06b770.jpg", "135": "assets/b74baf6ea5ea6d65.jpg", "136": "assets/cd2879e97a46d79c.jpg", "137": "assets/296a811cdde0b536.jpg", "138": "assets/0867bb6d4f7150ed.jpg", "139": "assets/be19b29c93a6d101.jpg", "132": "assets/b0d61f3af611edff.jpg"});
-Object.assign(NAMEOVR,{"120": "Cliffclaw Griffon", "121": "Skyreach Griffon", "122": "Silverspire Unicorn", "123": "Stormridge Drake", "124": "Shellcrest Mermaid", "125": "Bullhorn Reaver", "126": "Ridgeline Centaur", "127": "Tempest Serpent", "128": "Blackfist Ogre", "129": "Thornback Wyvern", "130": "Lionmark Knight", "131": "Starhat Sorceress", "132": "Half-Light Sovereign", "133": "Gildplate Paladin", "134": "Hoodwhisper Rogue", "135": "Ironbraid Dwarf", "136": "Thornwreath Druid", "137": "Scarbrow Ranger", "138": "Blanksun Monolith", "139": "Obsidian Monolith"});
-Object.assign(NAMEOVR,{"140": "Emberhair", "141": "Stormstreak", "142": "Mossbraid", "143": "Cyberrogue", "144": "Goldmane", "145": "Veilmask", "146": "Lilacbloom", "147": "Embermonk", "148": "Azurelock", "149": "Constellar", "150": "Hoodfur", "151": "Verdant", "152": "Marigold", "153": "Neonvolt", "154": "Snowcoat", "155": "Lilacbraid", "156": "Brassgear", "157": "Crimsonscar", "158": "Runemarked", "159": "Starcrown"});
-Object.assign(NAMEOVR,{"160": "Gunpair", "161": "Infernal", "162": "Warmaul", "163": "Bulwark", "164": "Wyrmbow", "165": "Redsteel", "166": "Scourge", "167": "Wyrmdirk", "168": "Gearmace", "169": "Arbalest", "170": "Kusari", "171": "Bolthilt", "172": "Lantern", "173": "Talons", "174": "Halowrap", "175": "Hellhorn", "176": "Pinions", "177": "Regent", "178": "Clawboot", "179": "Lionarm"});
-Object.assign(NEWART,{"181": "assets/3dd6ad9704ef8784.jpg", "188": "assets/1e54f512584344fd.jpg", "180": "assets/f4938e23da4f12cc.jpg", "182": "assets/d71ae7da840423b8.jpg", "197": "assets/516c3a5a1311bde5.jpg", "196": "assets/6d74e61475870d2e.jpg", "199": "assets/2521529c07134045.jpg", "198": "assets/6500d2e22c851f10.jpg", "191": "assets/179f81952cfb16ed.jpg", "194": "assets/ea1aac29307c9479.jpg", "192": "assets/4453ae9e519f5372.jpg", "184": "assets/9349f902784c1ed9.jpg", "193": "assets/f69a91243e1130cc.jpg", "190": "assets/c020efa5de816f24.jpg", "187": "assets/d416549604dfacca.jpg", "195": "assets/30f05012157833c4.jpg", "185": "assets/a9c778384b026d89.jpg", "186": "assets/aab1d96629e7d7c2.jpg", "183": "assets/db85fd6e00e514f7.jpg", "189": "assets/6b498eca4eb64bf0.jpg"});Object.assign(NAMEOVR,{"181": "Loomseer", "188": "Gloomveil", "180": "Mapcloak", "182": "Inkwright", "197": "Glasswing", "196": "Hillgolem", "199": "Moonwyrm", "198": "Starstag", "191": "Icevault", "194": "Chainhold", "192": "Rune Rift", "184": "Windchime", "193": "Koithrone", "190": "Sandglass", "187": "Darkmask", "195": "Vinecrown", "185": "Astrolabe", "186": "Lorefall", "183": "Rustguard", "189": "Bonewhale"});
-Object.assign(NAMEOVR,{"200": "Gem Guard", "201": "Frostblade", "202": "Leaf Mage", "203": "Gearheart", "204": "Sky Sailor", "205": "Cloud Monk", "206": "Spore Elf", "207": "Dune Rider", "208": "Alchemist", "209": "Ramen Punk", "210": "Treescribe", "211": "Rust Pilot", "212": "Helmsman", "213": "Ghost Rail", "214": "Dusk Scout", "215": "Scroll Cat", "216": "Gold Drake", "217": "Stargazer", "218": "Lone Rover", "219": "Deep Diver"});
-CARDS.forEach(c=>{if(NAMEOVR[c.id])c.n=NAMEOVR[c.id]});
-const VOV={"16":[5,5,8,4],"21":[6,2,3,1],"24":[4,4,4,8],"25":[7,9,6,5],"36":[6,5,9,6],"37":[8,3,2,8],"46":[3,7,2,5],"53":[9,4,7,7],"64":[4,2,2,7],"83":[8,3,7,9],"84":[9,4,9,3],"101":[9,8,5,3],"105":[8,3,6,5],"107":[9,5,6,6],"114":[6,2,2,2],"125":[2,2,2,6],"141":[6,6,6,9],"143":[4,7,3,3],"145":[5,4,4,8],"147":[9,6,5,5],"153":[4,6,8,4],"166":[4,8,4,5],"178":[4,8,4,6],"183":[7,3,3,4],"208":[4,8,4,5],"213":[5,7,9,5],"230":[4,4,4,8],"271":[4,3,7,3],"275":[5,6,7,9],"278":[4,8,4,9],"288":[8,3,5,6],"292":[9,5,6,5],"299":[6,5,5,9],"300":[4,8,3,7],"307":[4,5,8,4],"309":[9,5,4,9],"314":[6,4,3,8],"328":[8,5,4,5],"329":[5,4,4,8],"333":[4,6,4,8],"346":[6,5,9,6],"358":[6,9,5,5],"371":[3,4,8,6],"380":[3,2,7,8],"409":[6,9,5,7],"428":[9,6,6,6],"439":[5,7,9,6],"454":[5,7,9,5],"458":[5,6,9,5],"459":[5,7,9,4],"465":[4,6,4,8],"471":[6,6,6,9],"477":[2,3,1,6],"479":[4,7,4,2],"483":[7,8,4,3],"485":[4,2,2,7],"522":[4,8,3,6],"535":[5,8,4,4],"537":[4,5,8,3],"542":[4,6,8,4],"156":[5,10,8,9],"279":[8,9,6,9],"534":[10,8,9,5]};CARDS.forEach(c=>{if(VOV[c.id])c.v=VOV[c.id]});
+Object.assign(NEWART,{"181": "assets/3dd6ad9704ef8784.jpg", "188": "assets/1e54f512584344fd.jpg", "180": "assets/f4938e23da4f12cc.jpg", "182": "assets/d71ae7da840423b8.jpg", "197": "assets/516c3a5a1311bde5.jpg", "196": "assets/6d74e61475870d2e.jpg", "199": "assets/2521529c07134045.jpg", "198": "assets/6500d2e22c851f10.jpg", "191": "assets/179f81952cfb16ed.jpg", "194": "assets/ea1aac29307c9479.jpg", "192": "assets/4453ae9e519f5372.jpg", "184": "assets/9349f902784c1ed9.jpg", "193": "assets/f69a91243e1130cc.jpg", "190": "assets/c020efa5de816f24.jpg", "187": "assets/d416549604dfacca.jpg", "195": "assets/30f05012157833c4.jpg", "185": "assets/a9c778384b026d89.jpg", "186": "assets/aab1d96629e7d7c2.jpg", "183": "assets/db85fd6e00e514f7.jpg", "189": "assets/6b498eca4eb64bf0.jpg"});
+
 
 const COLN=["Dawnveil", "Ashcrown", "Hollowmere", "Duskreach", "Starfall", "Emberhold", "Neonspire", "Mirrorlands", "Lanternvale", "Tidemoor", "Ebbtide", "Sunscar", "Glasshaven", "Moonwarren", "Nightroad", "Ashen Throne", "Gallowmarch", "Soulforge", "Cadet Order", "Rift Duel", "Little Quest", "Wanderers", "Thornwild", "Brinehollow", "Ironcrag", "Gloamwood", "Ruinspire", "Ghostmarsh"];
 (()=>{let k=0;for(let i=0;i<28;i++){const sz=i<17?20:19;for(let j=0;j<sz&&k<CARDS.length;j++)CARDS[k++].g=COLN[i]}GAMES.length=0;COLN.forEach(x=>GAMES.push(x))})();
-const gl=g=>REALM[g]||g;
+
 const AC={};
-const SPECIAL={Braska:`<svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="80" height="100" fill="#0e2a4a"/><circle cx="40" cy="42" r="36" fill="#1d6fa5" opacity=".55"/><circle cx="40" cy="42" r="26" fill="none" stroke="#7fe3ff" stroke-width=".8" opacity=".6"/><circle cx="40" cy="42" r="31" fill="none" stroke="#7fe3ff" stroke-width=".5" stroke-dasharray="2 3" opacity=".6"/><g fill="#bff6ff"><circle cx="12" cy="20" r="1.4"/><circle cx="18" cy="34" r=".9"/><circle cx="70" cy="46" r="1.3"/><circle cx="58" cy="12" r="1"/><circle cx="8" cy="58" r="1"/><circle cx="74" cy="70" r="1.2"/></g><path d="M63 24L66 96" stroke="#d9b45a" stroke-width="2"/><circle cx="63" cy="22" r="5" fill="none" stroke="#f3d27a" stroke-width="1.6"/><circle cx="63" cy="22" r="1.8" fill="#7fe3ff"/><path d="M10 100Q14 62 40 58Q66 62 70 100Z" fill="#23407a"/><path d="M32 60L40 100L48 60Z" fill="#f1e6c8"/><path d="M32 60L40 100L48 60M10 100Q14 62 40 58Q66 62 70 100" fill="none" stroke="#d9b45a" stroke-width="1.5"/><path d="M22 64Q40 54 58 64L54 72Q40 64 26 72Z" fill="#c9a24a"/><rect x="35" y="48" width="10" height="12" fill="#d9a679"/><circle cx="40" cy="40" r="12" fill="#d9a679"/><path d="M27 40Q26 24 40 24Q54 24 53 40Q49 31 40 31Q31 31 27 40Z" fill="#2a1d17"/><path d="M28 33Q40 27 52 33" stroke="#f3d27a" stroke-width="1.6" fill="none"/><circle cx="35" cy="40" r="1.3" fill="#111"/><circle cx="45" cy="40" r="1.3" fill="#111"/><path d="M32 37L38 36.5M42 36.5L48 37" stroke="#2a1d17" stroke-width="1"/><path d="M29 42Q30 56 40 58Q50 56 51 42Q47 49 40 49Q33 49 29 42Z" fill="#2a1d17"/></svg>`};
-const IMG={'Moogle':'assets/a084dbe61879c7e8.jpg','Monk':'assets/a30573b003402e7d.jpg','Sorcerer':'assets/067f83d61f220a9a.jpg','Samurai':'assets/7d885e83d59d139b.jpg','Ardyn':'assets/b21a18d9449c192a.jpg','Dragoon':'assets/f02373a4bc8c2d4a.jpg','Dark Knight':'assets/60893f074f231ca4.jpg','Paladin':'assets/01a94777bc7b6c69.jpg',Vaan:'assets/c1e3f3d957530577.jpg',Ashe:'assets/4b31549777192844.jpg',Tidus:'assets/bce13e3a1955a5b9.jpg',Yuna:'assets/96923b23b4eb00ec.jpg',Lightning:'assets/bb98507f3e189f44.jpg',Noctis:'assets/33665d7af837e382.jpg'};
+const SPECIAL={255:`<svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="80" height="100" fill="#0e2a4a"/><circle cx="40" cy="42" r="36" fill="#1d6fa5" opacity=".55"/><circle cx="40" cy="42" r="26" fill="none" stroke="#7fe3ff" stroke-width=".8" opacity=".6"/><circle cx="40" cy="42" r="31" fill="none" stroke="#7fe3ff" stroke-width=".5" stroke-dasharray="2 3" opacity=".6"/><g fill="#bff6ff"><circle cx="12" cy="20" r="1.4"/><circle cx="18" cy="34" r=".9"/><circle cx="70" cy="46" r="1.3"/><circle cx="58" cy="12" r="1"/><circle cx="8" cy="58" r="1"/><circle cx="74" cy="70" r="1.2"/></g><path d="M63 24L66 96" stroke="#d9b45a" stroke-width="2"/><circle cx="63" cy="22" r="5" fill="none" stroke="#f3d27a" stroke-width="1.6"/><circle cx="63" cy="22" r="1.8" fill="#7fe3ff"/><path d="M10 100Q14 62 40 58Q66 62 70 100Z" fill="#23407a"/><path d="M32 60L40 100L48 60Z" fill="#f1e6c8"/><path d="M32 60L40 100L48 60M10 100Q14 62 40 58Q66 62 70 100" fill="none" stroke="#d9b45a" stroke-width="1.5"/><path d="M22 64Q40 54 58 64L54 72Q40 64 26 72Z" fill="#c9a24a"/><rect x="35" y="48" width="10" height="12" fill="#d9a679"/><circle cx="40" cy="40" r="12" fill="#d9a679"/><path d="M27 40Q26 24 40 24Q54 24 53 40Q49 31 40 31Q31 31 27 40Z" fill="#2a1d17"/><path d="M28 33Q40 27 52 33" stroke="#f3d27a" stroke-width="1.6" fill="none"/><circle cx="35" cy="40" r="1.3" fill="#111"/><circle cx="45" cy="40" r="1.3" fill="#111"/><path d="M32 37L38 36.5M42 36.5L48 37" stroke="#2a1d17" stroke-width="1"/><path d="M29 42Q30 56 40 58Q50 56 51 42Q47 49 40 49Q33 49 29 42Z" fill="#2a1d17"/></svg>`};
+const IMG={246:'assets/bce13e3a1955a5b9.jpg',247:'assets/96923b23b4eb00ec.jpg',292:'assets/c1e3f3d957530577.jpg',293:'assets/4b31549777192844.jpg',322:'assets/bb98507f3e189f44.jpg',371:'assets/33665d7af837e382.jpg',376:'assets/b21a18d9449c192a.jpg',473:'assets/a30573b003402e7d.jpg',475:'assets/f02373a4bc8c2d4a.jpg',477:'assets/7d885e83d59d139b.jpg',479:'assets/01a94777bc7b6c69.jpg',488:'assets/60893f074f231ca4.jpg',490:'assets/a084dbe61879c7e8.jpg',519:'assets/067f83d61f220a9a.jpg'};
 Object.assign(NEWART,{"200": "assets/e2ec94e503e8c690.jpg", "201": "assets/f2ca0440e4e0ce10.jpg", "202": "assets/4cb1d4d459f9cb86.jpg", "203": "assets/e49bfb6cb93ef6a1.jpg", "204": "assets/2e941aaf925eda0f.jpg", "205": "assets/355ce81d70ccfbf2.jpg", "206": "assets/859cf9658f859b41.jpg", "207": "assets/018128eff09ed016.jpg", "208": "assets/ad3ff7b4edaf1ef9.jpg", "209": "assets/99d285204850dfa2.jpg", "210": "assets/2625a1096e0bfbe1.jpg", "211": "assets/2f59195d2670a06f.jpg", "212": "assets/710945c4533a7a9a.jpg", "213": "assets/4a52507455d60b0c.jpg", "214": "assets/3793d231d5c9128d.jpg", "215": "assets/69ec3e46b734b295.jpg", "216": "assets/883d18f3ef37ed2e.jpg", "217": "assets/8204198e400ab437.jpg", "218": "assets/678bd85bfd2509c3.jpg", "219": "assets/83a453a17563bc93.jpg"});
-function art(c){if(AC[c.id])return AC[c.id];if(NEWART[c.id])return AC[c.id]=`<img src="${NEWART[c.id]}" loading="lazy" decoding="async" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`;if(IMG[c.o])return AC[c.id]=`<img src="${IMG[c.o]}" loading="lazy" decoding="async" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`;if(SPECIAL[c.o])return AC[c.id]=SPECIAL[c.o];const r=rng(hash(c.o+c.og)),h=(c.gi*29+r()*40)%360,P=(a,l)=>`hsl(${(h+a)%360} 60% ${l}%)`;
+function art(c){if(AC[c.id])return AC[c.id];if(NEWART[c.id])return AC[c.id]=`<img src="${NEWART[c.id]}" loading="lazy" decoding="async" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`;if(IMG[c.id])return AC[c.id]=`<img src="${IMG[c.id]}" loading="lazy" decoding="async" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`;if(SPECIAL[c.id])return AC[c.id]=SPECIAL[c.id];const r=rng(hash(String(c.id))),h=(COLN.indexOf(c.g)*29+r()*40)%360,P=(a,l)=>`hsl(${(h+a)%360} 60% ${l}%)`;
 let s=`<svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="80" height="100" fill="${P(0,16)}"/><circle cx="40" cy="45" r="${30+r()*10|0}" fill="${P(40,30)}" opacity=".7"/>`;
 for(let i=0;i<7;i++)s+=`<circle cx="${r()*80|0}" cy="${r()*50|0}" r="${.5+r()*1.2}" fill="#fff" opacity=".7"/>`;
 if(c.t==='c'){const sk=`hsl(${20+r()*20|0} 55% ${60+r()*15|0}%)`,hr=P(180+r()*60|0,25+r()*30|0),k=r();
@@ -553,48 +1067,47 @@ else{let p='';const n=5+(r()*4|0);for(let i=0;i<n*2;i++){const a=Math.PI*i/n-1.5
 s+=`<circle cx="40" cy="48" r="34" fill="none" stroke="${P(60,70)}" stroke-width="1.5"/><polygon points="${p}" fill="${P(90,55)}" stroke="#fff" stroke-width="1"/><circle cx="40" cy="48" r="6" fill="#fff" opacity=".9"/>`}
 return AC[c.id]=s+'</svg>'}
 const TUT='Quill';
-const NR=`Quill|Series|0|Welcome! I’m Quill. Let’s get your hands on the cards.
-Wildborn Rog|Series|1|RIVAL! There you are! I’ve been warming up for this all day!
-Cinder Wisp|Series|1|Hold on, I’m fixing the airship.
-Tobin Ridgerunner|XII|1|Ready when you are!
-The Orions|V|1|Two of us, one hand. Shall we?
-Onion Knight|III|1|Small, but I’ve got heart.
-Firion|II|1|Rebellion starts at the table.
-Captain Basch|XII|1|Line up. We fight by the book.
-Rydia|IV|2|I’ll call on a little help.
-Tidus|X|2|Let’s play!
-Dummy|IX|2|Nice cards. Mind if I borrow a few?
-Yuna|X|2|I’ll do my best.
-Terra|VI|2|I’m still learning this game.
-Cecil|IV|2|I will not hold back.
-Vivi|IX|2|Um, I hope I don’t lose…
-Tifa|VII|2|Don’t go easy on me.
-Rinoa|VIII|2|Let’s see who’s luckier.
-Warden Ramza|Tactics|2|Hold the line, soldier.
-Cloud|VII|3|Not interested. But fine.
-Squall|VIII|3|...Whatever.
-Lightning|XIII|3|Make your move.
-Noctis|XV|3|Let’s get this over with.
-Clive|XVI|3|I’ve faced worse odds.
-Gilgamesh|V|3|Behold, my collection!
-Balthier|XII|3|Care to wager, then?
-Auron|X|3|Show me what you’ve got.
-General Zack|VII|3|Victory belongs to the disciplined.
-Golbez|IV|4|You cannot win.
-Kefka|VI|4|Hahaha! Your cards will be my toys!
-Kuja|IX|4|Let’s see if you can match true beauty.
-Ardyn|XV|4|Shall we begin the play?
-Exdeath|V|4|Your cards will vanish into the void.
-Garland|I|4|I’ll knock you down and take your cards.
-Marshal Gladiolus|XV|4|Your cards will be my battlefield.
-Emperor Mateus|II|5|Kneel before the Emperor.
-Cloud of Darkness|III|5|Darkness takes all.
-Zeromus|IV|5|Hatred will end you.
-Sin|X|5|...
-Ultimecia|VIII|5|Time itself bends to my hand.
-Sephiroth|VII|5|Place your cards. Despair is certain.
-Warmaster Seymour|X|5|Every card is a soldier. Every soldier falls.`;
-function fac(g,n,t){const q=rng(hash(g+n+'f'))();return t==='s'?'Phantom':t==='m'?(q<.6?'Court':''):q<.25?'Order':q<.4?'Dominion':''}
+const NR=`Quill|Wanderers|0|Welcome! I’m Quill. Let’s get your hands on the cards.
+Wildborn Rog|Wanderers|1|RIVAL! There you are! I’ve been warming up for this all day!
+Cinder Wisp|Wanderers|1|Hold on, I’m fixing the airship.
+Tobin Ridgerunner|Sunscar|1|Ready when you are!
+The Orions|Starfall|1|Two of us, one hand. Shall we?
+Onion Knight|Hollowmere|1|Small, but I’ve got heart.
+Firion|Ashcrown|1|Rebellion starts at the table.
+Captain Basch|Sunscar|1|Line up. We fight by the book.
+Rydia|Duskreach|2|I’ll call on a little help.
+Tidus|Tidemoor|2|Let’s play!
+Dummy|Lanternvale|2|Nice cards. Mind if I borrow a few?
+Yuna|Tidemoor|2|I’ll do my best.
+Terra|Emberhold|2|I’m still learning this game.
+Cecil|Duskreach|2|I will not hold back.
+Vivi|Lanternvale|2|Um, I hope I don’t lose…
+Tifa|Neonspire|2|Don’t go easy on me.
+Rinoa|Mirrorlands|2|Let’s see who’s luckier.
+Warden Ramza|Gallowmarch|2|Hold the line, soldier.
+Cloud|Neonspire|3|Not interested. But fine.
+Squall|Mirrorlands|3|...Whatever.
+Lightning|Glasshaven|3|Make your move.
+Noctis|Nightroad|3|Let’s get this over with.
+Clive|Ashen Throne|3|I’ve faced worse odds.
+Gilgamesh|Starfall|3|Behold, my collection!
+Balthier|Sunscar|3|Care to wager, then?
+Auron|Tidemoor|3|Show me what you’ve got.
+General Zack|Neonspire|3|Victory belongs to the disciplined.
+Golbez|Duskreach|4|You cannot win.
+Kefka|Emberhold|4|Hahaha! Your cards will be my toys!
+Kuja|Lanternvale|4|Let’s see if you can match true beauty.
+Ardyn|Nightroad|4|Shall we begin the play?
+Exdeath|Starfall|4|Your cards will vanish into the void.
+Garland|Dawnveil|4|I’ll knock you down and take your cards.
+Marshal Gladiolus|Nightroad|4|Your cards will be my battlefield.
+Emperor Mateus|Ashcrown|5|Kneel before the Emperor.
+Cloud of Darkness|Hollowmere|5|Darkness takes all.
+Zeromus|Duskreach|5|Hatred will end you.
+Sin|Tidemoor|5|...
+Ultimecia|Mirrorlands|5|Time itself bends to my hand.
+Sephiroth|Neonspire|5|Place your cards. Despair is certain.
+Warmaster Seymour|Tidemoor|5|Every card is a soldier. Every soldier falls.`;
 const FL={Phantom:'Ph',Court:'Ct',Order:'Or',Dominion:'Dm'},FC={Phantom:'#b36be0',Court:'#4aa56a',Order:'#4f86ff',Dominion:'#c13a4b'};
 const RULES=['Three Open','All Open','Sudden Death','Order','Chaos','Reverse','Ascension','Descension','Swap','Roulette','Draft','Pierce'];
 const RD={'All Open':'Both decks are fully visible.','Three Open':'Three random cards from each deck are visible.','Pierce':'When two touching sides add up to 10 or more, the loser of that clash also deals the same damage to each card on its own team touching it.','Sudden Death':'A draw restarts the match with the cards each side controls, up to five times.','Order':'You must play your cards in deck order.','Chaos':'The card you must play is picked at random each turn.','Reverse':'In a clash, the lower number wins and the higher card takes the damage.','Ascension':'Placing a faction card raises every card of that faction by 1 (max A), including cards still in hand.','Descension':'Placing a faction card lowers every card of that faction by 1 (min 1), including cards still in hand.','Swap':'One random card from each deck is swapped for the match.','Roulette':'Replaced by a random rule when the match starts.','Draft':'You build a ten-card deck from offered cards, two of each rarity.'};
@@ -641,7 +1154,7 @@ const LX={'Cinder Wisp':{again:['You came back! Nobody ever comes back to me.','
 function lineX(G){const X=LX[S.opp.n];if(!X||G.mode||!X.ahead||Math.random()>.22)return;const d=scr(G,'o')-scr(G,'p');if(d>=15)G.say=pk(X.ahead);else if(d<=-15)G.say=pk(X.behind)}
 function itemX(G,w){const X=LX[S.opp.n],k=w==='o'?'item':'pitem';if(X&&!G.mode&&X[k]&&Math.random()<.6)G.say=pk(X[k])}
 const WB=['Captain Basch','Warden Ramza','General Zack','Marshal Gladiolus','Warmaster Seymour'];
-const NPCS=NR.split('\n').map(l=>{const[n,g,d,q]=l.split('|'),D=+d,r=rng(hash(n)),lo=[0,1,2,3,3,4][D],hi=[0,2,3,4,5,5][D],pool=CARDS.filter(c=>c.lv>=lo&&c.lv<=hi),own=sh(pool.filter(c=>c.og===g),r),rest=sh(pool.filter(c=>c.og!==g),r);let deck=[...own.slice(0,8),...rest].slice(0,15);const sg=CARDS.find(c=>c.n===n);if(sg&&!deck.includes(sg))deck[0]=sg;
+const NPCS=NR.split('\n').map(l=>{const[n,g,d,q]=l.split('|'),D=+d,r=rng(hash(n)),lo=[0,1,2,3,3,4][D],hi=[0,2,3,4,5,5][D],pool=CARDS.filter(c=>c.lv>=lo&&c.lv<=hi),own=sh(pool.filter(c=>c.g===g),r),rest=sh(pool.filter(c=>c.g!==g),r);let deck=[...own.slice(0,8),...rest].slice(0,15);const sg=CARDS.find(c=>c.n===n);if(sg&&!deck.includes(sg))deck[0]=sg;
 return{n,g,d:D,q,l:LN[n]||GEN,ai:D<2?(['Onion Knight','Firion','Captain Basch'].includes(n)?1:0):D<3?1:2,deck,rules:sh(RP[D<2?0:D<3?1:2],r).slice(0,D<2?1:D<3?1+(r()<.5?1:0):2),imm:D===5,wb:WB.includes(n),cm:D>=2?['ifrit','choco','mist','switchback','mirror','encore','rally','tremor'][Math.abs(hash(n))%8]:null}});
 const KEY='ff3t_v3',PK='ff3t_prog';let coll={},S={screen:'title',opp:null,pick:[],G:null,res:null,filter:'Owned',msg:'',hall:[]};
 try{coll=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
@@ -661,7 +1174,7 @@ const BLINE={hello:'Psst. Gloamwood and Ruinspire finds, straight off the road.'
 function brokerSheet(){const B=P.bro,left=B.left,mood=B.mood||'hello',sold=B.stock.every(x=>x==null),bt=S.bTab||'cards';
 const tiles=B.stock.map((id,i)=>{if(id==null)return '<div class="bcell"><div class="bsold">Sold</div></div>';const c=CARDS[id],pr=brokerPrice(c),can=P.gil>=pr;return `<div class="bcell">${cardH(c,'p','',can?`onclick="buyBroker(${i})"`:'')}<button class="sbtn ${can?'pri':''} bbuy" ${can?'':'disabled'} onclick="buyBroker(${i})">${COINB}${pr}</button></div>`}).join('');
 return `<div class="sheet-bg" onclick="S.broker=0;render()"></div><div class="sheet bsheet" role="dialog" aria-label="Traveling broker"><div class="grab"></div><section class="keeper"><div class="kface"><img alt="" src="${BKEEP[sold?'think':mood]}"></div><div class="kbub"><b>Traveling broker</b><p>${sold?BLINE.gone:BLINE[mood]}</p></div></section><div class="seg" role="tablist"><button role="tab" class="${bt==='cards'?'on':''}" onclick="S.bTab='cards';render()">Cards</button><button role="tab" class="${bt==='cos'?'on':''}" onclick="S.bTab='cos';render()">Cosmetics</button></div>${bt==='cos'?'<div class="bsoon"><b>Cosmetics</b><p class="sub">Coming soon. Mats and other cosmetics will be sold here.</p></div>':`<p class="sub">${BROKER_ALWAYS?'Stays on the map while testing.':`Leaves after ${left} more ${left===1?'match':'matches'}.`} Gloamwood and Ruinspire only.</p><div class="bgrid">${tiles}</div>`}</div>`}
-function topUp(){if(!P.st){P.st=1;const w=CARDS.find(c=>c.o==='Warrior of Light');if(w)delete coll[w.id];P.wol=1;save()}if(!P.fx){P.fx=1;delete coll[CARDS.find(c=>c.o==='Kefka').id];delete coll[CARDS.find(c=>c.o==='Tifa').id]}while(Object.keys(coll).length<10){const c=shuf(CARDS.filter(c=>c.lv<=2&&!coll[c.id]&&!isBro(c)))[0];coll[c.id]=1}if(P.gil<10)P.gil=10;save()}
+function topUp(){if(!P.st){P.st=1;const w=CARDS[0];if(w)delete coll[w.id];P.wol=1;save()}if(!P.fx){P.fx=1;delete coll[132];delete coll[148]}while(Object.keys(coll).length<10){const c=shuf(CARDS.filter(c=>c.lv<=2&&!coll[c.id]&&!isBro(c)))[0];coll[c.id]=1}if(P.gil<10)P.gil=10;save()}
 
 topUp();
 const rankOf=xp=>1+Math.floor(Math.sqrt(xp/40)),rankXp=r=>40*(r-1)*(r-1);
@@ -670,7 +1183,7 @@ if(P.gate==null){let g=1;for(let d=2;d<=5;d++){if(NPCS.filter(n=>n.d===d-1&&P.be
 function bar(){const r=rankOf(P.xp),a=rankXp(r),b=rankXp(r+1),p=Math.round((P.xp-a)/(b-a)*100);return `<div style='margin:10px 0'><div style='display:flex;justify-content:space-between'><b>Rank ${r}</b><span>${P.gil} MGP</span></div><div style='height:8px;border-radius:4px;background:var(--line);margin:6px 0 2px;overflow:hidden'><div style='width:${p}%;height:100%;background:var(--gold)'></div></div><div class='sub'>${P.xp-a} / ${b-a} XP to rank ${r+1}</div></div>`}
 const A=v=>v===10?'A':v,LC=['','#8b93a8','#4aa56a','#4f86ff','#b36be0','#e3b84f'];
 function cardH(c,o,x='',click='',cnt=''){if(x.includes('back'))return`<div class="card ${o} back" style="--lc:#555"></div>`;const bv=CARDS[c.id].v,nv=(i,k)=>`<b class="${k}"${c.v[i]!==bv[i]?` style="color:${c.v[i]>bv[i]?'#7dff9a':'#ff8a8a'}"`:''}>${A(c.v[i])}</b>`;
-return`<div class="card ${o} ${x} r${c.lv}" style="--lc:${LC[c.lv]}" ${click?click+' tabindex="0" role="button"':''} aria-label="${c.n}, ${c.v.join(' ')}">${art(c)}${nv(0,'t')}${nv(1,'r')}${nv(2,'bt')}${nv(3,'l')}${c.f?`<i class="fc" style="background:${FC[c.f]}">${FL[c.f]}</i>`:''}${c.mhp?`<i class="hp${c.hp<c.mhp?' lo':''}">${c.hp??c.mhp}/${c.mhp}</i>`:''}${c.sm?SMK:''}${cnt}<span class="nm">${c.n}<span class="gm">${gl(c.g)} · ${'★'.repeat(c.lv)}</span></span></div>`}
+return`<div class="card ${o} ${x} r${c.lv}" style="--lc:${LC[c.lv]}" ${click?click+' tabindex="0" role="button"':''} aria-label="${c.n}, ${c.v.join(' ')}">${art(c)}${nv(0,'t')}${nv(1,'r')}${nv(2,'bt')}${nv(3,'l')}${c.f?`<i class="fc" style="background:${FC[c.f]}">${FL[c.f]}</i>`:''}${c.mhp?`<i class="hp${c.hp<c.mhp?' lo':''}">${c.hp??c.mhp}/${c.mhp}</i>`:''}${c.sm?SMK:''}${cnt}<span class="nm">${c.n}<span class="gm">${c.g} · ${'★'.repeat(c.lv)}</span></span></div>`}
 const owned=()=>Object.keys(coll).map(Number).sort((a,b)=>CARDS[b].lv-CARDS[a].lv||sum(CARDS[b])-sum(CARDS[a]));
 function regional(){const r=rng(hash('reg'+Math.floor((P.mc||0)/7)));return sh(REG,r).slice(0,1+(r()<.5?1:0))}
 const matchRules=n=>n.custom||n.wb?n.rules:[...new Set([...n.rules,...(n.imm?[]:regional())])].slice(0,4);
@@ -722,7 +1235,7 @@ const COIN='<svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx=
 const CHEV='<svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const tab=['coll','cos'].includes(S.shopTab)?S.shopTab:'packs',f=S.filter||'Owned',own=Object.keys(coll).length,list=f==='Owned'?owned():CARDS.filter(c=>c.g===f).map(c=>c.id);
 const kv=keeperGet(changed,tab);
-const collH=`<section class="hero"><h2>Collection</h2><p>${own} of ${CARDS.length} cards collected.</p></section><div class="ubar" style="margin:4px 0 12px"><div style="width:${Math.round(100*own/CARDS.length)}%"></div></div><button class="grow" onclick="S.cfSheet=1;render()"><span>Show</span><span class="gv">${f==='Owned'?'Owned cards':gl(f)}${CHEV}</span></button>${sp?`<button class="sbtn sec wide" onclick="sellSpares()">Sell spare copies · +${sp} MGP</button>`:''}${setBox(f)}<div class="grid g4">${list.map(id=>{const c=CARDS[id];return coll[id]?cardH(c,'','','',coll[id]>1?`<span class="cnt">×${coll[id]}</span>`:''):cardH(c,'','off')}).join('')}</div>`;
+const collH=`<section class="hero"><h2>Collection</h2><p>${own} of ${CARDS.length} cards collected.</p></section><div class="ubar" style="margin:4px 0 12px"><div style="width:${Math.round(100*own/CARDS.length)}%"></div></div><button class="grow" onclick="S.cfSheet=1;render()"><span>Show</span><span class="gv">${f==='Owned'?'Owned cards':f}${CHEV}</span></button>${sp?`<button class="sbtn sec wide" onclick="sellSpares()">Sell spare copies · +${sp} MGP</button>`:''}${setBox(f)}<div class="grid g4">${list.map(id=>{const c=CARDS[id];return coll[id]?cardH(c,'','','',coll[id]>1?`<span class="cnt">×${coll[id]}</span>`:''):cardH(c,'','off')}).join('')}</div>`;
 const tile=(t,d,price,can,on,img)=>`<button class="ptile${can?'':' off'}" ${can?'':'disabled'} onclick="${on}"><span class="pimg"><img alt="" src="assets/${img||'6936379bb5a92c3b.png'}"></span><span class="pinfo"><b>${t}</b><small>${d}</small></span><span class="pprice">${COIN}${price}</span></button>`;
 const cosTile=(k,n,sw)=>{const own=k==null||P.mats.includes(k),eq=(P.mat||null)===k,price=(MATS.find(m=>m.k===k)||{}).p,can=own||P.gil>=price,tag=eq?'<span class="tg gold">Equipped</span>':own&&k!=null?'<span class="tg own">Owned</span>':'';
 return `<button class="cost${eq?' eq':''}${can?'':' off'}" ${can?'':'disabled'} onclick="${own?`equipMat(${k==null?'null':"'"+k+"'"})`:`buyMat('${k}')`}">${tag}<div class="cw"><div class="sw ${sw}"></div>${own?'':`<span class="pr">${COIN}${price}</span>`}</div><div class="lb">${n}</div></button>`};
@@ -734,7 +1247,7 @@ a.innerHTML=`<header class="stop"><b>Shop</b><span class="bal">${COIN}${P.gil}</
 ${bar()}
 <div class="shelf">${tile('Standard pack','One card from any game',PRICE.std,P.gil>=PRICE.std,'buy()')}${sk?tile('Seeker pack',`A card you don't own yet (${sk} left)`,PRICE.seek,P.gil>=PRICE.seek,'buy(1)','027d77f95709ef5b.jpg'):`<button class="ptile off" onclick="toast(seekMsg())"><span class="pimg"><img alt="" src="assets/027d77f95709ef5b.jpg"></span><span class="pinfo"><b>Seeker pack</b><small>${seekMsg()}</small></span><span class="pprice">${COIN}${PRICE.seek}</span></button>`}${HEAVY.map((h,i)=>tile(h+'-heavy pack',`Standard pack, 50% more likely to favor the ${h.toLowerCase()} side`,PRICE.heavy,P.gil>=PRICE.heavy,`buy(0,${i})`)).join('')}</div>
 ${sp?`<button class="sbtn sec wide" onclick="sellSpares()">Sell spare copies · +${sp} MGP</button>`:''}`}</div>
-${S.cfSheet?`<div class="sheet-bg" onclick="S.cfSheet=0;render()"></div><div class="sheet" role="dialog" aria-label="Filter collection"><div class="grab"></div><h3>Show cards from</h3><div class="glist">${['Owned',...GAMES].map((g,k)=>`<button class="gitem${g===f?' on':''}" onclick="S.filter=['Owned',...GAMES][${k}];S.cfSheet=0;render()"><span>${g==='Owned'?'Owned cards':gl(g)}</span>${g===f?'<span class="tick">✓</span>':''}</button>`).join('')}</div></div>`:''}`
+${S.cfSheet?`<div class="sheet-bg" onclick="S.cfSheet=0;render()"></div><div class="sheet" role="dialog" aria-label="Filter collection"><div class="grab"></div><h3>Show cards from</h3><div class="glist">${['Owned',...GAMES].map((g,k)=>`<button class="gitem${g===f?' on':''}" onclick="S.filter=['Owned',...GAMES][${k}];S.cfSheet=0;render()"><span>${g==='Owned'?'Owned cards':g}</span>${g===f?'<span class="tick">✓</span>':''}</button>`).join('')}</div></div>`:''}`
 if(S.pack)a.insertAdjacentHTML('beforeend',`<div class="ov"><div class="box pkbox"><div class="pkstage r${S.pack.lv}" style="--lc:${LC[S.pack.lv]}"><div class="pkray"></div>${S.pack.lv>=4?'<div class="pkring"></div>':''}<img class="pkseal" alt="" src="assets/6936379bb5a92c3b.png"><div class="pkc">${cardH(S.pack,'p')}</div></div><h2 class="pkh">${S.pack.lv>=5?'Legendary pull!':S.pack.lv===4?'Rare pull!':'You got a card'}</h2><p class="sub">${S.packDup?'Duplicate: +'+S.packDup+' MGP':'Added to your collection.'}</p><div class="row"><button onclick="S.pack=null;render()">Close</button></div></div></div>`)}
 else if(sc==='draft'){const D=S.dr;a.innerHTML=`<h2>Draft: pick ${D.step+1} of 10</h2><p class="sub">Choose one ${'★'.repeat(Math.min(5,1+(D.step>>1)))} card for your deck.</p><div class="grid g3">${D.opts.map((c,i)=>cardH(c,'p','',`onclick="draftPick(${i})"`)).join('')}</div>`}
 else if(sc==='deck'){const n=S.opp,R=matchRules(n);
@@ -797,7 +1310,7 @@ if(NPCS.filter(x=>x.d===d).every(x=>P.beat.includes(x.n))){const pool=CARDS.filt
 function mgBonus(G,k){const M=G.mg||{fx:0,clr:0,beh:0,n:0};return M.fx*5+M.clr*20+(k==='win'&&M.n&&M.beh/M.n>=.75?50:0)}
 function reward(r,n,G){brokerTick();const cap=G.mode==='dom'?Math.min(G.grave.o.length,Math.floor(G.dom.p/8)):G.grave.o.length,k=r.k,d=n.custom?1:n.d,rem=k==='win'&&!n.custom&&P.beat.includes(n.n),xp=n.n===TUT?0:k==='win'?30+15*d+5*cap:k==='draw'?15+5*d:10,rog=k!=='win'&&n.n==='Wildborn Rog'&&!n.custom&&!P.beat.includes(n.n),base=n.n===TUT?0:(n.custom?20:k==='win'||rog?60+40*d:10)+mgBonus(G,k),gil=rem?Math.round(base*REMATCH):base,b=rankOf(P.xp);r.xp0=P.xp;r.gil0=P.gil;r.xp=xp;r.gil=gil;r.b=b;P.xp+=xp;P.gil+=gil;P.mc=(P.mc||0)+1;const a=rankOf(P.xp),up=a-b;r.a=a;r.up=up;if(up>0)P.gil+=100*up;const ex=k==='win'&&!n.custom?winExtra(d):'';if(P.sel&&!P.unl.includes(P.sel)){const d2=n.custom?1:n.d,pts=d2*10+1+Math.floor(Math.random()*3),b0=P.prog[P.sel]||0,uu=unlAt(P.sel),a0=Math.min(uu,b0+pts);P.prog[P.sel]=a0;r.pg={k:P.sel,b:b0,a:a0,pts,u:uu};if(a0>=uu){P.unl.push(P.sel);r.unl=P.sel;P.sel=unlPick(r.unl);r.nx=P.sel}}topUp();r.gil1=P.gil;r.dm=G.mode==='dom'?1:0;r.st={kills:G.mode==='dom'?G.dom.p:cap,lost:G.mode==='dom'?G.dom.o:G.grave.p.length,alive:G.mode==='dom'?((G.board.find(x=>x&&x.who==='n')||{hp:0}).hp):cnt(G,'p'),items:Object.keys(G.items.p).reduce((t,k)=>t+ITEMS[k].c-G.items.p[k],0)};r.rw=`+${xp} XP · +${gil} MGP`+(up>0?` · Rank up! Now rank ${a} (+${100*up} MGP)`:'')+(rem?` · Rematch: MGP reduced to ${Math.round(REMATCH*100)}%`:'')+(rog?' · Rog pays full MGP until you beat him':'')+ex}
 function hallToggle(r){const k=S.hall.indexOf(r);if(k>=0)S.hall.splice(k,1);else if(S.hall.length<2)S.hall.push(r);render()}
-function hallStart(){S.opp={n:'Battlehall regular',g:'Series',d:3,ai:2,custom:1,rules:[...S.hall],deck:shuf(CARDS.filter(c=>c.lv>=2&&c.lv<=4)).slice(0,15),q:'',l:GEN};S.msg='';loadDeck();startGame()}
+function hallStart(){S.opp={n:'Battlehall regular',g:'Wanderers',d:3,ai:2,custom:1,rules:[...S.hall],deck:shuf(CARDS.filter(c=>c.lv>=2&&c.lv<=4)).slice(0,15),q:'',l:GEN};S.msg='';loadDeck();startGame()}
 const okAdd=(p,id)=>{const c=CARDS[id],r4=p.filter(x=>CARDS[x].lv===4).length,f=p.filter(x=>CARDS[x].lv===5).length;return!(c.lv===5&&f>=1)&&!(c.lv===4&&r4>=2)};
 function autoPick(){const p=[];for(const id of owned().sort((a,b)=>sum(CARDS[b])-sum(CARDS[a]))){if(p.length>=10)break;if(okAdd(p,id))p.push(id)}S.pick=p}
 function togglePick(id){const k=S.pick.indexOf(id);S.msg='';if(k>=0)S.pick.splice(k,1);else if(S.pick.length<10){if(okAdd(S.pick,id))S.pick.push(id);else S.msg='Deck limit: two 4★ cards, and only one 5★.'}render()}
@@ -836,7 +1349,7 @@ return '<div class="wmscroll" onscroll="S.mapTop=this.scrollTop"><div class="wor
 const TAUNT={"Wildborn Rog":["Top of the board, top of the world. Catch me if you can!","Easy peasy! Okay, focus, focus. Let’s GO!","You and me, rival, but I’m winning this one!"],"Cinder Wisp":["Please don’t stand too close. Things get warm.","I made a little spark for you. Sorry.","The airship can wait. This can’t."],"Tobin Ridgerunner":["Mind the trail, friend. It gets steep.","I’ve walked longer roads than this table.","Take your time. I’m in no hurry."],"The Orions":["Twice the hands, half the mercy.","We’ll finish each other’s sentences. And your deck.","Don’t blink, we move as one."],"Onion Knight":["I may be small, but my cards hit big!","Watch this! I practiced all week!","Everyone starts somewhere. I start by winning."],"Firion":["Rebellion starts with one good card.","I fight for those who can’t. Not for glory.","You’ll have to go through me first."],"Captain Basch":["Discipline over flash. Every time.","I’ve held worse lines than yours.","Play it clean and I’ll respect you for it."],"Rydia":["Don’t worry, my friends are friendly. Mostly.","Something stirs behind the cards. Oh dear.","I’m gentle. My summons aren’t."],"Tidus":["Alright! Time to blitz this thing!","Don’t get cocky, I’m faster than I look!","Cards or ball, I never lose my grin."],"Dummy":["Ooh, I like that one. Can I have it?","Is that your best card? I’ll take it!","Borrowing is just winning, slowly."],"Yuna":["I’ll dance if I win. Maybe even if I lose.","Please, give it your all. So will I.","Every card has a story. Let’s write this one."],"Terra":["I’m not sure I know what I’m doing, but I’m winning!","Something warm is stirring in this deck.","I want to understand this game. So, teach me."],"Cecil":["Light or dark, I stand by my cards.","I’ve paid for my past. I won’t lose to yours.","Draw your blade, so to speak."],"Vivi":["S-sorry, was that a good move? Oops.","My spells are getting a little bigger.","I’m not scared. Okay, a little scared."],"Tifa":["Fists up. I’m not holding back.","Eyes open, don’t flinch.","I’ve won bigger fights in smaller bars."],"Rinoa":["Feeling lucky? I always do!","Let fate deal. I’ll improvise.","Don’t tell the Garden I’m playing hooky."],"Warden Ramza":["On your feet, soldier. Posture counts.","Orders are orders. Mine are to win.","This is no mere game of cards."],"Cloud":["Not interested, but I’ll play anyway.","Don’t waste my time.","I’ll finish this. Then I’m leaving."],"Squall":["...Whatever. Just play.","Don’t talk. Fight.","I’m not here to make friends."],"Lightning":["You’ve got one move. Make it count.","I don’t do speeches.","Lose and walk away. Simple."],"Noctis":["Let’s get this over with. I’ve got a road trip.","A king can lose. Not me, though.","Don’t hold me up. My crew’s waiting."],"Clive":["I’ve faced worse odds with worse cards.","Every card I play is for someone I lost.","Stay on your feet. I’ll respect that."],"Gilgamesh":["Behold! Treasures beyond your measure!","Mine is the sharper blade! And the sharper hand!","Come, come! Let me add you to the collection!"],"Balthier":["The leading man doesn’t lose, you know.","A wager? Naturally. I’m rather good at those.","Don’t worry, I’ll make it a good show."],"Auron":["Show me what you’ve got.","I’ve seen better. And worse.","Talk is cheap. Play your cards."],"General Zack":["Honor and discipline, kid. And a good draw.","My dream’s bigger than your deck.","Stand tall. That’s how it’s done."],"Golbez":["You cannot win. You can only delay.","Darkness has a long memory.","Every move you make, I’ve already planned."],"Kefka":["Hahaha! Your cards look so lonely!","Toys, toys, toys! All mine now!","Ooh, tick, tick, tick… Boom!"],"Kuja":["Admire true beauty before you lose to it.","Such a dull deck. How embarrassing.","I’ll make your defeat look elegant."],"Ardyn":["Shall we play? The curtain’s already up.","Ah, the hero arrives. How tiresome.","Every game is a play, and I wrote this one."],"Exdeath":["Your cards shall vanish into the void!","Fear the void, little one.","Power flows through me, and it hungers."],"Garland":["I’ll knock you down and take your cards!","Come and be beaten.","Weak decks fall. Strong decks fall faster."],"Marshal Gladiolus":["Brace yourself. This’ll hit hard.","I’ll hold the line, and break yours.","Come on, show me some spine."],"Emperor Mateus":["Kneel before your Emperor.","Hell welcomes its own. Do come in.","A hundred hands bow to mine."],"Cloud of Darkness":["Darkness takes all, even your hope.","You cling to light, and it fails.","Let your cards fade, one by one."],"Zeromus":["Hatred will end you, little light.","I have waited. I am very patient.","Your cards are already mine."],"Sin":["...","*a low, rumbling roar*","*the tide pulls back, and waits*"],"Ultimecia":["Time bends to my hand. Yours is already spent.","Past, present, future: all mine.","I’ve seen how this ends. It’s dull."],"Sephiroth":["Place your cards. Despair is certain.","Do you feel it? The calm before the end.","One-winged, and still above you."],"Warmaster Seymour":["Every card is a soldier. Every soldier falls.","Your march ends here, by my order.","Peace is only silence, and I’ll supply it."]};
 function taunt(n){return pk([n.q,...(TAUNT[n.n]||[])].filter(Boolean))}
 function npcSheet(i){const n=NPCS[i],open=tierOpen(n.d),won=P.beat.includes(n.n);
-return '<div class="sheet-bg" onclick="S.npc=null;render()"></div><div class="sheet" role="dialog" aria-label="Opponent"><div class="grab"></div><h3>'+(open?n.n:'???')+'</h3>'+(open?'<p class="quote">“'+(S.nqi===i?S.nq:(S.nqi=i,S.nq=taunt(n)))+'”</p>':'')+'<p class="sub">'+(open?gl(n.g):'Unknown')+' · '+'★'.repeat(n.d)+'</p><p class="sub">'+(open?'Rules: '+n.rules.join(', '):(n.d===1?'Locked: beat the Quill tutorial first':'Locked: beat all '+tierTotal(n.d-1)+' opponents rated '+(n.d-1)+' ★ ('+tierDone(n.d-1)+'/'+tierTotal(n.d-1)+')'))+'</p><p class="sub">'+(won?'Beaten':open?'Not beaten yet':'')+'</p><div class="row"><button class="pri" '+(open?'':'disabled')+' onclick="chooseNpc('+i+')">'+(won?'Challenge again':'Challenge')+'</button><button onclick="S.npc=null;render()">Close</button></div></div>'}
+return '<div class="sheet-bg" onclick="S.npc=null;render()"></div><div class="sheet" role="dialog" aria-label="Opponent"><div class="grab"></div><h3>'+(open?n.n:'???')+'</h3>'+(open?'<p class="quote">“'+(S.nqi===i?S.nq:(S.nqi=i,S.nq=taunt(n)))+'”</p>':'')+'<p class="sub">'+(open?n.g:'Unknown')+' · '+'★'.repeat(n.d)+'</p><p class="sub">'+(open?'Rules: '+n.rules.join(', '):(n.d===1?'Locked: beat the Quill tutorial first':'Locked: beat all '+tierTotal(n.d-1)+' opponents rated '+(n.d-1)+' ★ ('+tierDone(n.d-1)+'/'+tierTotal(n.d-1)+')'))+'</p><p class="sub">'+(won?'Beaten':open?'Not beaten yet':'')+'</p><div class="row"><button class="pri" '+(open?'':'disabled')+' onclick="chooseNpc('+i+')">'+(won?'Challenge again':'Challenge')+'</button><button onclick="S.npc=null;render()">Close</button></div></div>'}
 // ---- Story scenes: sprites acting on a painted background ----
 const SCENES={rog:{bg:'assets/11aaba7243823f8c.jpg',lines:[
 ['r','RIVAL! Look at us, finally on the same road! We’re going all the way to the TOP, and nothing’s getting in our way!'],
@@ -878,7 +1391,7 @@ a.el.style.filter=sp&&sp!==k?'brightness(.7)':''});
 requestAnimationFrame(loop)};
 A.p.t0=A.r.t0=T0;requestAnimationFrame(loop)}
 function chooseNpc(i){if(!tierOpen(NPCS[i].d))return;S.dq=null;S.opp=NPCS[i];S.npc=null;S.mapScrolled=0;S.msg='';loadDeck();startGame()}
-const TUT_HANDS={p:['Starline Angler','Rustguard','Scroll Cat','Frost Scarecrow','Thistlecrown Ranger','Lanternbough Archivist','Phoenixlight Rogue','Twinsword Duelist','Goldhalo Seraph','Emberhair'],o:['Runeface Sorcerer','Bridgewalk Foxling','Quillwing Courier','Skyrune Archmage','Tealglass Shade','Runemarked','Starcrown','Gunpair','Astrolabe','Lady Donna']};
+const TUT_HANDS={p:['Starline Angler','Rustguard','Scroll Cat','Frost Scarecrow','Thistlecrown Ranger','Lanternbough Archivist','Phoenixlight Rogue','Twinsword Duelist','Goldhalo Seraph','Emberhair'],o:['Runeface Sorcerer','Bridgewalk Foxling','Quillwing Courier','Skyrune Archmage','Tealglass Shade','Runemarked','Starcrown','Gunpair','Astrolabe','Lilacbloom']};
 function tutHand(w){return TUT_HANDS[w].map(n=>CARDS.find(c=>c.n===n))}
 function tutBanner(G){if(!S.opp||S.opp.n!==TUT||G.over)return'';const od=G.od.p,st=[['Place a card','Tap a card in your hand, then an empty square. Dark squares are blocked.'],['Clashes','Touching sides fight. The higher number wins and the loser loses the difference in HP. Equal numbers do nothing.'],['Health','A card at 0 HP leaves the board. Placing a card or losing one draws you a new card.'],['AP and items','You gain 1 AP each turn (1 more if you trail on points) and can bank 3: see the dots by your hand. Items cost AP, and you may use one per turn before placing. Tap the Potion button under the hands, then a damaged card, to heal it 3 HP. More items unlock later.'],[od?'Overdrive used':'Overdrive',od?'It works once per match, so it is spent. Commanders unlock later; Ifrit is lent to you here so you can see an Overdrive in action.':'Your commander Ifrit lends you an Overdrive: a free power you can use once per match. Tap Overdrive (next to your items), then any card: it takes 2 damage. Commanders unlock later; this one is lent to you so you can see it in action.'],['Finish','Score is 10 per surviving card plus its HP. Win to open the map and earn 50 MGP.']],k=Math.min(G.placed.p,5);return '<div class="tut" style="margin:6px auto;max-width:94%;padding:7px 10px;border:1px solid var(--gold);border-radius:8px;background:rgba(0,0,0,.6);font-size:12.5px;line-height:1.35"><b style="color:var(--gold)">Tutorial · Step '+(k+1)+' of 6 · '+st[k][0]+'</b><br>'+st[k][1]+'</div>'}
 function startGame(){const n=S.opp,rules=resolve(matchRules(n)),dr=rules.includes('Draft');S.pick=S.pick.filter(id=>coll[id]>0);
