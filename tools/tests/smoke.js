@@ -46,9 +46,19 @@ const check = (name, ok, info) => {
     tryIt('mat', () => { buyMat(MATS[0].k); equipMat(MATS[0].k); return P.mats.includes(MATS[0].k) && P.mat === MATS[0].k; });
     tryIt('fx', () => { buyFx(FX[0].k); if (P.fx !== FX[0].k) equipFx(FX[0].k); return P.fxo.includes(FX[0].k) && P.fx === FX[0].k; });
     tryIt('battery', () => { const was = !!P.bs; toggleBS(); const on = document.body.classList.contains('bsv') === !was; toggleBS(); return on; });
-    tryIt('broker', () => { brokerSheet(); return true; });
+    tryIt('broker', () => { P.gil = 4321; const h = brokerSheet(); return h.includes('class="bal"') && h.includes('4321'); });
     try { chooseNpc(NPCS.findIndex(n => n.d === 1)); await new Promise(res => setTimeout(res, 2500)); o.match = S.screen === 'game' && !!document.getElementById('bd'); }
     catch (e) { o.match = 'ERR ' + e.message; }
+    // Timer chip is visible in the top-left corner of the match screen.
+    tryIt('timerChip', () => { const e = document.getElementById('tm'); if (!e) return false; const r = e.parentNode.getBoundingClientRect(); return r.width > 0 && r.left < 60 && r.top < 40 && /^\d+s/.test(e.textContent); });
+    // Battle sounds: on by default, off with the setting, and they fire when the sprites clash.
+    tryIt('sfxDefaultOn', () => P.sfx === undefined && !!sfxCtx());
+    tryIt('sfxCanMute', () => { P.sfx = 0; const off = sfxCtx() === null; delete P.sfx; return off; });
+    try {
+      window.__cl = 0; const oc = window.sfxClang; window.sfxClang = (...a) => { window.__cl++; return oc(...a); };
+      for (let i = 0; i < 70 && !window.__cl && !S.G.over; i++) { if (S.G.turn === 'p' && !S.G.busy && !S.intro) autoPlay(); await new Promise(res => setTimeout(res, 500)); }
+      o.sfxOnClash = window.__cl > 0;
+    } catch (e) { o.sfxOnClash = 'ERR ' + e.message; }
     return o;
   });
   await p.waitForTimeout(1200);
@@ -56,7 +66,7 @@ const check = (name, ok, info) => {
 
   check('every card has art', r.artMissing.length === 0, r.artMissing);
   check('music uses hashed assets', r.musicOk === true);
-  for (const [k, v] of Object.entries(r)) if (/^(s_|shop_|buy|mat$|fx$|battery|broker|match)/.test(k)) check(k, v === true, v);
+  for (const [k, v] of Object.entries(r)) if (/^(s_|shop_|buy|mat$|fx$|battery|broker|match|timerChip|sfx)/.test(k)) check(k, v === true, v);
   check('no broken images', broken.length === 0, broken);
   check('no failed requests', bad.length === 0, [...new Set(bad)].slice(0, 10));
   check('no page errors', errs.length === 0, errs);
