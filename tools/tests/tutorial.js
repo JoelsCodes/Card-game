@@ -1,5 +1,5 @@
 // Tutorial: the first map node (Quill). Gates the rest of the map, plays a fixed-hand match,
-// pays 50 MGP once on the first win, and pays nothing on a replay.
+// pays 50 Sols once on the first win, and pays nothing on a replay.
 // Run from the repo root: NODE_PATH=$(npm root -g) node tools/tests/tutorial.js
 const { chromium } = require('playwright');
 const path = require('path');
@@ -92,7 +92,7 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
     const r = await playOnce();
     console.log('run ' + (i + 1) + ' result: ' + JSON.stringify(r.after));
     if (r.after.k === 'win') {
-      check('run ' + (i + 1) + ': win pays 50 MGP and marks the tutorial beaten', r.after.beat && r.after.gil - r.before.gil === 50, { before: r.before, after: r.after });
+      check('run ' + (i + 1) + ': win pays 50 Sols and marks the tutorial beaten', r.after.beat && r.after.gil - r.before.gil === 50, { before: r.before, after: r.after });
       check('run ' + (i + 1) + ': a win opens the rest of the map', r.after.open1 === true, r.after);
       wins.push(r);
     } else {

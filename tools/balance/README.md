@@ -12,8 +12,8 @@ Output:
 - `campaign_rydia.json`: every match against Rydia from all campaigns
 
 ## Current rules in the campaign
-- New player: 300 MGP, 10 starting cards, unlock system on.
-- Player buys standard packs (150 MGP) whenever they can afford one.
+- New player: 300 Sols, 10 starting cards, unlock system on.
+- Player buys standard packs (150 Sols) whenever they can afford one.
 - Player builds the best legal 10-card deck from owned cards.
 - Item belt: Bolt, Bomb, Revive, Potion, Remedy, Reclash, Flip, Draw, Smoke, Trap, Scout (up to the belt limit).
 - Command card: Mist Dragon, then Ifrit, then Choco, if unlocked.

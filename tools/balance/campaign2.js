@@ -1,4 +1,4 @@
-// Full-career run: player must beat all 40 opponents; may rechallenge beaten opponents to farm MGP.
+// Full-career run: player must beat all 40 opponents; may rechallenge beaten opponents to farm Sols.
 // Usage: node campaign2.js RUNS SHOP SKILL   (SHOP = std|seek, SKILL = mirror|0|1|2)
 const sim = require('./sim_full.js');
 const vm = require('vm'), fs = require('fs');
